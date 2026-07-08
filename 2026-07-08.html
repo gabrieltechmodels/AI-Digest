@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Claude Cowork se escapa del escritorio y te sigue al móvil, mientras Meta reparte gratis su propio generador de imágenes — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">8 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Claude Cowork se escapa del escritorio y te sigue al móvil, mientras Meta reparte gratis su propio generador de imágenes</p>
+<h2>Lo más importante</h2>
+<p>La novedad más aprovechable de hoy es que <strong>Claude Cowork</strong> —el agente de Anthropic para trabajo de oficina general, el primo del que ya conoces para programar— sale del ordenador y llega a <strong>web y móvil</strong>. Hasta ahora era una app de escritorio (lanzada en enero); desde hoy, los suscriptores del plan <strong>Max</strong> pueden arrancar una tarea en el ordenador, seguir su progreso desde el teléfono y recoger el resultado más tarde, aunque el portátil esté cerrado. La idea es que funcione como un <strong>agente</strong> (un asistente que ejecuta tareas de varios pasos por su cuenta) que trabaja en segundo plano y solo te avisa cuando hay una decisión que únicamente tú puedes tomar. Si tienes plan Max, ya lo tienes disponible en España; entras desde la web de Claude o la app móvil.</p>
+<p>En imágenes, <strong>Meta</strong> ha lanzado <strong>Muse Image</strong>, un generador gratuito integrado en la app de Meta AI, en las Stories de Instagram y en WhatsApp. Sirve para lo habitual —crear ilustraciones y montajes a partir de texto, con "presets" para inspirarte—, pero llega con polémica: una función permite manipular fotos de otras personas de Instagram, y muchos usuarios ya están protestando por el uso de sus imágenes. <strong>Ojo con la disponibilidad</strong>: la fuente no confirma fechas para la UE, y las funciones de Meta AI suelen llegar tarde o capadas a Europa por el RGPD y la AI Act, así que puede que aún no lo veas activo en España.</p>
+<p>Y una de mantenimiento práctico: <strong>Google</strong> ha cambiado sin hacer ruido sus ajustes de privacidad para <strong>entrenar su IA con los archivos que subes</strong> (imágenes, audio, vídeo) a sus servicios de búsqueda, activándolo por defecto. Si no quieres que tu contenido alimente sus modelos, puedes desactivarlo en la configuración de "Search Services" de tu cuenta. Como usuario de la UE tienes derecho a oponerte, así que merece la pena revisar el ajuste hoy mismo.</p>
+<h2>Tendencias y patrones</h2>
+<p>Se consolida el patrón de que los <strong>agentes dejan de vivir en la ventana de chat</strong> y se vuelven multidispositivo y persistentes: Cowork en el móvil es el ejemplo del día, pero la lógica es la misma que empuja a todos los grandes: un asistente que "va contigo" y trabaja solo. En paralelo, hay un movimiento claro de <strong>abaratamiento</strong>: Microsoft ha empezado a responder parte de las peticiones de <strong>Excel y Word</strong> con sus propios modelos MAI en lugar de tirar siempre de OpenAI o Anthropic, y varias empresas están migrando tareas ya validadas a modelos más ligeros y baratos. La lectura para ti: los modelos "tope de gama" sirven para descubrir qué funciona, y luego el trabajo repetitivo se pasa a alternativas más económicas.</p>
+<p>El segundo patrón es incómodo: la IA generando problemas que luego la IA tiene que arreglar. Reddit usa modelos de lenguaje para frenar el spam creado con modelos de lenguaje, Discord ha tenido que restaurar más de 8.000 cuentas baneadas por error por su moderación automática, y en seguridad aparece <strong>HalluSquatting</strong>, un ataque que aprovecha que los modelos "se inventan" nombres de paquetes de software inexistentes para colar código malicioso. Si programas con ayuda de IA, verifica siempre que las librerías que te sugiere existen de verdad antes de instalarlas.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Claude Cowork (web y móvil)</strong> — Agente de trabajo general de Anthropic; disponible ya en España para el plan Max, ahora también desde el teléfono.</li><li><strong>Muse Image</strong> — Generador de imágenes gratuito de Meta en Meta AI, Instagram y WhatsApp; disponibilidad en la UE sin confirmar, posible retraso por regulación.</li><li><strong>sqlite-utils 4.0</strong> — Gran actualización de esta herramienta de Python para SQLite: ahora trae migraciones de esquema, transacciones anidadas y claves foráneas compuestas. Instalable con `pip`, disponible globalmente.</li><li><strong>Siri con voz personalizable</strong> — En la beta 3 de iOS 27 puedes ajustar el ritmo y la expresividad con que habla Siri; de momento solo en la beta para desarrolladores.</li><li><strong>Fable 5 para generar webs</strong> — Truco del día: dejar que Fable 5 diseñe por su cuenta sitios web completos (motion, vídeo, imágenes) sin prompts detallados. Recuerda que Fable 5 solo está de vuelta unos días más.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/">Claude Cowork llega a móvil y web (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/07/07/meta-rolls-out-muse-a-new-ai-image-generator/">Meta lanza Muse Image (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/07/06/if-you-use-google-youre-training-its-ai-heres-how-to-opt-out/">Cómo evitar que Google entrene su IA con tus datos (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/07/07/microsoft-joins-ai-cost-cutting-trend-by-relying-more-on-its-own-models/">Microsoft usa más sus propios modelos (TechCrunch)</a></li><li><a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-4/#atom-everything">sqlite-utils 4.0 (Simon Willison)</a></li><li><a href="https://techcrunch.com/2026/07/06/you-can-now-customize-siris-pace-and-expressivity-in-the-latest-ios-27-beta/">Siri personalizable en iOS 27 beta (TechCrunch)</a></li><li><a href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/">HalluSquatting: botnets con herramientas de IA (Ars Technica)</a></li><li><a href="https://www.youtube.com/watch?v=h6G9R4UxR6g">Usar Fable 5 para crear webs (YouTube)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-07.html">7 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
