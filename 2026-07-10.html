@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>OpenAI reordena todo su catálogo en un solo día: llega la familia GPT-5.6 y ChatGPT Work, un agente que trabaja durante horas sin supervisión — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">10 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>OpenAI reordena todo su catálogo en un solo día: llega la familia GPT-5.6 y ChatGPT Work, un agente que trabaja durante horas sin supervisión</p>
+<h2>Lo más importante</h2>
+<p>La noticia grande es <strong>GPT-5.6</strong>, la nueva familia de modelos tope de gama de OpenAI, ya en disponibilidad general desde ayer. Viene en tres tamaños con nombres nuevos: <strong>Sol</strong> (el potente), Terra (el intermedio) y Luna (el económico). Los tres comparten ventana de contexto de un millón de <strong>tokens</strong> (las unidades de texto con las que trabaja el modelo; un millón equivale a unos 750.000 palabras) y conocimiento hasta febrero de 2026. Los precios por millón de tokens son agresivos: Luna a $1/$6 (entrada/salida), Terra a $2.50/$15 y Sol a $5/$30 — es decir, Sol cuesta la mitad que Claude Fable 5. OpenAI presume sobre todo de rendimiento en tareas <strong>agénticas</strong> largas (cuando el modelo trabaja solo encadenando pasos durante mucho tiempo), donde sus benchmarks muestran a los tres modelos por delante de Fable 5, y de una eficiencia de tokens un 54% mayor en programación. Al ser un lanzamiento en disponibilidad general vía API y ChatGPT, <strong>ya se puede usar desde España</strong> sin restricciones conocidas. Además, GPT-5.6 pasa a ser el "modelo preferido" de Microsoft 365 Copilot, así que si usas Word, Excel o PowerPoint con Copilot notarás el cambio sin hacer nada.</p>
+<p>La segunda pieza del día es <strong>ChatGPT Work</strong>, el antiguo Codex rebautizado y convertido en agente de propósito general: le das un objetivo y puede actuar sobre tus aplicaciones y archivos, manteniéndose en la tarea "durante horas si hace falta" — justo la limitación que tenían los agentes de navegador, que se paraban a los pocos minutos. Funciona en la nube (web y móvil) y en la app de escritorio, donde además puede tocar archivos locales con tu permiso; ojo, las conversaciones de nube y escritorio no se sincronizan entre sí de momento. Relacionado: OpenAI <strong>cierra Atlas</strong>, su navegador con IA, y reparte sus funciones de navegación agéntica entre la app de escritorio de ChatGPT y una extensión de Chrome. Si usabas Atlas, toca migrar. Sobre disponibilidad de Work en la UE las fuentes no dan detalle; al ir ligado al lanzamiento general de GPT-5.6, lo prudente es probarlo directamente en tu cuenta y, si no aparece, esperar unos días.</p>
+<p>Dos novedades más rápidas. Meta lanza <strong>Muse Spark 1.1</strong>, su modelo de programación agéntica y el primero de la familia con API pública, a $1.25 por millón de tokens de entrada; ya existe un plugin (`llm-meta-ai`) para probarlo desde la línea de comandos. Cautela con la disponibilidad: Meta suele retrasar o capar sus productos de IA en la UE y las fuentes no confirman acceso europeo a esta API. Y Anthropic estrena <strong>Reflect</strong> en beta: un panel en Ajustes de Claude (web y escritorio) que visualiza cómo usas la IA — temas, patrones, tipos de tarea — para decidir si ese uso encaja con tus objetivos. Al ser una función dentro del propio Claude, debería aparecer también en cuentas españolas, aunque el anuncio no lo especifica.</p>
+<p>Un aviso práctico de privacidad: el nuevo generador de imágenes de Meta ("Muse Image") permite a cualquiera usar fotos de cuentas públicas de Instagram en sus creaciones de IA, sin avisarte. Si tu cuenta es pública y esto te incomoda, revisa los ajustes de privacidad de Instagram o pasa la cuenta a privada.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es la consolidación: OpenAI mata productos sueltos (Atlas ayer, Sora hace meses) para concentrarlo todo en ChatGPT como "superapp" — el navegador se vuelve extensión, Codex se vuelve ChatGPT Work, y los agentes dejan de ser experimentos aparte para ser el producto central. La apuesta ya no es "un chat que responde" sino "un empleado digital que termina trabajos".</p>
+<p>El segundo patrón es la guerra de precios en modelos agénticos: Sol a mitad de precio que Fable 5, Muse Spark 1.1 aún más barato, y todos compitiendo en el mismo terreno (trabajo autónomo prolongado y programación). Para el usuario esto es buena noticia: la capacidad de gama alta de hace tres meses cuesta hoy la mitad, y merece la pena re-evaluar qué modelo mueve tus flujos de trabajo.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>GPT-5.6 (Sol/Terra/Luna)</strong> — la nueva familia de OpenAI; empieza por Terra si buscas equilibrio precio/capacidad.</li><li><strong>ChatGPT Work</strong> — el agente de larga duración de OpenAI; en escritorio puede trabajar con tus archivos locales.</li><li><strong>Reflect (Claude)</strong> — panel beta en Ajustes para auditar tus propios hábitos de uso de IA.</li><li><strong>llm-meta-ai</strong> — plugin del CLI `llm` de Simon Willison para probar Muse Spark 1.1 desde la terminal.</li><li><strong>Mistral Studio</strong> — gestor versionado de prompts y "skills" para equipos que quieren trazabilidad en sus flujos de IA.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/gpt-5-6">OpenAI — GPT-5.6</a></li><li><a href="https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything">Simon Willison — The new GPT-5.6 family</a></li><li><a href="https://openai.com/index/chatgpt-for-your-most-ambitious-work">OpenAI — ChatGPT Work</a></li><li><a href="https://arstechnica.com/ai/2026/07/openai-wants-its-new-tool-to-do-your-work-for-you-and-with-you/">Ars Technica — OpenAI wants its new tool to do your work</a></li><li><a href="https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/">TechCrunch — OpenAI is shutting down Atlas</a></li><li><a href="https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/">TechCrunch — Meta launches Muse Spark 1.1</a></li><li><a href="https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything">Simon Willison — Introducing Muse Spark 1.1</a></li><li><a href="https://www.anthropic.com/news/reflect-with-claude">Anthropic — Reflect with Claude</a></li><li><a href="https://techcrunch.com/2026/07/09/how-to-stop-metas-ai-image-generator-from-using-your-instagram-photos/">TechCrunch — How to stop Meta's AI from using your photos</a></li><li><a href="https://mistral.ai/news/manage-prompts-and-skills-in-studio/">Mistral — Manage prompts and skills in Studio</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-09.html">9 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
