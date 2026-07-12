@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Meta se lanza a la guerra del código con Muse Spark y OpenAI mata su navegador para meter la IA directamente en Chrome — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">12 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Meta se lanza a la guerra del código con Muse Spark y OpenAI mata su navegador para meter la IA directamente en Chrome</p>
+<h2>Lo más importante</h2>
+<p>La novedad más jugosa para quien programa (o le pide a la IA que programe) es <strong>Muse Spark 1.1</strong>, el nuevo modelo de Meta pensado para <em>coding agéntico</em> (que la IA no solo escriba código, sino que ejecute tareas de varios pasos por su cuenta: crear funciones, moverse por sistemas, desplegar cambios). Es multimodal —entiende texto e imágenes— y llega a competir de frente con lo que ya ofrecen Anthropic y OpenAI. Meta va tarde a esta fiesta, pero su carta es el precio: <strong>1,25 dólares por millón de tokens</strong> de entrada (los tokens son los trozos en los que la IA parte el texto para procesarlo), una tarifa agresiva. De momento se ofrece por API y orientado a empresas; <strong>no hay confirmación de disponibilidad específica en la UE</strong>, y las funciones de IA de Meta suelen llegar más tarde a Europa, así que tómalo con cautela.</p>
+<p>En paralelo, OpenAI ha decidido <strong>cerrar Atlas</strong>, el navegador con ChatGPT integrado que lanzó en octubre. Pero no abandona la idea: reparte sus funciones de <em>navegación agéntica</em> (que la IA haga clics y tareas por ti en la web) entre la app de escritorio de ChatGPT y una <strong>extensión para Google Chrome</strong>. Es una jugada práctica: en vez de pedirte que cambies de navegador, se mete en el que ya usas. Como es habitual en OpenAI, el despliegue suele empezar en EE. UU.; <strong>aún sin datos claros sobre la UE</strong>, aunque estas extensiones suelen llegar en semanas.</p>
+<p>Y Anthropic estrena en <strong>beta</strong> una función curiosa: <strong>"Reflect with Claude"</strong>, un panel dentro de <em>Ajustes</em> (en Claude web y en la app de escritorio) que te muestra cómo y cuánto usas Claude, para que decidas si ese uso encaja con tus objetivos. No es un modelo nuevo, es una herramienta de autoconocimiento sobre tu propio uso. Al vivir dentro de Claude web —que <strong>sí funciona en España</strong>—, es de las pocas novedades de hoy que puedes abrir ya mismo.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es que <strong>todos quieren meter la IA en las herramientas que ya usas</strong>, no obligarte a ir a una app aparte: OpenAI abandona su navegador propio para colarse en Chrome, Meta empuja su modelo de código hacia los flujos empresariales, y <strong>GPT-5.6</strong> (ya lo contamos hace dos días) se convierte ahora en el "modelo preferido" para el <strong>Copilot de Microsoft 365</strong> —es decir, dentro de Word, Excel y compañía—, justo cuando corrían rumores de distanciamiento entre ambas empresas. La novedad aquí es solo esa: GPT-5.6 se queda de momento como cerebro de Office.</p>
+<p>El segundo patrón es más incómodo: <strong>la IA generativa aplicada a fotos personales sin consentimiento claro</strong>. Meta lanzó esta semana <strong>Muse Image</strong>, un generador de imágenes que permitía crear composiciones a partir de fotos de cuentas públicas de Instagram con solo mencionarlas —sin avisar al dueño de las fotos—. La reacción fue tan negativa que <strong>Meta ha retirado esa función</strong> en cuestión de días. El generador Muse Image sigue existiendo, pero la parte de "usar fotos de desconocidos" desaparece. Para el lector europeo es un recordatorio de por qué muchas de estas funciones llegan capadas o tarde a la UE: aquí el RGPD las frena antes de que exploten así.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Muse Spark 1.1</strong> — Nuevo modelo de Meta para coding agéntico, multimodal y con precio agresivo; por ahora vía API y sin confirmación para la UE.</li><li><strong>Reflect with Claude</strong> — Panel en beta (Ajustes de Claude web/escritorio) para visualizar tu propio uso de Claude; disponible en España.</li><li><strong>Extensión de ChatGPT para Chrome</strong> — OpenAI mueve la navegación agéntica de Atlas a una extensión de Chrome y a su app de escritorio.</li><li><strong>Divulgación de anuncios con IA en Google</strong> — Google marcará qué anuncios se han hecho con IA en el panel "Mi centro de anuncios", accesible globalmente (también en España).</li><li><strong>sqlite-utils 4.1</strong> — Para perfil técnico: ahora acepta `--code` para generar filas con un bloque de Python al insertar en una base de datos SQLite.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/">TechCrunch — Meta Muse Spark 1.1</a></li><li><a href="https://www.anthropic.com/news/reflect-with-claude">Anthropic — Reflect with Claude</a></li><li><a href="https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/">TechCrunch — OpenAI cierra Atlas</a></li><li><a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/">TechCrunch — Meta retira la función polémica de Instagram</a></li><li><a href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/">TechCrunch — GPT-5.6, modelo preferido de Copilot 365</a></li><li><a href="https://techcrunch.com/2026/07/09/google-will-now-disclose-which-ads-are-made-with-ai/">TechCrunch — Google marcará los anuncios hechos con IA</a></li><li><a href="https://simonwillison.net/2026/Jul/11/sqlite-utils/">Simon Willison — sqlite-utils 4.1</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-10.html">10 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
