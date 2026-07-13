@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Claude te pone un espejo delante mientras la IA vuelve a aprender que usar fotos ajenas sin permiso no sale gratis — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">13 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Claude te pone un espejo delante mientras la IA vuelve a aprender que usar fotos ajenas sin permiso no sale gratis</p>
+<h2>Lo más importante</h2>
+<p>Anthropic ha lanzado <strong>Claude Reflect</strong>, una función en beta (versión de prueba, aún sujeta a cambios) que te deja ver cómo usas Claude: cuánto tiempo le dedicas, para qué tipo de tareas, y si ese uso encaja con lo que realmente quieres conseguir. Es básicamente un panel de autoanálisis, pensado para responder preguntas como "¿debería usar más o menos IA para esto?" en vez de dejarlo a la intuición. Se activa desde Ajustes en Claude para web y la app de escritorio; al ser una función de cuenta y no un modelo nuevo, no debería tener restricciones geográficas especiales, así que en principio ya está accesible también desde España.</p>
+<p>También circula un flujo de trabajo concreto que vale la pena robar: usar <strong>Claude Code</strong> como "orquestador" (el que dirige el proceso) conectado a Clay, una plataforma de datos de contactos, para automatizar la generación de leads (contactos comerciales potenciales) de principio a fin. Con un solo prompt (instrucción en lenguaje natural) es posible encontrar contactos, enriquecerlos con datos adicionales, escribir asuntos y cuerpos de email personalizados, y montar la campaña, todo sin tocar código. Requiere cuenta de Claude Code (disponible en España) y cuenta de Clay (servicio de terceros, de pago).</p>
+<p>Por último, una novedad menor pero práctica si usas Microsoft 365: OpenAI ha confirmado que <strong>GPT-5.6 Sol</strong> —el modelo insignia lanzado hace unos días— es ahora el "modelo preferido" que impulsa Copilot en Word, Excel y el resto del paquete Office. No hay que activar nada: si ya tienes Copilot 365, lo recibes de forma automática. Microsoft 365 opera con normalidad en la UE, aunque el despliegue de mejoras de IA a veces llega escalonado, así que si aún no lo notas, puede tardar unos días más en tu cuenta.</p>
+<h2>Tendencias y patrones</h2>
+<p>Se repite un patrón que ya venía apuntándose: cuantas más empresas escalan su uso de IA, más se alejan de las APIs cerradas de pago por uso y más recurren a modelos open source (de código y pesos abiertos, que se pueden descargar y ejecutar en infraestructura propia). El CEO de Hugging Face —plataforma que funciona como un "GitHub de la IA" y que ya usa la mitad de las empresas del Fortune 500— lo resume así: el coste es el empujón que convierte a los equipos técnicos, tarde o temprano, en usuarios de modelos abiertos.</p>
+<p>El otro patrón del día es más de cautela: Meta lanzó y retiró en cuestión de días "Muse Image", una función que permitía generar imágenes con IA a partir de fotos de cuentas públicas de Instagram con solo mencionarlas, sin avisar al dueño de las fotos. La reacción fue inmediata y Meta la eliminó. Para un lector en la UE es un recordatorio útil: este tipo de funciones chocan de lleno con el RGPD y la AI Act, así que es probable que, aunque vuelvan, lleguen a Europa con restricciones adicionales o directamente no lleguen.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Claude Reflect</strong> — panel de autoanálisis de uso dentro de Claude, en beta.</li><li><strong>Claude Code + Clay</strong> — flujo de generación y personalización de leads con un solo prompt.</li><li><strong>Hugging Face</strong> — repositorio de modelos y datasets open source, alternativa a las APIs cerradas.</li><li><strong>GPT-5.6 Sol en Copilot 365</strong> — el modelo ya impulsa Word, Excel y Teams sin configuración extra.</li><li><strong>RGPD / AI Act</strong> — marco que probablemente frene en Europa funciones como Muse Image.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.anthropic.com/news/reflect-with-claude">Anthropic — Introducing a way to reflect on how you use Claude</a></li><li><a href="https://www.youtube.com/watch?v=zyvdl__Ywfk">YouTube — Claude Code + Clay Makes Lead Generation Actually Fun</a></li><li><a href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/">TechCrunch — OpenAI says GPT 5.6 is the 'preferred model' for Microsoft Copilot 365</a></li><li><a href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/">TechCrunch — Hugging Face's CEO on why companies are done renting their AI</a></li><li><a href="https://techcrunch.com/2026/07/09/how-to-stop-metas-ai-image-generator-from-using-your-instagram-photos/">TechCrunch — Instagram users: Here's how to stop Meta's AI from using your photos</a></li><li><a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/">TechCrunch — Meta removes controversial AI feature on Instagram after backlash</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-12.html">12 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
