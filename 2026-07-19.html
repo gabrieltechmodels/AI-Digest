@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Anthropic lanza Sonnet 5 y acerca la potencia de su modelo tope a una fracción del precio — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">19 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Anthropic lanza Sonnet 5 y acerca la potencia de su modelo tope a una fracción del precio</p>
+<h2>Lo más importante</h2>
+<p>La novedad grande de hoy es <strong>Claude Sonnet 5</strong>, el nuevo modelo de gama media de Anthropic. Lo relevante no es solo que mejore a su antecesor (Sonnet 4.6): es que se acerca mucho a <strong>Opus 4.8</strong>, el modelo más caro y potente de la casa, pero pagando bastante menos. Está pensado sobre todo para tareas <em>agénticas</em> (que el modelo no se limite a responder, sino que ejecute pasos por su cuenta: abrir un navegador, usar una terminal, encadenar acciones sin que le lleves de la mano). En la práctica, si usas Claude para programar o automatizar flujos de trabajo, ahora tienes casi la calidad del modelo top a menor coste. Ya está disponible en España a través de Claude.ai, la API y Claude Code.</p>
+<p>En paralelo, Google mueve ficha en vídeo y en su buscador. Google Vids estrena la posibilidad de crear un <em>avatar digital</em> (un doble tuyo generado por IA) a partir de un selfie y una grabación de voz, para "protagonizar" vídeos sin grabarte. Y suma <strong>Gemini Omni</strong>, su modelo <em>multimodal</em> (que combina texto e imágenes en la misma petición): con él puedes generar vídeo mezclando un prompt escrito con imágenes de referencia, cambiar el fondo o corregir la luz de un vídeo del móvil, y hacer ediciones paso a paso. Además, el AI Mode del buscador empieza a conectarse con apps (Canva, YouTube, Instacart) para completar tareas —por ejemplo, montar la lista de la compra— y no solo responder. Aviso de disponibilidad: estas funciones suelen estrenarse primero en EE. UU. y en inglés, y a la UE llegan más tarde; integraciones como Instacart son estadounidenses de por sí. De momento, sin fecha confirmada para España.</p>
+<p>Y una para quien crea cosas: Roblox estrena <strong>Build</strong>, una función en su app móvil que convierte una frase ("un juego acogedor de aventuras en un bosque") en un videojuego jugable básico, sin programar, que luego puedes retocar y compartir. Roblox es global, así que debería ir llegando, aunque las funciones de IA se activan de forma escalonada.</p>
+<h2>Tendencias y patrones</h2>
+<p>El hilo del día es el mismo que lleva semanas asomando: la IA deja de "contestar" y pasa a "hacer". Sonnet 5 presume de autonomía agéntica, el buscador de Google ejecuta tareas dentro de otras apps, e incluso aparecen juguetes como una herramienta para pedir comida a domicilio desde la línea de comandos con un agente (dd-cli, de momento solo en EE. UU. y Canadá, por lista de espera). El mensaje para el usuario: cada vez más, la gracia no está en el chat, sino en darle permiso al modelo para que toque tus herramientas.</p>
+<p>El segundo patrón es más silencioso: la IA como fábrica de utilidades desechables. Un buen ejemplo de hoy es un pequeño explicador interactivo de consultas SQLite construido "pidiéndoselo" a un modelo, que corre entero en el navegador. Cada vez es más normal generar en una tarde una herramienta a medida en lugar de buscar una que ya exista.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Claude Sonnet 5</strong> — Nuevo modelo equilibrado de Anthropic: casi nivel Opus a menor precio, disponible ya en España.</li><li><strong>Gemini Omni</strong> — Modelo multimodal de Google para generar y editar vídeo mezclando texto e imágenes de referencia.</li><li><strong>Fable 5 y Mythos 5</strong> — Los modelos de Anthropic vuelven a estar disponibles a nivel global (Europa incluida) desde el 1 de julio, tras levantarse unas restricciones de exportación.</li><li><strong>Roblox Build</strong> — Crear un videojuego jugable desde el móvil escribiendo una frase, sin saber programar.</li><li><strong>Claude Science</strong> — Espacio de trabajo con IA para investigadores que integra sus herramientas habituales y genera resultados auditables.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.anthropic.com/news/claude-sonnet-5">Anthropic — Claude Sonnet 5</a></li><li><a href="https://techcrunch.com/2026/07/16/google-vids-now-lets-you-star-in-your-own-ai-videos/">TechCrunch — Google Vids: protagoniza tus vídeos con IA</a></li><li><a href="https://techcrunch.com/2026/07/16/googles-ai-mode-now-lets-you-link-and-interact-with-select-apps/">TechCrunch — AI Mode se conecta con apps</a></li><li><a href="https://techcrunch.com/2026/07/16/roblox-launches-an-ai-powered-game-creation-feature-in-its-mobile-app/">TechCrunch — Roblox Build</a></li><li><a href="https://techcrunch.com/2026/07/16/yes-you-can-now-order-doordash-from-the-command-line/">TechCrunch — DoorDash desde la línea de comandos</a></li><li><a href="https://simonwillison.net/2026/Jul/18/sqlite-query-explainer/">Simon Willison — SQLite Query Explainer</a></li><li><a href="https://www.anthropic.com/news/redeploying-fable-5">Anthropic — Redespliegue de Fable 5 y Mythos 5</a></li><li><a href="https://www.anthropic.com/news/claude-science-ai-workbench">Anthropic — Claude Science</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-17.html">17 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
