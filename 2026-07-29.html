@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>La IA deja de solo charlar y empieza a cazar fallos de seguridad de verdad, mientras los chatbots se cuelan en tus mensajes privados — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">29 de julio de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>La IA deja de solo charlar y empieza a cazar fallos de seguridad de verdad, mientras los chatbots se cuelan en tus mensajes privados</p>
+<h2>Lo más importante</h2>
+<p>El movimiento de modelo más serio de hoy viene de Microsoft, que ha presentado <strong>MAI-Cyber-1-Flash</strong>, su primer modelo especializado en ciberseguridad. No es un chatbot más: está entrenado para <em>encontrar vulnerabilidades</em> (fallos de seguridad explotables) en bases de código grandes y complejas, y funciona dentro de dos sistemas nuevos —MDASH, que detecta y parchea bugs, y <strong>Perception</strong>, una plataforma que despliega equipos de <strong>agentes</strong> (programas de IA que ejecutan tareas por su cuenta, no solo responden) para automatizar flujos de seguridad—. Es una herramienta para equipos técnicos, no de consumo, y por ahora sin datos de disponibilidad en la UE. Va en la misma línea que otra noticia curiosa: investigadores de Anthropic usaron su modelo de investigación <strong>Claude Mythos</strong> para descubrir debilidades matemáticas reales en algoritmos de cifrado (HAWK y una versión débil de AES). Sin impacto práctico todavía, pero marca un antes y un después: la IA ya sirve como investigador de seguridad, no solo como copiloto.</p>
+<p>En el terreno de lo que sí puedes tocar hoy, X ha estrenado <strong>Grok Build Mode</strong>, un modo que convierte a Grok en constructor de mini-aplicaciones desde el propio chat (le describes algo y te lo monta). Está para suscriptores de X, y Grok sí funciona en España, aunque conviene comprobar dentro de la app si el modo ya te aparece. Meta, por su parte, ha metido a <strong>Meta AI</strong> dentro de los mensajes privados de Threads: ya podías hablar con él en posts públicos, ahora también en tus DMs, compartiéndole enlaces, imágenes o vídeos para preguntarle. Ojo con la disponibilidad: sale en "mercados seleccionados" y Meta AI históricamente llega tarde y con funciones capadas a la UE por la regulación europea, así que en España puede que aún no lo veas.</p>
+<p>Y un aviso práctico si usas <strong>Claude</strong>: se ha descubierto que muchas conversaciones y Artifacts compartidos con la opción "compartir chat" acabaron <strong>indexados en Google</strong> y eran buscables públicamente, algunos con datos sensibles. Si en algún momento generaste un enlace de "compartir", revisa y bórralo desde tus ajustes. Afecta a cualquiera, España incluida.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón grande de la semana es defensivo: cómo distinguir lo humano de lo generado por máquina. La startup <strong>Pangram</strong> ha lanzado dos detectores nuevos —Pangram 4 para texto (afirma más de un <strong>99% de acierto</strong>, incluso contra "humanizadores" que disfrazan la IA) y Pangram Image para imágenes, este último aún en <em>research preview</em>—. En paralelo, pruebas al <strong>watermark</strong> (marca de agua invisible incrustada en el contenido) SynthID de Google confirman que es difícil de eliminar, pero también que etiquetar no basta para frenar la desinformación. Traducción para ti: los detectores mejoran, pero ninguno es infalible; no te fíes al 100% de un veredicto "esto es IA".</p>
+<p>El segundo patrón es la IA metiéndose en todas tus apps de mensajería (Threads se suma a WhatsApp, Instagram y Messenger) para que no te vayas a la competencia. Y de fondo, un runrún político-industrial: OpenAI, Anthropic, Google y Meta han firmado una carta para "pausar" el ritmo del desarrollo de IA. Interesante como señal, pero sin efecto en lo que puedes usar hoy.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>MAI-Cyber-1-Flash / Perception</strong> — primer modelo y plataforma de ciberseguridad de Microsoft, con agentes que buscan y parchean vulnerabilidades.</li><li><strong>Grok Build Mode</strong> — construye mini-apps por chat desde X; disponible para suscriptores, útil para prototipar sin programar.</li><li><strong>uv 0.12.0</strong> — el gestor de proyectos Python más rápido cambia su plantilla por defecto a estructura `src/`; relevante si programas en Python.</li><li><strong>Pangram 4</strong> — detector de texto IA con alta precisión, accesible vía web para verificar contenidos sospechosos.</li><li><strong>Prompt de webs "dithering"</strong> — una plantilla gratuita para pedirle a cualquier agente de IA que te genere webs animadas con efectos procedurales, sin saber diseño.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/">TechCrunch — Microsoft cybersecurity model</a></li><li><a href="https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/">Simon Willison — Cryptographic weaknesses with Claude</a></li><li><a href="https://tldr.tech/ai/2026-07-29">TLDR AI — Grok Build Mode</a></li><li><a href="https://techcrunch.com/2026/07/27/threads-users-can-now-chat-with-meta-ai-in-their-dms/">TechCrunch — Meta AI in Threads DMs</a></li><li><a href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/">TechCrunch — Claude shared chats on Google</a></li><li><a href="https://techcrunch.com/2026/07/29/as-ai-content-floods-the-internet-pangram-raises-9m-to-detect-it/">TechCrunch — Pangram AI detection</a></li><li><a href="https://arstechnica.com/ai/2026/07/tested-google-synthid-works-great-but-labeling-ai-content-may-be-a-losing-game/">Ars Technica — Google SynthID watermark</a></li><li><a href="https://simonwillison.net/2026/Jul/28/uv/">Simon Willison — uv 0.12.0</a></li><li><a href="https://www.youtube.com/watch?v=KDkR0cJRiJk">Tutorial — Webs con efecto dithering</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-28.html">28 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
