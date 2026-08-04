@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Qwen suelta modelos abiertos para programar que puedes descargar y usar sin permiso de nadie, mientras Siri por fin funciona (pero quizá no en tu iPhone) — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">4 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Qwen suelta modelos abiertos para programar que puedes descargar y usar sin permiso de nadie, mientras Siri por fin funciona (pero quizá no en tu iPhone)</p>
+<h2>Lo más importante</h2>
+<p>La novedad más aprovechable de hoy viene de China: <strong>Qwen</strong> ha publicado nuevos modelos de <strong>pesos abiertos</strong> (los archivos del modelo se descargan y ejecutas en tu propio equipo o servidor, sin depender de la nube de nadie) orientados a <strong>programación</strong> y a "cowork" (trabajar codo con codo con la IA en tareas). El lanzamiento incluye un modelo grande, <strong>Qwen 3.8 Max (2.4 billones de parámetros)</strong>, y uno mucho más manejable de <strong>27B</strong> pensado para correr en hardware modesto. Lo interesante para ti: al ser de pesos abiertos, <strong>no hay bloqueo geográfico</strong> — cualquiera en España puede descargarlos (típicamente desde Hugging Face) y usarlos gratis, incluso sin conexión. Si programas o quieres un asistente de código local sin enviar tu código a un tercero, este es el estreno del día que sí puedes probar hoy mismo.</p>
+<p>En el mundo de las apps que ya usas, <strong>Apple</strong> por fin ha arreglado <strong>Siri</strong>. La nueva Siri con IA llegó en la beta de consumidor de <strong>iOS 27</strong> en julio y hace lo prometido: entiende tu contexto personal, responde con conocimiento general y rebusca información guardada en tu iPhone (mensajes, notas, calendario). El pero importante para ti: de momento es <strong>beta y parte de EE. UU.</strong>; Apple ha retrasado históricamente sus funciones de IA en la <strong>Unión Europea</strong> por la normativa (DMA/AI Act), así que en España conviene asumir llegada tardía y sin fecha clara. Además, Tim Cook adelantó que el uso intensivo podría ser <strong>de pago</strong> vía iCloud+ (comprar más "compute" para Siri), al estilo de los planes premium de ChatGPT o Claude.</p>
+<p>OpenAI, por su parte, ha estrenado <strong>ChatGPT Work</strong>, una versión pensada para conectarse a tus herramientas (por ejemplo calendarios familiares o de equipo) y generar cosas como un "podcast" diario con tu agenda y novedades. Suena útil sobre el papel, aunque el propio ejemplo de Sam Altman —un resumen matinal para el coche camino del cole— recibió más burlas que aplausos. No hay confirmación de disponibilidad en la UE; al ser un producto nuevo, lo prudente es esperar despliegue escalonado desde EE. UU.</p>
+<h2>Tendencias y patrones</h2>
+<p>Dos patrones se repiten hoy. El primero es la <strong>automatización del propio flujo de trabajo con IA</strong>: se ha popularizado la idea de programar una tarea nocturna (un "cron", una tarea que se ejecuta sola a una hora fija) que le dice a un agente "trae los cambios nuevos del proyecto, reaplica los míos encima, comprueba que todo sigue funcionando y sustituye la versión". Es un ejemplo concreto de agentes trabajando <strong>sin supervisión mientras duermes</strong> — potente, pero con el riesgo de que se enrede solo (varios desarrolladores ya avisan de que ciertos modelos "nunca dan por terminada" la tarea y siguen toqueteando).</p>
+<p>El segundo patrón es una <strong>reacción contra el "todo IA"</strong>. Snapchat deja de premiar vídeos 100% generados por IA en su feed; Google retiró en un día una función de Google Earth que permitía superponer imágenes falsas sobre mapas reales (riesgo evidente de desinformación); y circula el término <strong>"meat proxy"</strong> para criticar a quien copia y pega la salida de la IA sin leerla ni entenderla. La conclusión práctica: <strong>usa la IA, pero valida y reescribe con tus palabras</strong> antes de reenviar nada.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Qwen 3.8 (Max y 27B)</strong> — modelos abiertos de programación descargables; empieza por el 27B si quieres correrlo en tu propio PC.</li><li><strong>Siri AI (iOS 27)</strong> — asistente con contexto personal; en beta y EE. UU., pendiente de llegar a la UE.</li><li><strong>ChatGPT Work</strong> — versión de OpenAI que se conecta a tus apps para automatizar rutinas diarias; sin datos de disponibilidad en Europa.</li><li><strong>Prompt de cron nocturno (Crawshaw)</strong> — patrón para que un agente actualice y verifique tu software solo cada noche.</li><li><strong>"Meat proxy" (Simon Willison)</strong> — recordatorio de leer, entender y validar lo que genera la IA antes de compartirlo.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.latent.space/p/ainews-qwen-38-max24t-and-27b-new">AINews — Qwen 3.8 Max y 27B (Latent Space)</a></li><li><a href="https://techcrunch.com/2026/08/03/apple-finally-fixed-siri-so-why-does-it-feel-anticlimactic/">Apple finally fixed Siri (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/07/31/siri-ai-could-come-with-a-paywall-for-power-users/">Siri AI podría tener paywall (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/01/sam-altman-is-still-making-the-case-for-parenting-via-chatgpt/">Sam Altman y ChatGPT Work (TechCrunch)</a></li><li><a href="https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything">Prompt de cron de David Crawshaw (Simon Willison)</a></li><li><a href="https://techcrunch.com/2026/07/31/google-nixes-its-earth-ai-feature-one-day-after-launch-amid-criticism-it-would-spread-misinformation/">Google retira Earth AI (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/07/31/snapchat-no-longer-rewards-fully-ai-generated-spotlight-content/">Snapchat deja de premiar contenido de IA (TechCrunch)</a></li><li><a href="https://simonwillison.net/2026/Aug/3/dont-be-a-meat-proxy/#atom-everything">Don't be a meat proxy (Simon Willison)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-07-30.html">30 de julio de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
