@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>ChatGPT quita el límite de mensajes a los usuarios gratis y estrena modelo por defecto — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">7 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>ChatGPT quita el límite de mensajes a los usuarios gratis y estrena modelo por defecto</p>
+<h2>Lo más importante</h2>
+<p>La noticia más aprovechable de hoy es de <strong>OpenAI</strong>: los usuarios gratuitos de <strong>ChatGPT</strong> ya pueden chatear por texto <strong>sin límite</strong> (antes te cortaba tras unos cuantos mensajes). Además, el modelo que responde por defecto pasa a ser <strong>GPT-5.6 Luna</strong>, que sustituye al anterior GPT-5.5. Llega también un botón <strong>"Think"</strong> que activa más capacidad de razonamiento (el modelo "piensa" más antes de responder, útil para preguntas complejas). Ojo: el "sin límite" es solo para chats de texto; imágenes, voz, archivos y generación de imágenes siguen con sus propios topes. Los de pago (Plus y Pro) reciben una versión mejorada de <strong>GPT-5.6 Sol</strong>, más afinada para tareas rápidas como consultas, búsqueda web, planificar o escribir. Al ser una actualización del propio ChatGPT, debería estar disponible <strong>también en España/UE</strong> de forma global, aunque los despliegues suelen ser escalonados a lo largo de unos días.</p>
+<p>En herramientas para crear sin saber programar, <strong>Cloudflare</strong> ha liberado como <strong>código abierto</strong> su plataforma interna de <em>vibe coding</em> (construir apps describiendo lo que quieres en lenguaje natural y dejando que un agente de IA lo programe). Nació como espacio de trabajo para sus empleados —incluidos los que no son desarrolladores— y ahora cualquiera puede descargarla y montarla. Al ser open source, <strong>no tiene restricción geográfica</strong>: la puedes usar desde España sin lista de espera.</p>
+<p>Y <strong>Anthropic</strong> ha ajustado hoy los filtros de biología de su modelo <strong>Claude Fable 5</strong>: reduce un <strong>85%</strong> los "fallbacks" (esas veces en que el sistema te derivaba a un modelo más tonto al detectar una consulta de biología). En la práctica, ahora responde mejor a preguntas cotidianas de salud y educación —interpretar una analítica, entender síntomas, aprender biología— sin cortarse. Claude está <strong>disponible en España/UE</strong>.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es la <strong>agentización de apps que ya usas</strong>: dejan de responder y empiezan a <em>hacer cosas por ti</em>. <strong>Google Maps</strong> amplía su función "Ask Maps" para <strong>pedir comida, reservar hotel y comprar entradas</strong> sin salir de la app, y añade "Personal Intelligence" para personalizar respuestas leyendo tu Gmail y tu Google Calendar. En la misma línea, la startup <strong>Hark</strong> ha mostrado <strong>Handoff</strong>, un agente que maneja el navegador por ti (navega webs sin API oficial —Target, OpenTable, LinkedIn— mirando botones y estructura visual). El aviso importante: estas funciones agénticas de Google suelen <strong>arrancar en EE. UU.</strong> y, por el cruce con datos personales (Gmail/Calendar) y la normativa europea (RGPD y AI Act), <strong>tardan más en llegar a la UE o llegan capadas</strong>; Handoff está en fase de <strong>preview</strong>. Trátalos como "vienen en camino", no como algo que ya tengas hoy en España.</p>
+<p>El segundo hilo es la <strong>calidad por defecto sin pagar</strong>: tanto ChatGPT (Luna gratis, chats ilimitados) como el ajuste de Fable 5 apuntan a lo mismo —quitar fricción y darte el buen modelo de entrada—, señal de que la competencia se libra ahora en la experiencia base, no solo en el modelo tope de gama.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>GPT-5.6 Luna / Sol</strong> — nuevos modelos por defecto de ChatGPT (Luna gratis, Sol para Plus/Pro); prueba el botón "Think" para preguntas difíciles.</li><li><strong>Cloudflare OS (open source)</strong> — plataforma de <em>vibe coding</em> para crear apps con agentes de IA sin ser programador; descargable ya.</li><li><strong>Claude Fable 5</strong> — ahora responde mejor a consultas de salud/biología; disponible en la UE.</li><li><strong>Ask Maps (Google Maps)</strong> — agente que pide comida y reserva hoteles; de momento pendiente de llegada plena a la UE.</li><li><strong>Obsidian como base de flujos con IA</strong> — usar tus notas markdown para guardar prompts, plantillas y flujos de trabajo reutilizables; buen truco para no repetir instrucciones a la IA cada vez.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt">OpenAI — Improving GPT-5.6 Sol / GPT-5.6 Luna</a></li><li><a href="https://techcrunch.com/2026/08/06/openai-brings-unlimited-chatgpt-text-chats-to-free-users/">TechCrunch — ChatGPT brings unlimited text chats to free users</a></li><li><a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards">Anthropic — Improving Fable 5's biology safeguards</a></li><li><a href="https://arstechnica.com/ai/2026/08/cloudflare-open-sources-vibe-coding-platform-for-people-who-arent-coders/">Ars Technica — Cloudflare open-sources vibe-coding platform</a></li><li><a href="https://techcrunch.com/2026/08/06/google-maps-adds-agentic-features-including-food-ordering-and-hotel-bookings/">TechCrunch — Google Maps adds agentic features</a></li><li><a href="https://techcrunch.com/2026/08/05/hark-previews-its-browser-use-agent-for-completing-tasks/">TechCrunch — Hark previews its browser use agent</a></li><li><a href="https://www.youtube.com/watch?v=UuX4zk9jTAg">YouTube — Why Everyone Is OBSESSED With Obsidian</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-06.html">6 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
