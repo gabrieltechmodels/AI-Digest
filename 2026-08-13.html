@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Llegan dos modelos nuevos el mismo día —DeepSeek V4 Pro y Grok 4.6— y Claude empieza a firmar en secreto todo lo que escribe en Europa — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">13 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Llegan dos modelos nuevos el mismo día —DeepSeek V4 Pro y Grok 4.6— y Claude empieza a firmar en secreto todo lo que escribe en Europa</p>
+<h2>Lo más importante</h2>
+<p>Hoy caen <strong>dos modelos nuevos</strong> de golpe. El primero es <strong>DeepSeek V4 Pro 0813</strong>, la última versión del modelo "Pro" del laboratorio chino. De momento solo está disponible <strong>por API</strong> (no hay app ni chat oficial), y la vía más fácil de probarlo es <strong>OpenRouter</strong>, una pasarela que te deja usar muchos modelos distintos pagando por uso; funciona sin problema desde España. Un detalle curioso: da respuestas visiblemente distintas según el nivel de "reasoning" (cuánto se para a pensar antes de responder: bajo, medio o alto), algo que casi ningún otro modelo muestra tan marcado. Aún <strong>no han confirmado si liberarán los pesos</strong> (los "cerebros" descargables para ejecutarlo en tu propio equipo), aunque con sus modelos anteriores sí lo hicieron, así que es probable.</p>
+<p>El segundo es <strong>Grok 4.6</strong>, de la empresa de xAI, que llega presentándose como un "compañero de equipo" de IA más que como un simple chatbot, junto a un bot automatizado (Grok @Bot). Hay poca información concreta todavía; se usa a través de X y su API, y en la UE conviene ir con cautela porque Grok ha tenido lanzamientos escalonados aquí. Si trabajas en <strong>edge</strong> (IA que corre en dispositivos pequeños, sin nube), apunta también <strong>LFM2.5-VL-3B</strong> de Liquid AI: un modelo de visión de apenas 3.000 millones de parámetros, <strong>de pesos abiertos y descargable ya desde HuggingFace</strong>, pensado para ser rápido y ligero en el propio aparato.</p>
+<p>En herramientas del día a día, <strong>OpenAI ha lanzado por fin su app de escritorio para Linux</strong> (incluye ChatGPT y Codex, su asistente de programación). Es un <strong>preview mundial</strong>, así que <strong>está disponible en España desde ya</strong>; con esto la app de escritorio cubre por fin los tres grandes sistemas operativos. Y la nota más relevante para quien vive en la UE: <strong>Anthropic ha empezado a poner una marca de agua invisible en todo el texto que genera Claude</strong>. Es un código oculto que identifica el contenido como creado por IA, viaja al copiar y pegar, y en archivos usa el estándar abierto C2PA. No es opcional ni un experimento: lo aplican a <strong>todos los modelos lanzados después del 2 de agosto</strong> precisamente para cumplir el Código de Transparencia de la <strong>AI Act europea</strong>. Traducción práctica: si usas Claude para redactar en el trabajo o en clase, ese texto <strong>lleva una firma detectable</strong>. Ya hay usuarios molestos por ello, pero es la nueva realidad para cualquiera que use estas herramientas desde Europa.</p>
+<h2>Tendencias y patrones</h2>
+<p>El <strong>cumplimiento de la AI Act</strong> deja de ser teoría y empieza a tocar tu flujo de trabajo: la marca de agua de Claude es el primer caso en que una norma europea cambia, de forma visible, lo que produces con una herramienta que ya usas. Espera que otros (OpenAI, Google) sigan el mismo camino en las próximas semanas.</p>
+<p>En paralelo, crece la conversación sobre <strong>quién controla tus datos y tu contenido</strong>: Twitch entrenará su IA con los vídeos de los creadores <strong>por defecto salvo que te salgas manualmente</strong>, Spotify empezará a etiquetar como "AI Persona" a los artistas generados por IA, y ha aparecido "ShieldFont", una fuente que ensucia el texto para envenenar a los scrapers sin afectar a la lectura humana. El patrón es claro: <strong>consentimiento por defecto y etiquetado obligatorio</strong> se están volviendo el nuevo terreno de juego. Y una idea contraintuitiva que circula entre usuarios avanzados de Claude: <strong>quitar instrucciones y "skills"</strong> en lugar de acumularlas suele mejorar los resultados, porque menos ruido en el sistema deja al modelo centrarse mejor.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>DeepSeek V4 Pro 0813</strong> — Nuevo modelo chino, solo por API; pruébalo vía OpenRouter desde España. Pesos abiertos aún sin confirmar.</li><li><strong>LFM2.5-VL-3B</strong> — Modelo de visión ligero y de pesos abiertos para ejecutar en el propio dispositivo; descargable en HuggingFace.</li><li><strong>Marca de agua de Claude (C2PA)</strong> — Firma invisible obligatoria por la AI Act; afecta a todo lo que generes con Claude en la UE.</li><li><strong>OpenRouter</strong> — Pasarela para usar muchos modelos por uso sin atarte a un solo proveedor; útil para probar novedades como DeepSeek.</li><li><strong>"Menos skills, mejor Claude"</strong> — Técnica de recortar instrucciones y prompts de sistema para mejorar la calidad de las respuestas.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Aug/12/deepseek-v4-pro-0813/">DeepSeek V4 Pro 0813 (Simon Willison)</a></li><li><a href="https://www.latent.space/p/ainews-spacexai-grok-46-and-grok">AINews: Grok 4.6 and Grok @Bot (Latent Space)</a></li><li><a href="https://techcrunch.com/2026/08/11/openai-launches-chatgpt-desktop-app-for-linux/">OpenAI lanza la app de ChatGPT para Linux (TechCrunch)</a></li><li><a href="https://huggingface.co/blog/LiquidAI/lfm2-5-vl-3b">LFM2.5-VL-3B (Hugging Face / Liquid AI)</a></li><li><a href="https://techcrunch.com/2026/08/11/anthropic-says-it-will-watermark-text-generated-by-its-ai-models/">Anthropic pondrá marca de agua a su texto (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/12/some-claude-users-are-mad-that-anthropics-new-watermarks-will-catch-them-cheating-at-their-jobs-classes/">Usuarios molestos por la marca de agua de Claude (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/12/amazon-will-train-on-twitch-streamers-content-by-default-unless-they-opt-out/">Twitch entrenará IA con los creadores por defecto (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/11/spotify-will-label-ai-persona-profiles-and-exclude-their-music-from-recommendations/">Spotify etiquetará perfiles "AI Persona" (TechCrunch)</a></li><li><a href="https://arstechnica.com/ai/2026/08/new-font-turns-ordinary-webpages-into-nonsense-for-ai-scrapers/">Una fuente contra los scrapers de IA (Ars Technica)</a></li><li><a href="https://www.youtube.com/watch?v=XNQBCRcwXV4">Borré todas mis Claude Skills y mejoró (YouTube)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-12.html">12 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
