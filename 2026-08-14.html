@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>La guerra hoy no es por el modelo más listo, sino por el más rápido: OpenAI y Google aceleran a fondo — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">14 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>La guerra hoy no es por el modelo más listo, sino por el más rápido: OpenAI y Google aceleran a fondo</p>
+<h2>Lo más importante</h2>
+<p>La novedad más aprovechable de hoy es de velocidad, no de inteligencia. OpenAI ha lanzado <strong>Ultrafast</strong>, un nuevo modo que hace funcionar su modelo más potente, <strong>GPT-5.6 Sol</strong>, hasta <strong>14 veces más rápido</strong>: llega a 750 <strong>tokens</strong> (las piezas de texto que genera el modelo, más o menos sílabas) por segundo. Hasta ahora, para ir rápido tenías que conformarte con un modelo más pequeño y tonto; Ultrafast promete velocidad sin bajar de gama. La pega: de momento es un <em>service tier</em> en la <strong>API</strong> (la vía por la que los programas se conectan al modelo, no la app de ChatGPT normal), está en fase de preview y funciona sobre chips de Cerebras. Si programas o montas agentes, ya puedes probarlo; si solo usas ChatGPT a mano, aún no te toca. No hay bloqueo específico para la UE al ser API, así que en España debería estar accesible como al resto.</p>
+<p>En paralelo, Google ha sacado <strong>Gemini 3.7 Flash</strong>, que sustituye al 3.6 Flash lanzado hace apenas tres semanas. Es el modelo "burro de carga" (rápido y barato para tareas de volumen) y trae mejoras reales en programación y en tareas de agente (cuando el modelo ejecuta pasos por su cuenta, no solo responde). Ya está disponible vía API —también en España— y el plugin de código abierto `llm-gemini` lo soporta desde hoy, con una novedad práctica: ahora puedes activar <strong>herramientas del lado del servidor</strong>, como ejecutar Python directamente en una consulta (`llm -m gemini-3.7-flash -T CodeExecution 'usa python para calcular...'`). Ojo: el nivel de "esfuerzo mínimo" de pensamiento que tenía el 3.6 ha desaparecido en esta versión.</p>
+<p>Y para automatizar, lo interesante es el <strong>agente de navegador de Codex</strong> (el entorno de programación de OpenAI). Abre un navegador real a tu lado y puede hacer prácticamente cualquier cosa: rellenar formularios, navegar webs, operar en tu propio ordenador. La gracia es que inicias sesión una sola vez en un servicio y Codex guarda esa sesión para reutilizarla, así que puedes encadenar tareas que requieren estar logueado. Se maneja desde la app de escritorio de Codex y, cuando el sitio tiene API, conviene conectarlo por ahí en lugar de "a lo bruto".</p>
+<h2>Tendencias y patrones</h2>
+<p>Dos patrones se cruzan hoy. El primero es la <strong>consolidación</strong>: Microsoft fusiona sus dos apps de Copilot (la de consumo y la de empresa) en una sola y mata varias funciones que no cuajaron, reconociendo que su estrategia era demasiado enrevesada para competir con ChatGPT, Claude o Gemini. Va en la misma línea que Claude integrando Cowork dentro de Chat: menos apps sueltas, más "todo en uno". Para ti significa menos confusión sobre qué herramienta abrir.</p>
+<p>El segundo patrón es el <strong>coste</strong>. Cada vez más gente se da cuenta de lo caro que sale desplegar IA a escala, y la respuesta del sector es afinar modelos más baratos para cada trabajo. El ejemplo de hoy es <strong>Palmyra X6</strong>, de Writer, construido sobre el modelo abierto GLM-5.2 y ajustado para bajar costes hasta un <strong>50%</strong> en tareas básicas. Está enfocado a equipos de marketing, así que no es de uso directo para la mayoría, pero marca hacia dónde va todo: modelos abiertos "post-entrenados" para hacer lo mismo por mucho menos. Une esto a Ultrafast y a Gemini Flash y el mensaje del día es claro: la carrera se ha movido de "quién es más listo" a "quién hace más trabajo por segundo y por euro".</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Ultrafast (OpenAI)</strong> — modo de API que corre GPT-5.6 Sol a 14x; útil para agentes y apps en tiempo real. En preview.</li><li><strong>Gemini 3.7 Flash</strong> — modelo rápido y económico de Google, mejor en código y agentes; disponible por API en España.</li><li><strong>llm-gemini 0.33</strong> — plugin de línea de comandos para usar Gemini con ejecución de código y trazas de razonamiento.</li><li><strong>Agente de navegador de Codex</strong> — automatiza acciones en el navegador guardando tus sesiones; app de escritorio de OpenAI.</li><li><strong>Palmyra X6 (Writer)</strong> — modelo sobre GLM-5.2 que recorta costes ~50%; orientado a marketing.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/previewing-ultrafast">Previewing Ultrafast mode (OpenAI)</a></li><li><a href="https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/">OpenAI introduces 'Ultrafast' (TechCrunch)</a></li><li><a href="https://arstechnica.com/ai/2026/08/google-announces-gemini-3-7-flash-just-three-weeks-after-previous-release/">Google announces Gemini 3.7 Flash (Ars Technica)</a></li><li><a href="https://simonwillison.net/2026/Aug/13/llm-gemini/">llm-gemini 0.33 (Simon Willison)</a></li><li><a href="https://www.youtube.com/watch?v=CB5bG4mvnS0">Codex's Browser Agent (YouTube)</a></li><li><a href="https://techcrunch.com/2026/08/13/microsoft-kills-off-unsuccessful-ai-features-while-merging-its-separate-copilot-apps/">Microsoft merges Copilot apps (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/">Writer introduces Palmyra X6 (TechCrunch)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-13.html">13 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
