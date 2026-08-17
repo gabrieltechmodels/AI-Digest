@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Alibaba suelta Qwen 3.8 27B, un modelo abierto que cabe en tu portátil y que se atreve a mirar de tú a tú a los cerrados — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">17 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Alibaba suelta Qwen 3.8 27B, un modelo abierto que cabe en tu portátil y que se atreve a mirar de tú a tú a los cerrados</p>
+<h2>Lo más importante</h2>
+<p>La novedad más aprovechable de hoy es <strong>Qwen 3.8 27B</strong>, el nuevo modelo de código abierto (con licencia Apache 2, es decir, puedes descargarlo, usarlo e incluso montar productos encima gratis) del laboratorio Qwen de Alibaba. La gracia está en el tamaño: <strong>27B</strong> significa 27.000 millones de parámetros (los "ajustes internos" que definen lo que sabe el modelo), una talla que corre razonablemente bien en un portátil potente sin necesidad de servidores en la nube. Además es <em>vision-capable</em>, o sea que entiende imágenes, no solo texto. Según los benchmarks (pruebas estandarizadas de rendimiento) que reporta la propia Alibaba, no solo mejora a su antecesor Qwen 3.6, sino que supera al Qwen 3.7-Plus cerrado, que hace apenas unos meses era de lo mejor del catálogo. Conviene esperar a las pruebas independientes antes de cantar victoria, pero la dirección es clara. <strong>Cómo probarlo:</strong> descárgalo en LM Studio (app gratuita para correr modelos en local) usando la versión comprimida Q4_K_M de ~17 GB. Al ser abierto, <strong>está disponible ya en España/UE</strong> sin listas de espera ni bloqueos: lo bajas y lo ejecutas en tu máquina. Un aviso práctico de quien ya lo ha probado: tiende a "pensar de más" por defecto, alargando respuestas simples; si notas lentitud, busca la opción para reducir el razonamiento.</p>
+<p>En modelos nuevos también aterriza <strong>Palmyra X6</strong>, de la empresa Writer, construido a partir del modelo abierto GLM-5.2 y orientado a abaratar costes: la compañía calcula hasta un <strong>50% menos de gasto</strong> en tareas básicas frente a alternativas. Es un lanzamiento más enfocado a empresas que a uso personal, pero refuerza una tendencia útil: cada vez hay más modelos "buenos y baratos" partiendo de bases abiertas.</p>
+<p>Y una actualización de algo que ya contamos: Anthropic ha dado <strong>detalles concretos sobre la marca de agua (watermark)</strong> que incorporará a los textos que genere Claude para cumplir con la ley europea de IA. Lo nuevo respecto a hace unos días es que aclara las dudas prácticas: la marca <strong>no cambia la calidad ni el contenido</strong> del texto, no es visible para el lector, no añade caracteres raros y no afecta al código. En resumen: si usas Claude desde España, no vas a notar nada en tus respuestas.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón dominante hoy es que <strong>el músculo abierto se está comiendo terreno al cerrado</strong>. Qwen 3.8 y Palmyra X6 (este último apoyado en GLM-5.2) apuntan a lo mismo: modelos que puedes ejecutar tú, adaptar o pagar mucho menos, alcanzando un nivel que hace un año exigía las APIs de pago más caras. Para quien usa IA a diario, esto se traduce en más opciones para trabajar en local (útil por privacidad y coste) y menos dependencia de un único proveedor.</p>
+<p>El segundo patrón es de <strong>consolidación de herramientas</strong>. Se ha cerrado la compra de Cursor (el editor de código con IA) por parte de SpaceX, y Stripe adquiere OpenRouter, la pasarela que da acceso a más de 400 modelos desde un único punto para no quedarte atado a uno solo. Son movimientos de mercado, pero conviene tenerlos en el radar porque afectan a herramientas que quizá ya uses. Ligado a esto, una investigación de Anthropic deja una lección práctica para quien empieza a usar <strong>agentes</strong> (programas de IA que ejecutan tareas por su cuenta): al soltar tres agentes con instrucciones incompatibles sobre un mismo proyecto de software, acabaron pisándose y montando una "guerra de territorio". La moraleja para ti: si automatizas trabajo con varios agentes sobre el mismo código, dales instrucciones coordinadas y no los dejes competir a ciegas.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Qwen 3.8 27B</strong> — Modelo abierto vision-capable que corre en portátil; descárgalo en LM Studio con el build Q4_K_M de 17 GB.</li><li><strong>LM Studio</strong> — App gratuita para ejecutar modelos de IA en local sin conocimientos técnicos; disponible en España.</li><li><strong>Palmyra X6 (Writer)</strong> — Modelo derivado de GLM-5.2 pensado para recortar costes hasta un 50% en tareas básicas.</li><li><strong>OpenRouter</strong> — Pasarela que unifica el acceso a 400+ modelos desde una sola API; útil para comparar y evitar quedar atado a un proveedor.</li><li><strong>Watermark de Claude</strong> — Marca invisible en los textos por la ley europea; no afecta a calidad ni a código.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/">Simon Willison — Qwen 3.8 27B</a></li><li><a href="https://techcrunch.com/2026/08/13/writer-introduces-new-ai-model-and-upgraded-harness-to-contain-token-costs/">TechCrunch — Writer Palmyra X6</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Anthropic — How Claude's text watermark works</a></li><li><a href="https://techcrunch.com/2026/08/15/anthropic-shares-more-details-about-how-claudes-new-watermarks-will-work/">TechCrunch — Anthropic watermark details</a></li><li><a href="https://techcrunch.com/2026/08/13/anthropic-set-ai-agents-loose-on-the-same-task-they-started-a-turf-war/">TechCrunch — Anthropic multiagent turf war</a></li><li><a href="https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/">TechCrunch — Stripe adquiere OpenRouter</a></li><li><a href="https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/">TechCrunch — SpaceX cierra la compra de Cursor</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-16.html">16 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
