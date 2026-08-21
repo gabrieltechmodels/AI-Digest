@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Los asistentes de IA saltan del navegador a tu escritorio y a tus mensajes: ahora quieren hablar directamente con tus apps — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">21 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Los asistentes de IA saltan del navegador a tu escritorio y a tus mensajes: ahora quieren hablar directamente con tus apps</p>
+<h2>Lo más importante</h2>
+<p>El movimiento del día es claro: la IA deja de vivir en una pestaña del navegador y se mete dentro de tu ordenador y tu mensajería. Meta lanzó una <strong>app de Meta AI para Mac</strong> con dictado por voz que funciona en cualquier aplicación del sistema (escribes hablando en Notas, en el correo, donde sea) y con capacidad de "mirar" lo que tienes en pantalla para responderte según ese contexto, usando su modelo <strong>Muse Spark</strong>. Es el mismo terreno que ya pisan herramientas como Wispr Flow o Superwhisper, y donde Google también entró el mes pasado con dictado en su app de Gemini para Mac. Ojo con la disponibilidad: Meta AI ha llegado tarde y capado a la UE en el pasado por el RGPD y la AI Act, así que aunque no se detalla fecha para Europa, conviene asumir <strong>lanzamiento primero en EE. UU.</strong> y esperar semanas (o más) para España. Solo para Mac, de momento.</p>
+<p>En paralelo, OpenAI estrenó un <strong>plug-in de ChatGPT para Mensajes de Apple</strong> (un plug-in es un complemento que conecta el chatbot con otra app). Le das acceso a tu bandeja de iMessage y puedes pedirle que ordene, analice, redacte, envíe o incluso borre mensajes por ti, y sugiera respuestas de seguimiento. Funciona también con Codex y ChatGPT Work para uso profesional. Es potente, pero implica compartir tus conversaciones con OpenAI: úsalo con cabeza. No hay detalle específico de disponibilidad en la UE; al ser plug-in de una función ya global, es plausible que llegue pronto, pero sin confirmación.</p>
+<p>Y una alegría para Europa: <strong>Mistral</strong> (empresa francesa, así que <strong>disponible en la UE</strong> sin las trabas habituales) presentó <strong>Agentic Search</strong>, una capa de recuperación que ayuda a los sistemas de IA a navegar, leer y verificar información dentro de documentos complejos. En cristiano: mejora el <strong>RAG</strong> (técnica que permite al modelo buscar datos en documentos externos antes de responder) para que las respuestas sean más precisas y con menos invenciones. Interesante si montas asistentes sobre tus propios PDFs o bases de conocimiento.</p>
+<h2>Tendencias y patrones</h2>
+<p>Dos patrones asoman hoy. El primero es que <strong>los agentes</strong> (programas de IA que actúan por su cuenta, no solo responden) empiezan a tocar dinero y datos sensibles de verdad: Binance abrió una plataforma para que agentes analicen mercados y ejecuten operaciones de cripto en tu nombre, y Ramp lanzó <strong>Router</strong>, un servicio para cambiar entre distintos modelos de IA desde una sola API (Router está <strong>solo en EE. UU.</strong> y gratis hasta fin de 2026). La contrapartida es la seguridad: se demostró que <strong>Grok</strong> puede ser engañado para filtrar datos del usuario si las instrucciones maliciosas van cifradas —una variante de <em>prompt injection</em> (colar órdenes ocultas en el texto que el modelo procesa)—. Regla práctica: cuanto más acceso le das a un asistente (mensajes, pantalla, cuentas, dinero), más te juegas si alguien lo manipula.</p>
+<p>El segundo patrón es la web inundándose de texto de IA: un estudio de Pew calcula que <strong>un tercio</strong> de las páginas publicadas desde la llegada de ChatGPT muestran señales de autoría automática. Como reacción, Google da a los editores un botón de "fuente preferida" para que los lectores marquen los sitios en los que confían, y las búsquedas dentro de ChatGPT usan cada vez más el operador `site:` para acotar resultados. Si publicas contenido, esto va contigo.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Muse Spark (Meta AI)</strong> — el modelo que lee tu pantalla en la nueva app de Mac; útil si vives en Mac y quieres dictado universal.</li><li><strong>Mistral Agentic Search</strong> — capa de búsqueda europea para mejorar RAG sobre documentos complejos; probable la opción más "amigable" con el RGPD.</li><li><strong>/wayfinder skill</strong> — una técnica de Matt Pocock para planificar proyectos desde cero cuando no tienes claro el camino; buen recurso si trabajas con agentes de código.</li><li><strong>Marca de agua de Claude</strong> — Anthropic incorpora un <em>watermark</em> invisible en el texto para cumplir la AI Act; no cambia la calidad, pero afecta a quien publica en la UE.</li><li><strong>Meta Pocket</strong> — app para crear minijuegos con prompts y compartirlos; ya en EE. UU., aún no en Europa.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/08/20/meta-ais-new-mac-app-wants-you-to-talk-to-your-apps/">Meta AI para Mac (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/20/chatgpt-can-now-send-texts-for-you-with-new-apple-messages-plugin/">Plug-in de ChatGPT para Mensajes (TechCrunch)</a></li><li><a href="https://mistral.ai/news/agentic-search/">Mistral Agentic Search</a></li><li><a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router/">Ramp Router (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/20/binance-now-lets-ai-agents-trade-but-keeping-them-in-check-is-largely-up-to-users/">Binance Agent OS (TechCrunch)</a></li><li><a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted/">Grok y filtrado de datos (Ars Technica)</a></li><li><a href="https://techcrunch.com/2026/08/20/a-third-of-webpages-published-since-chatgpts-launch-show-signs-of-ai-authorship-study-finds/">Estudio de Pew sobre autoría IA (TechCrunch)</a></li><li><a href="https://techcrunch.com/2026/08/20/google-gives-publishers-a-new-way-to-fight-ai-driven-traffic-losses/">Google Preferred Sources (TechCrunch)</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Marca de agua de Claude (Anthropic)</a></li><li><a href="https://www.latent.space/p/wayfinder-skill">/wayfinder skill (Latent Space)</a></li><li><a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users/">Meta Pocket (TechCrunch)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-20.html">20 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
