@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Anthropic estrena Claude Sonnet 5, casi la potencia de un modelo de gama alta pero mucho más barato — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">22 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Anthropic estrena Claude Sonnet 5, casi la potencia de un modelo de gama alta pero mucho más barato</p>
+<h2>Lo más importante</h2>
+<p>La novedad grande de hoy es <strong>Claude Sonnet 5</strong>, el nuevo modelo de gama media de Anthropic. Lo interesante no es que sea "otro modelo más", sino la relación potencia-precio: su rendimiento se acerca al de Opus 4.8 (el tope de gama del que hablamos hace unos días) pero cuesta bastante menos. Está pensado sobre todo para tareas <strong>agénticas</strong> (cuando la IA no solo responde, sino que ejecuta pasos por su cuenta: navega, usa la terminal, encadena herramientas). En la práctica, si programas o montas flujos automatizados, es el modelo que da más por lo que pagas. Anthropic opera con normalidad en España/UE, así que puedes usarlo ya vía API y previsiblemente en las apps de Claude sin esperar a un despliegue escalonado.</p>
+<p>Para quien trastea con varios modelos a la vez, hay dos actualizaciones prácticas de la herramienta de línea de comandos <strong>LLM</strong> de Simon Willison (open source, funciona en España sin restricciones). La versión 0.32 y el plugin `llm-openrouter 0.7` ya muestran las "reasoning traces" (el razonamiento paso a paso que el modelo genera antes de dar la respuesta final) de los modelos servidos a través de OpenRouter, y añaden tres herramientas del lado del servidor —Shell, WebFetch y WebSearch— que activas con opciones como `-T WebSearch`. Es decir: puedes darle a un modelo capacidad de buscar en la web o ejecutar comandos desde una sola orden. Ojo con una cosa: hubo que sacar la 0.32.1 porque las instalaciones nuevas se rompían (la librería de OpenAI dejó de usar `httpx`); si instalas hoy, ve directo a esa versión.</p>
+<p>En el terreno de los asistentes que se meten en tus apps —tema que ya venimos siguiendo—, hoy la novedad concreta es que <strong>ChatGPT</strong> estrena un plug-in para <strong>Apple Messages</strong>: conectas tu bandeja de mensajes y le pides que ordene conversaciones, redacte respuestas de seguimiento, busque información o incluso borre mensajes. Funciona también con Codex y ChatGPT Work. La contrapartida obvia es de privacidad (le estás dando acceso a todos tus mensajes), y de momento no hay confirmación de disponibilidad en España: al depender de Apple Messages y ser un lanzamiento de OpenAI, lo esperable es que arranque en EE. UU. y tarde en llegar a la UE, si es que llega sin capar.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón más jugoso de hoy no es un producto, sino una idea que puede cambiar cómo montas tus flujos: una investigación de Nvidia sostiene que en tareas largas y complejas importa más el <strong>harness</strong> (el software que envuelve al modelo: memoria, herramientas y reglas que lo convierten en un agente que actúa solo) que el propio modelo. Con un harness bien diseñado —con buena gestión de memoria y un componente "supervisor" que hace de jefe— lograron que Opus 5 sacara un <strong>100%</strong> en ARC-AGI-3, un test de videojuegos sin instrucciones donde la IA tiene que averiguar sola cómo ganar. Traducido a tu día a día: antes de cambiar de modelo buscando más inteligencia, a veces ganas más mejorando cómo lo orquestas.</p>
+<p>En paralelo, dos señales de hacia dónde va todo esto. Una: un estudio de Pew calcula que <strong>un tercio</strong> de las páginas web publicadas desde que apareció ChatGPT muestran signos de estar escritas por IA —cada vez más internet es IA escribiendo para que la lea otra IA—. Y dos: crece la idea de dejar de fabricar interfaces de terminal y montar directamente apps nativas de verdad, porque los agentes de código han abaratado tanto crear una GUI usable que ya casi no hay excusa. Si tienes scripts personales, quizá sea el momento de convertirlos en una appcita con interfaz.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Claude Sonnet 5</strong> — Nuevo modelo agéntico de Anthropic, cerca de Opus 4.8 pero más barato; disponible ya en España vía API.</li><li><strong>LLM 0.32 + llm-openrouter 0.7</strong> — CLI open source para hablar con muchos modelos; ahora con reasoning traces y herramientas de web/shell integradas.</li><li><strong>Harness sobre modelo (Nvidia)</strong> — La orquestación (memoria + supervisor) puede importar más que cambiar de modelo para tareas largas.</li><li><strong>Plug-in de ChatGPT para Apple Messages</strong> — Gestiona y redacta tus mensajes con IA; probablemente solo EE. UU. de momento.</li><li><strong>"Stop Making TUIs"</strong> — Ensayo de Thomas Ptacek: con agentes de código, monta apps nativas en vez de interfaces de terminal.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.anthropic.com/news/claude-sonnet-5">Anthropic — Introducing Claude Sonnet 5</a></li><li><a href="https://simonwillison.net/2026/Aug/21/llm-openrouter/">Simon Willison — llm-openrouter 0.7</a></li><li><a href="https://simonwillison.net/2026/Aug/21/llm/">Simon Willison — llm 0.32.1</a></li><li><a href="https://techcrunch.com/2026/08/20/chatgpt-can-now-send-texts-for-you-with-new-apple-messages-plugin/">TechCrunch — ChatGPT Apple Messages plug-in</a></li><li><a href="https://techcrunch.com/2026/08/21/nvidia-just-showed-that-the-harness-not-the-ai-model-is-now-the-real-hero/">TechCrunch — Nvidia: the harness is the real hero</a></li><li><a href="https://techcrunch.com/2026/08/20/a-third-of-webpages-published-since-chatgpts-launch-show-signs-of-ai-authorship-study-finds/">TechCrunch — A third of web pages are AI-written</a></li><li><a href="https://simonwillison.net/2026/Aug/21/stop-making-tuis/">Simon Willison — Stop Making TUIs</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-21.html">21 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
