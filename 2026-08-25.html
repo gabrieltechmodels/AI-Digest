@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>GPT‑5.6 aterriza en el editor de código de Amazon mientras ChatGPT quiere las llaves de tu correo, tu Slack y tu móvil — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">25 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>GPT‑5.6 aterriza en el editor de código de Amazon mientras ChatGPT quiere las llaves de tu correo, tu Slack y tu móvil</p>
+<h2>Lo más importante</h2>
+<p>La novedad más directa para quien programa: <strong>GPT‑5.6</strong> ya está disponible dentro de <strong>Kiro</strong>, el entorno de desarrollo "agéntico" de Amazon (un editor donde una IA planifica, escribe, revisa y prueba código por ti). El argumento no es que sea "otro modelo más", sino la relación precio‑rendimiento: OpenAI lo vende como el punto dulce para tareas de desarrollo sin disparar el coste. Para probarlo necesitas una cuenta de Kiro y seleccionar GPT‑5.6 como modelo. <strong>Disponibilidad UE</strong>: Kiro funciona desde España (es una app de escritorio conectada a la nube de AWS), aunque conviene revisar si tu región tiene acceso completo, porque Kiro salió con lista de espera y a veces las funciones nuevas llegan antes a EE. UU.</p>
+<p>El segundo gran movimiento es la apuesta de OpenAI por convertir <strong>ChatGPT</strong> en un agente que controla tu vida digital desde el escritorio. Ampliando la tendencia que ya vimos hace unos días (la IA saliendo del navegador para meterse en tu ordenador), ahora la app de escritorio de ChatGPT puede acceder y actuar sobre tu bandeja de entrada, tu Slack, tu teléfono y apps como Notion y Figma. La idea de OpenAI es que solo le sacas todo el jugo a un modelo si le das "las llaves"; el propio ingeniero jefe admite que eso implica riesgos de privacidad (que el agente saque información de un DM privado sin saber que no debe compartirla). <strong>Disponibilidad UE</strong>: estas capacidades de agente están en despliegue temprano y muy probablemente arranquen en EE. UU.; en Europa suelen tardar semanas y pueden llegar capadas por la AI Act y el RGPD. Trátalo como un aviso de hacia dónde va la cosa, no como algo que ya puedes activar hoy en España.</p>
+<p>Para quien quiera construir en lugar de solo consumir, hay una guía nueva de <strong>flujos de trabajo con IA en Gradio</strong> (la librería open source de Hugging Face para montar interfaces y pipelines de IA sin frontend). Te permite encadenar pasos —entrada, procesado con un modelo, salida— y desplegarlo. Es <strong>gratis, de código abierto y sin restricciones geográficas</strong>: funciona igual desde España que desde cualquier sitio, y es de lo más accionable del día si trabajas con modelos.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón dominante hoy es el paso del <em>chatbot</em> al <em>agente con manos</em>: modelos que no solo responden, sino que tocan tus apps y ejecutan tareas. Lo vemos en ChatGPT de escritorio, en <strong>Instinct</strong> (un asistente personal en acceso privado del que todo el mundo habla por lo capaz que resulta, pero también por sus preocupantes términos de servicio y su modelo de seguridad) y en <strong>Faraday</strong>, el agente de la londinense Inherent que dice reproducir hallazgos de artículos científicos por su cuenta y superar a modelos mucho mayores de OpenAI y Anthropic en esa tarea concreta. El hilo común: más autonomía = más utilidad, pero también más superficie de riesgo (privacidad, permisos, control). Ninguno de estos tres está aún disponible abiertamente para ti; van con lista de espera o acceso privado.</p>
+<p>El segundo patrón afecta directamente al lector europeo: la regulación empieza a moldear el producto. <strong>Anthropic</strong> confirmó que sus futuros modelos <strong>Claude</strong> incorporarán una <strong>marca de agua</strong> invisible en el texto que generan, precisamente para cumplir la <strong>AI Act de la UE</strong>. No cambia la calidad ni se nota al leer, pero es una señal de que las funciones que usas en España vendrán cada vez más condicionadas por la normativa europea.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>GPT‑5.6 en Kiro</strong> — Modelo de OpenAI optimizado en precio‑rendimiento dentro del IDE agéntico de Amazon; ideal para planificar y revisar código.</li><li><strong>Gradio Workflows</strong> — Guía de Hugging Face para montar y desplegar flujos de IA en Python sin frontend; gratis y disponible en la UE.</li><li><strong>llm-anthropic 0.27</strong> — Actualización del plugin de la CLI `llm` de Simon Willison, ya compatible con la librería `anthropic` v1.0.0 (útil si automatizas llamadas a Claude desde terminal).</li><li><strong>Fable 5 y sus salvaguardas de biología</strong> — Anthropic redujo ~85% los "fallbacks" a modelos peores en preguntas de salud y biología cotidiana; menos bloqueos molestos al consultar temas médicos.</li><li><strong>Los 5 principios de IA de Goldman Sachs</strong> — Un marco práctico (verificación, control de alucinaciones, calidad del dato) para usar la IA sin cometer errores caros, aplicable a cualquier proyecto.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/gpt-5-6-in-kiro">OpenAI — GPT‑5.6 en Kiro</a></li><li><a href="https://techcrunch.com/2026/08/24/openai-is-building-an-ai-agent-for-everything-will-everyone-use-them/">TechCrunch — OpenAI construye agentes para todo</a></li><li><a href="https://techcrunch.com/2026/08/24/instincts-powerful-ai-assistant-is-raising-privacy-and-security-concerns/">TechCrunch — Instinct y sus dudas de privacidad</a></li><li><a href="https://techcrunch.com/2026/08/22/inherent-founded-by-deepmind-alumni-says-its-ai-teammate-just-outperformed-anthropic-and-openai-at-replicating-research/">TechCrunch — Inherent y su agente Faraday</a></li><li><a href="https://huggingface.co/blog/gradio-workflow-guide">Hugging Face — AI Workflows en Gradio</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Anthropic — Cómo funciona la marca de agua de Claude</a></li><li><a href="https://simonwillison.net/2026/Aug/24/llm-anthropic/">Simon Willison — llm-anthropic 0.27</a></li><li><a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards">Anthropic — Mejoras en las salvaguardas de biología de Fable 5</a></li><li><a href="https://www.youtube.com/watch?v=ZzHsJW10iq4">YouTube — Lo que Goldman Sachs me enseñó sobre IA</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-24.html">24 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
