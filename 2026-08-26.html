@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>IBM suelta Granite 4.2, una familia de modelos que caben en tu propio ordenador, mientras Claude por fin deja de tener amnesia entre conversaciones — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">26 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>IBM suelta Granite 4.2, una familia de modelos que caben en tu propio ordenador, mientras Claude por fin deja de tener amnesia entre conversaciones</p>
+<h2>Lo más importante</h2>
+<p>La novedad más aprovechable de hoy es para quien quiera IA <strong>sin depender de la nube</strong>: IBM ha lanzado <strong>Granite 4.2</strong>, una familia de modelos de peso abierto (<em>open-weight</em>: puedes descargar el modelo completo y ejecutarlo en tu máquina) en tres tamaños —<strong>3B, 8B y 30B</strong> de parámetros—. El enfoque está en capacidad "agéntica" (que el modelo pueda encadenar pasos y usar herramientas por sí solo) y en despliegues predecibles. Lo práctico: se instalan en un par de comandos con <strong>Ollama</strong> (una app gratuita que corre modelos en local), y al ser open-weight están disponibles <strong>en España/UE sin restricciones</strong> —no dependen de un lanzamiento regional—. El 8B es el punto dulce para un portátil decente; el 3B, para máquinas modestas. Si te preocupa la privacidad o quieres trastear sin pagar por API, este es el sitio por donde empezar hoy.</p>
+<p>La segunda novedad concreta viene de Anthropic: <strong>Claude unifica la memoria</strong> entre el chat normal y <strong>Claude Cowork</strong>, así que lo que le cuentas en un sitio lo recuerda en el otro y dejas de "rebrifiarlo" cada vez. Más interesante aún: ahora puedes <strong>ver, editar y borrar</strong> lo que Claude ha memorizado sobre cualquier tema, un control que antes no existía. Esto suaviza el salto entre "investigar una idea" y "ponerse a ejecutarla". La fuente no detalla el calendario para la UE; las funciones de memoria de Anthropic suelen llegar a Europa, aunque a veces con semanas de retraso, así que revísalo en tu cuenta antes de darlo por hecho.</p>
+<p>Y algo que te toca directamente por vivir en la UE: los <strong>futuros modelos de Claude marcarán su texto con una marca de agua</strong> (<em>watermark</em>: una señal invisible incrustada en el texto para estimar si lo escribió la IA) <strong>para cumplir la EU AI Act</strong>. Anthropic insiste en que <strong>no cambia la calidad ni el contenido</strong> y que un lector no notará diferencia entre texto marcado y sin marcar. No tienes que hacer nada, pero conviene saberlo si generas textos con Claude para publicar.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es la <strong>IA local ganando terreno</strong>: Granite 4.2 se suma a una oleada de modelos pensados para descargarse y ejecutarse en tu propio equipo, no en un servidor ajeno. Para el usuario europeo esto es doblemente atractivo, porque esquiva de un plumazo muchas de las dudas de privacidad y disponibilidad regional que arrastran los servicios en la nube.</p>
+<p>El otro hilo que se repite es la <strong>IA que escribe software de verdad, a lo grande</strong>. Hoy circula el testimonio de que un modelo generó <strong>un millón de líneas de código</strong> y las fue refinando durante meses hasta convertirlas en software fiable que ya corre en millones de máquinas de desarrolladores. La lección accionable no es "la IA programa sola", sino algo más matizado: funciona cuando le das <strong>un sistema de verificación y una dirección clara</strong> contra el que comparar resultados. En paralelo, sigue viva la eterna comparativa <strong>Claude Code vs. Codex</strong> —hoy centrada en cuál diseña mejores webs con el mismo prompt—, un recordatorio de que la elección de herramienta de "vibecoding" (programar describiendo lo que quieres en lenguaje natural) importa tanto como el modelo por debajo.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Granite 4.2</strong> — Modelos open-weight de IBM (3B/8B/30B) para correr en local; instalables vía Ollama, disponibles en la UE.</li><li><strong>Ollama</strong> — App gratuita para descargar y ejecutar modelos en tu ordenador sin nube ni API; el camino más rápido para probar Granite.</li><li><strong>Memoria unificada de Claude</strong> — Ahora recuerda entre chat y Cowork y te deja leer/editar/borrar lo memorizado; revisa disponibilidad en tu cuenta UE.</li><li><strong>Marca de agua en textos de Claude</strong> — Cumplimiento de la EU AI Act; invisible y sin afectar a la calidad del texto generado.</li><li><strong>Embeddings multi-vector con Sentence Transformers</strong> — Guía técnica para entrenar buscadores semánticos más precisos, útil si montas RAG (búsqueda en tus propios documentos).</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/">TechCrunch — Claude unifica memoria</a></li><li><a href="https://arstechnica.com/ai/2026/08/ibms-new-granite-4-2-models-ride-the-wave-of-interest-in-local-llms/">Ars Technica — IBM Granite 4.2 y LLMs locales</a></li><li><a href="https://huggingface.co/blog/ibm-granite/granite-4-2">Hugging Face — Cómo se construye Granite 4.2</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Anthropic — Cómo funciona la marca de agua de Claude</a></li><li><a href="https://simonwillison.net/2026/Aug/26/paul-dix/">Simon Willison — Cita de Paul Dix sobre IA y código</a></li><li><a href="https://huggingface.co/blog/train-multi-vector-encoder">Hugging Face — Embeddings multi-vector</a></li><li><a href="https://www.youtube.com/watch?v=bg0C-2iUUqM">YouTube — Claude Code vs. Codex en diseño</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-25.html">25 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
