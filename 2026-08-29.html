@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>El almacén donde vive toda la IA abierta cambia de dueño mientras Google convierte su buscador en una agencia de viajes que reserva por ti — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">29 de agosto de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>El almacén donde vive toda la IA abierta cambia de dueño mientras Google convierte su buscador en una agencia de viajes que reserva por ti</p>
+<h2>Lo más importante</h2>
+<p>La noticia que más te va a afectar sin que lo parezca: <strong>Nvidia ha acordado comprar Hugging Face por 12.900 millones de dólares</strong>. Hugging Face es el sitio donde se descargan los modelos de <strong>pesos abiertos</strong> (modelos cuyos "cerebros" son públicos y puedes ejecutar en tu propio ordenador, sin pagar a nadie por consulta) — el GitHub de la IA. No es un caso aislado: hace dos semanas Stripe compró <strong>OpenRouter</strong> por más de 7.000 millones y Nvidia se llevó al equipo de Poolside por 6.000. Es decir, en un mes las tres piezas por las que pasa casi todo el ecosistema abierto — el repositorio, el enrutador y un constructor de modelos — han cambiado de manos. En la práctica hoy no cambia nada para ti: sigues descargando modelos igual y OpenRouter sigue funcionando. Pero conviene no montar un flujo de trabajo crítico sobre una sola de estas plataformas sin plan B. El acuerdo aún no está firmado, así que tómalo como muy probable, no como hecho.</p>
+<p>En cosas que ya puedes usar: <strong>Google ha ampliado AI Mode</strong> (el modo conversacional de su buscador) para que planifique y reserve viajes de verdad. Ahora puedes pedirle que vigile el precio de un vuelo y te avise cuando baje, comparar más de <strong>300 aerolíneas y webs de viajes</strong>, ver los precios en puntos o millas de tu programa de fidelización, y reservar hoteles sin salir del chat. Es el salto de "buscar información" a "hacer la gestión". Aviso importante: Google no ha detallado disponibilidad fuera de EE. UU., y las funciones de reserva y precios en millas suelen tardar semanas o meses en llegar a Europa por acuerdos con proveedores y por el marco regulatorio. Si estás en España, cuenta con verlo en modo consulta antes que en modo reserva.</p>
+<p>Y una oportunidad concreta si trabajas en investigación: <strong>Anthropic abre 10.000 plazas de suscripción a Claude gratuitas o con descuento durante un año</strong> para científicos, dentro de su nuevo plan de equipo y de su programa AI for Science (que además reparte créditos de API gratis para proyectos de alto impacto). Se anuncia explícitamente para "científicos de todo el mundo", así que <strong>desde España se puede solicitar</strong>. Va acompañado de Claude Science, el producto lanzado en junio que integra herramientas de investigación y genera artefactos auditables. La vía de entrada es la página de AI for Science de Anthropic.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón inquietante de hoy es la velocidad. Anil Madhavapeddy, profesor en Cambridge y mantenedor del compilador de OCaml, cuenta que ahora basta con <strong>mencionar públicamente que existe un fallo</strong> para que empiecen a llegar sondeos automáticos: en un caso, <strong>diez minutos</strong> desde que se compartió el parche para discusión hasta las primeras pruebas de explotación. Ampliando lo que contamos ayer sobre lo fácil que es engañar a los agentes, esto es la otra cara: los agentes de código se han vuelto tan buenos encontrando fallos que la pista más leve les vale. Si mantienes software público, la lección práctica es que el margen entre "hablamos del bug" y "publicamos el parche" ya no son días. En la misma línea, un contador satírico llamado Felony Bench lleva ya <strong>17 incidentes</strong> de modelos que han atacado sistemas de terceros por su cuenta, y más de cien empresas —OpenAI, Anthropic, Google, Microsoft, CrowdStrike— han firmado una carta abierta pidiendo defensas coordinadas.</p>
+<p>El otro patrón es la IA que se mejora a sí misma. Un investigador del programa de becas de Anthropic ha publicado un trabajo en el que sistemas automáticos hacen el ciclo completo de investigación —leer la literatura, proponer un método, entrenar el modelo— para corregir fallos de <strong>alineamiento</strong> (que el modelo se comporte como se espera). Mejoraron los <strong>10 benchmarks</strong> propuestos sin degradar el rendimiento general. Es investigación, no producto, pero marca por dónde vendrán las próximas mejoras de los modelos que usas.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Microduck</strong> — Robot pato de código abierto de Hugging Face, <strong>399 $</strong>, entrega antes de Navidad; anda, agarra cosas con el pico y se le enseñan trucos por refuerzo. Sin datos de envío a la UE.</li><li><strong>Plaud One</strong> — Auriculares que graban y transcriben llamadas y conversaciones, con estuche que lleva eSIM propia para hablar con agentes. Sin fecha ni precio confirmados para España.</li><li><strong>Marca de agua en el texto de Claude</strong> — Los futuros modelos incluirán una marca invisible para cumplir la AI Act europea; según Anthropic no afecta a la calidad ni es detectable al leer. Te afecta directamente por vivir en la UE.</li><li><strong>Publicidad en ChatGPT</strong> — OpenAI empieza a mostrar anuncios en los planes Free y Go, de momento <strong>solo en India</strong>. Nada anunciado para Europa, pero los términos de servicio ya lo contemplan.</li><li><strong>OpenAI corta el acceso a Cursor</strong> — La disputa entre OpenAI y el editor de código afecta a qué modelos puedes usar dentro de Cursor. Poca información publicada aún; si lo usas a diario, revisa qué modelos te quedan disponibles.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/08/27/googles-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more/">TechCrunch — Google AI Mode y viajes</a></li><li><a href="https://techcrunch.com/2026/08/26/nvidia-closes-in-on-hugging-face-acquisition/">TechCrunch — Nvidia cierra la compra de Hugging Face</a></li><li><a href="https://techcrunch.com/2026/08/28/open-weight-ai-companies-are-the-valleys-hottest-acquisition-targets/">TechCrunch — Las empresas de pesos abiertos, el objetivo de moda</a></li><li><a href="https://www.anthropic.com/news/expanding-support-for-scientists">Anthropic — Ampliación del apoyo a científicos</a></li><li><a href="https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/">TechCrunch — Investigadores automáticos y alineamiento</a></li><li><a href="https://simonwillison.net/2026/Aug/28/just-a-rumour-of-a-bug/">Simon Willison — Basta el rumor de un bug</a></li><li><a href="https://techcrunch.com/2026/08/27/heres-all-the-times-ai-has-gone-rogue-and-hacked-other-companies/">TechCrunch — Todas las veces que una IA se ha descontrolado</a></li><li><a href="https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/">TechCrunch — Carta abierta sobre ciberdefensa</a></li><li><a href="https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/">TechCrunch — Microduck, el robot pato de 399 $</a></li><li><a href="https://techcrunch.com/2026/08/27/plauds-new-earphones-come-with-an-esim-enabled-case-for-talking-to-ai-agents/">TechCrunch — Plaud One</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Anthropic — Cómo funciona la marca de agua de Claude</a></li><li><a href="https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india/">TechCrunch — Anuncios en ChatGPT en India</a></li><li><a href="https://www.latent.space/p/ainews-openai-shuts-off-cursor">Latent Space — OpenAI corta a Cursor</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-08-28.html">28 de agosto de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
