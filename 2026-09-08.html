@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>El software desechable ya se escribe en una tarde: dos herramientas útiles hechas a base de pedirlas — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">8 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>El software desechable ya se escribe en una tarde: dos herramientas útiles hechas a base de pedirlas</p>
+<h2>Lo más importante</h2>
+<p>Lo más aprovechable de hoy no es un modelo, es una demostración de para qué sirven. Simon Willison publicó dos herramientas hechas en un rato pidiéndoselas a un modelo: una animación que transforma el mapa del mundo entre las proyecciones Mercator y Equal Earth (construida con <strong>GPT‑6 Astra</strong> en modo medio dentro de ChatGPT), y un <strong>compresor de vídeo que funciona entero en tu navegador</strong> —lo hizo con Claude Fable 5.1 usando la versión WebAssembly de FFMPEG (<em>WebAssembly</em>: tecnología que permite ejecutar programas de escritorio dentro de la pestaña del navegador). Esto último es más útil de lo que parece: comprimes un vídeo sin subirlo a ningún servidor, sin instalar nada y sin cuenta. Funciona desde España sin restricciones, como cualquier web. El patrón a copiar es el interesante: si tienes una tarea repetitiva y pequeña, ya no buscas una app, la pides.</p>
+<p>Para quien prefiera trabajar desde la terminal, salió <strong>llm 0.35</strong>, la versión que añade soporte para GPT‑6 Astra a esa herramienta de línea de comandos (`pip install -U llm`). Te deja lanzar consultas a distintos modelos desde la consola, encadenarlas con otros comandos y guardar el historial en una base de datos local. Disponible ya en España: es un paquete de Python, no un producto regionalizado, aunque necesitas tu propia clave de API.</p>
+<p>La tercera cosa que puedes usar hoy mismo es el <strong>AEO Tracker</strong> de Latent Space, un seguimiento de qué fuentes elige citar Astra (y otros modelos frontera) cuando alguien les pregunta por una categoría de producto. <strong>AEO</strong> (<em>Answer Engine Optimization</em>: el SEO de toda la vida, pero optimizando para que te cite un chatbot en vez de para salir en Google) está dejando de ser una idea abstracta. Si tienes web, producto o marca personal, el tracker te dice qué páginas están alimentando las respuestas y qué puedes cambiar. Accesible desde cualquier sitio.</p>
+<p>Y dos avisos de disponibilidad: Anthropic abre <strong>10.000 plazas gratuitas o con descuento</strong> de suscripción a Claude para investigadores de todo el mundo durante un año —incluye a España—, y ha relajado los filtros de biología de Fable 5, reduciendo un <strong>85% los "fallbacks"</strong> (<em>fallback</em>: cuando el sistema te cambia a un modelo más flojo porque tu pregunta le parece sospechosa). En la práctica: preguntar por unos análisis clínicos o por un síntoma ya no te degrada la respuesta.</p>
+<h2>Tendencias y patrones</h2>
+<p>Emerge un tema que a ti, como usuario en la UE, te toca directamente: la trazabilidad de lo generado. Anthropic ha detallado cómo funciona el marcado de agua invisible que llevarán sus próximos modelos —una firma estadística en el texto, sin caracteres raros añadidos, indetectable al leerlo— y lo hace explícitamente para cumplir la <strong>AI Act europea</strong>. No cambia la calidad de lo que escribe Claude, pero sí significa que el texto que generes puede identificarse como salido de un modelo. Otros proveedores van por el mismo camino. En el lado opuesto del mismo eje, Abliteration.ai ha montado un negocio de servir modelos de pesos abiertos con los filtros de seguridad quirúrgicamente extirpados, accesibles por API. Se vende como herramienta para <em>red teaming</em>, pero la señal es que el ecosistema se está partiendo en dos: modelos cada vez más auditables por un lado, modelos deliberadamente sin frenos por otro.</p>
+<p>El segundo patrón es el del exceso de confianza. Tres excursionistas tuvieron que ser rescatados del monte Shasta después de planificar la ruta con Gemini, que —según el informe del sheriff— les recomendó llevar bastante menos comida y agua de lo razonable. Va en la misma línea que la homogeneización visual que se está comiendo las cartas de los restaurantes: modelos entrenados hacia una estética "agradable" que produce imágenes técnicamente correctas y sutilmente falsas. La conclusión práctica es la misma en los dos casos: <strong>estos sistemas fallan mejor en lo verificable que en lo consecuente</strong>.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Video compressor (WebAssembly + FFMPEG)</strong> — Comprime vídeo en el navegador sin subir el archivo a ningún servidor. Útil y privado.</li><li><strong>llm 0.35</strong> — CLI para hablar con varios modelos desde la terminal y encadenar resultados con otros comandos de shell.</li><li><strong>AEO</strong> — Optimizar tu contenido para que los chatbots te citen; el tracker de Latent Space muestra qué eligen hoy.</li><li><strong>Glosario de IA de TechCrunch</strong> — Actualizado con términos recientes como "opaque recurrence"; buen sitio al que volver cuando algo suene a chino.</li><li><strong>Mistral (€3.000M, valoración >21.000M)</strong> — Relevante solo por una razón práctica: es el proveedor europeo de pesos abiertos, y eso condiciona qué modelos podrás desplegar en local desde la UE.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Sep/7/video-compressor/">Video compressor — Simon Willison</a></li><li><a href="https://simonwillison.net/2026/Sep/7/equal-earth/">Mercator ↔ Equal Earth — Simon Willison</a></li><li><a href="https://simonwillison.net/2026/Sep/7/llm/">llm 0.35 — Simon Willison</a></li><li><a href="https://www.latent.space/p/aeo">The Frontier AEO Tracker — Latent Space</a></li><li><a href="https://www.anthropic.com/news/expanding-support-for-scientists">Expanding our support for scientists — Anthropic</a></li><li><a href="https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards">Improving Fable 5's biology safeguards — Anthropic</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">How Claude's text watermark works — Anthropic</a></li><li><a href="https://techcrunch.com/2026/09/03/abliteration-ai-is-making-a-business-out-of-removing-ai-guardrails/">Abliteration.ai is making a business out of removing AI guardrails — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/05/hikers-rescued-after-using-google-gemini-for-planning/">Hikers rescued after using Google Gemini for planning — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/03/the-sameness-problem-behind-those-unappetizing-ai-generated-menus/">The sameness problem behind those unappetizing AI-generated menus — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/07/artificial-intelligence-definition-glossary-hallucinations-guide-to-common-ai-terms/">Opaque recurrence, and other AI terms you should know — TechCrunch</a></li><li><a href="https://mistral.ai/news/mistral-makes-sovereign-open-weight-ai-to-frontier/">Mistral raises €3B — Mistral AI</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-07.html">7 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
