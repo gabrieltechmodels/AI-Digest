@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Una IA resuelve uno de los siete problemas del milenio en 88 horas, y de paso enciende una guerra sobre quién puede investigar qué — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">9 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Una IA resuelve uno de los siete problemas del milenio en 88 horas, y de paso enciende una guerra sobre quién puede investigar qué</p>
+<h2>Lo más importante</h2>
+<p>Ha pasado algo que parecía a años vista: OpenAI publicó <strong>una solución generada por IA al problema de Navier–Stokes</strong>, uno de los siete Problemas del Milenio con un millón de dólares de premio desde el año 2000. No es un paper vago: viene con un desarrollo escrito y una <strong>demostración formal en Lean</strong> (Lean es un lenguaje donde las matemáticas se verifican con un ordenador, así que la prueba se puede comprobar mecánicamente en lugar de fiarse del revisor). Según los detalles que han circulado, lo hizo un modelo aún no lanzado, "Astra-next", en <strong>88 horas</strong>, coordinando unos <strong>10.000 agentes</strong> (<em>agente</em>: una instancia del modelo que trabaja sola durante un rato, ejecuta cosas y devuelve resultado) y quemando 130.000 millones de tokens (<em>token</em>: la unidad en que los modelos parten el texto; 130B equivalen a más de 40 millones de dólares de cómputo). Para ti hoy esto no es una herramienta, es una señal: el modelo que lo hizo no está disponible en ninguna parte, ni en EE. UU. ni en la UE.</p>
+<p>Lo que sí puedes usar hoy es <strong>ChatGPT Images 2.5</strong>, la nueva generación de imágenes de OpenAI. Las mejoras van justo donde dolía: <strong>sigue instrucciones a lo largo de varios turnos</strong> (le pides un cambio, luego otro, y no destroza lo anterior), responde más rápido y <strong>conserva mucho mejor a los sujetos de tus fotos de referencia</strong> — es decir, si le pasas una foto tuya o de un producto, se parece de verdad. En la API hay dos modelos nuevos: `gpt-image-2.5-sunburst` (el fuerte, para edición precisa) y `gpt-image-2.5-flare` (rápido, para el día a día). Está integrado en ChatGPT, así que <strong>en España se usa ya</strong> sin lista de espera; las funciones de imagen de OpenAI llevan tiempo disponibles en la UE. Simon Willison ya actualizó su script `openai_image.py` para pasarle varias imágenes de referencia desde la terminal, si prefieres trabajar por línea de comandos.</p>
+<p>En la esquina contraria, Meta presentó <strong>Muse</strong>, su agente personal que se conecta a tu correo, calendario, pagos, apps de salud, casa inteligente, restaurantes y compras para hacerte recados. La pega práctica: <strong>solo en Estados Unidos</strong>. Dado el volumen de datos personales que necesita conectar y el historial de Meta con el RGPD, es de los lanzamientos donde la llegada a Europa puede tardar mucho o venir recortada. No cuentes con ello a corto plazo.</p>
+<h2>Tendencias y patrones</h2>
+<p>El caso Navier–Stokes trae un conflicto que ya no es teórico. Tristan Buckmaster (NYU) y Levent Alpöge (Anthropic) llevaban casi un año trabajando en el problema <strong>usando Claude y Codex</strong>, y publicaron sus resultados a toda prisa acusando a OpenAI de jugada sucia. Terence Tao, probablemente el matemático vivo más respetado, lo resumió mejor que nadie: ahora <strong>el mero rumor de que alguien trabaja en un problema puede desencadenar un despliegue masivo de IA para aplastarlo</strong> antes de que el proyecto original madure. Su conclusión incómoda: el incentivo pasa a ser no contar en qué estás trabajando, lo que revertiría siglos de ciencia abierta. Si trabajas en algo original, hoy es un buen día para pensar cuándo lo compartes.</p>
+<p>El otro patrón es defensivo y sí te toca. Microsoft ha parcheado este mes <strong>972 vulnerabilidades, 112 críticas</strong> — récord absoluto, tras 570 hace dos meses y 620 el pasado. La causa es el descubrimiento de bugs asistido por IA, que funciona igual de bien para quien defiende y para quien ataca. Chrome ha reaccionado pasando a <strong>actualizaciones cada dos semanas</strong> en lugar de cuatro (Chrome 153 ya está fuera, en escritorio, iOS y Android, y llega a España como cualquier update). Traducción práctica: actualiza navegador y Windows ya, y no dejes updates pendientes semanas.</p>
+<p>Y un aviso concreto para suscriptores de Claude: TechCrunch documenta casos de <strong>consumo de tokens que crece sin que el usuario esté trabajando</strong> — un consultor vio subir su cuota del 45% al 55% con todo desconectado. Anthropic reconoció la anomalía y suspendió cuentas implicadas. Si notas que tu límite se agota antes de tiempo, revisa integraciones y tareas programadas, y rota las credenciales conectadas.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>gpt-image-2.5-sunburst / flare</strong> — los dos modelos nuevos de imagen en la API; Sunburst para edición precisa, Flare para volumen y velocidad.</li><li><strong>Lean</strong> — lenguaje de demostración formal; deja que un ordenador verifique una prueba matemática paso a paso.</li><li><strong>Glosario de IA de TechCrunch</strong> — definiciones en lenguaje llano de LLM, RAG, RLHF y términos nuevos como "opaque recurrence".</li><li><strong>WeatherNext 3</strong> — el modelo meteorológico de Google mejora al incorporar más datos brutos de satélite; previsiones más precisas y baratas de calcular.</li><li><strong>Marca de agua de texto de Claude</strong> — Anthropic ya marca sus salidas para cumplir la AI Act europea; invisible al leer, pero detectable.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/navier-stokes-solution">OpenAI — On the Navier–Stokes Millennium Prize Problem</a></li><li><a href="https://openai.com/index/introducing-chatgpt-images-2-5">OpenAI — Introducing ChatGPT Images 2.5</a></li><li><a href="https://simonwillison.net/2026/Sep/8/on-navier-stokes/">Simon Willison — On Navier–Stokes</a></li><li><a href="https://simonwillison.net/2026/Sep/8/introducing-chatgpt-images-25/">Simon Willison — Introducing ChatGPT Images 2.5</a></li><li><a href="https://simonwillison.net/2026/Sep/9/terence-tao/">Simon Willison — Quoting Terence Tao</a></li><li><a href="https://www.latent.space/p/ainews-openai-reports-navier-stokes">Latent Space — AINews: OpenAI reports Navier-Stokes singularity find</a></li><li><a href="https://techcrunch.com/2026/09/08/meta-debuts-its-muse-ai-agent-will-consumers-trust-it/">TechCrunch — Meta debuts its Muse AI agent</a></li><li><a href="https://techcrunch.com/2026/09/08/hackers-are-stealing-claude-tokens-from-subscribers/">TechCrunch — Hackers are stealing Claude tokens from subscribers</a></li><li><a href="https://techcrunch.com/2026/09/08/chrome-is-now-shipping-updates-every-2-weeks-as-ai-changes-the-security-landscape/">TechCrunch — Chrome is now shipping updates every 2 weeks</a></li><li><a href="https://arstechnica.com/security/2026/09/microsoft-patches-a-record-972-vulnerabilities-112-of-them-critical/">Ars Technica — Microsoft patches a record 972 vulnerabilities</a></li><li><a href="https://arstechnica.com/science/2026/09/googles-ai-weather-model-now-uses-more-raw-satellite-data/">Ars Technica — Google's AI weather model now uses more raw satellite data</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-08.html">8 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
