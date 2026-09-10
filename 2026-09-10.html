@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Los asistentes de IA dejan de sugerir y empiezan a actuar: ya tienen correo propio y montan tu carrito de la compra — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">10 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Los asistentes de IA dejan de sugerir y empiezan a actuar: ya tienen correo propio y montan tu carrito de la compra</p>
+<h2>Lo más importante</h2>
+<p>La novedad más concreta del día viene de <strong>Instinct</strong>, el asistente que se ha hecho viral estas semanas: ahora cada usuario recibe una dirección de correo <em>del propio asistente</em>. Suena menor y no lo es. Hasta ahora, un <strong>agente</strong> (un modelo que no solo responde, sino que ejecuta tareas por ti: entrar en webs, rellenar formularios, hacer gestiones) chocaba siempre con el mismo muro: para darse de alta en cualquier servicio necesitaba tu email, y acababa llenándote la bandeja de entrada de confirmaciones. Con correo propio, Instinct puede crear y gestionar sus propias cuentas, escribir a un restaurante para pedir algo especial, preguntar disponibilidad a un negocio o hacer seguimiento de un trámite, todo sin tocar tu buzón. Es el tipo de detalle de fontanería que separa una demo de algo que usas de verdad. Su fundador, Noah Shinn, lo anunció el martes y se está desplegando ya. <strong>Disponibilidad: la compañía no ha detallado acceso por regiones</strong>; es una startup estadounidense sin datos públicos sobre la UE, así que conviene asumir despliegue escalonado desde EE. UU.</p>
+<p>En paralelo, la compra online se ha convertido en el campo de pruebas de los asistentes. <strong>Shipt</strong> (la plataforma de entrega de Target) lanzó <strong>"Ask Shipt"</strong>, que convierte una frase en un carrito listo para pagar: <em>"móntame un carrito para una comida de 25 personas el sábado, con cosas de brunch"</em> o <em>"compra para desayunos escolares fáciles"</em>. También acepta la foto de un plato para deducir los ingredientes. El mismo día, <strong>Instacart</strong> presentó <strong>Clementine</strong>, con la misma idea, y este año ya lo habían hecho Uber Eats y DoorDash. <strong>Ninguno de los cuatro opera en España</strong>, así que aquí es solo una señal de hacia dónde va la interfaz: del buscador con filtros a describir lo que quieres. Si usas algún supermercado español online, la pregunta útil es cuánto tardan Mercadona o Carrefour en copiar el patrón.</p>
+<p>Del evento de Apple del miércoles, casi todo era hardware (primer plegable, <strong>iPhone Duo</strong>, iPhone 18 Pro, Watch Series 12) y ahí lo dejamos, pero hay tres funciones de software que sí importan. La primera: los nuevos Apple Watch <strong>transcriben audio en directo</strong>, es decir, el reloj procesa lo que se dice a su alrededor y lo convierte en texto. La segunda: la app Salud rediseñada usa Apple Intelligence para calcular una <strong>"edad de salud"</strong> y una puntuación de "preparación" cruzando VO2 máx, sueño y hasta biomarcadores de análisis de sangre. Y la tercera, la más interesante si trabajas con imágenes: <strong>Apple Reference Image</strong>, que guarda datos firmados del sensor en el momento del disparo y genera un "negativo digital" inalterable contra el que comparar cualquier versión posterior de la foto. Sirve para demostrar que una imagen no ha sido manipulada ni generada. Apple no ha detallado disponibilidad por regiones: <strong>las funciones de Apple Intelligence han llegado a la UE con meses de retraso en el pasado</strong>, y las de salud suelen depender de aprobaciones país por país. Prudencia hasta que haya confirmación.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es que el asistente ya no vive dentro de una ventana de chat: tiene identidad propia (un email), memoria de tu contexto y permiso para operar en tu nombre. Eso desplaza el problema desde "¿qué sabe el modelo?" a "¿qué le dejo hacer y cómo lo superviso?". El correo del agente es un buen ejemplo de ambigüedad práctica: te ahorra ruido, pero también significa que existen cuentas creadas por un software a las que tú no accedes directamente.</p>
+<p>El segundo hilo, más incómodo, es el de la seguridad. Ampliando lo que contamos el domingo sobre los agentes de OpenAI escapándose de su corral, esta semana la conversación se ha institucionalizado: <strong>Paul Christiano</strong>, uno de los investigadores más respetados en alineamiento, entra en el consejo de la OpenAI Foundation diciendo abiertamente que la industria "no va camino" de reducir el riesgo a un nivel aceptable, mientras un investigador de Anthropic, Jacob Coxon, dimitía advirtiendo contra la IA que se mejora a sí misma. Para ti como usuario no cambia nada hoy, pero explica por qué cada nueva función de agente llega con más fricciones y permisos. Y un dato que contrapesa el ruido: según <strong>Ramp</strong>, en agosto solo el <strong>56%</strong> de las 70.000 empresas que analiza pagaba por productos de IA, un mísero <strong>+0,4%</strong> respecto a julio. La adopción real avanza mucho más despacio que los titulares.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Instinct</strong> — Asistente-agente con email propio; el caso más avanzado de IA que gestiona cuentas y trámites por ti.</li><li><strong>Apple Reference Image</strong> — Prueba criptográfica de autenticidad de una foto; el antídoto de Apple contra el <em>AI slop</em>.</li><li><strong>Clementine (Instacart) y Ask Shipt</strong> — Compra por descripción en lenguaje natural; el patrón que llegará a otros e-commerce.</li><li><strong>Alineamiento (alignment)</strong> — La disciplina de que un modelo persiga lo que queremos y siga siendo controlable; el campo de Christiano.</li><li><strong>Índice de IA de Ramp</strong> — Datos de gasto real en herramientas de IA en 70.000 empresas; buen termómetro contra el hype.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/09/09/viral-ai-assistant-instinct-now-has-its-own-email-address/">TechCrunch — Viral AI assistant Instinct now has its own email address</a></li><li><a href="https://techcrunch.com/2026/09/09/shipt-becomes-the-latest-delivery-app-with-an-ai-shopping-assistant/">TechCrunch — Shipt becomes the latest delivery app with an AI shopping assistant</a></li><li><a href="https://techcrunch.com/2026/09/09/everything-apple-announced-at-its-fall-iphone-event-from-the-foldable-iphone-duo-to-an-always-listening-apple-watch/">TechCrunch — Everything Apple announced at its fall iPhone event</a></li><li><a href="https://techcrunch.com/2026/09/09/apple-has-a-new-way-prove-your-iphone-photos-arent-ai-slop/">TechCrunch — Apple has a new way to prove your iPhone photos aren't AI slop</a></li><li><a href="https://techcrunch.com/2026/09/09/apples-revamped-health-app-will-calculate-your-health-age-and-readiness-score/">TechCrunch — Apple's revamped Health app will calculate your 'health age'</a></li><li><a href="https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/">TechCrunch — OpenAI adds a prominent AI doomer to its board of directors</a></li><li><a href="https://techcrunch.com/2026/09/09/gambling-with-our-lives-anthropic-researcher-quits-warns-against-self-improving-ai/">TechCrunch — 'Gambling with our lives': Anthropic researcher quits</a></li><li><a href="https://techcrunch.com/2026/09/09/ai-spend-per-employee-slumped-at-top-firms-in-august-summer-doldrums-or-a-warning-sign/">TechCrunch — AI spend per employee slumped at top firms in August</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-09.html">9 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
