@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Los ingenieros que inventaron los agentes de Anthropic dicen que has estado construyendo lo que no era — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">14 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Los ingenieros que inventaron los agentes de Anthropic dicen que has estado construyendo lo que no era</p>
+<h2>Lo más importante</h2>
+<p>La idea más aprovechable de hoy viene de Barry Zhang y Mahesh Murag, los dos ingenieros de Anthropic que crearon las <strong>Agent Skills</strong>: han dejado de construir agentes a medida y construyen <em>skills</em> (carpetas con instrucciones, scripts y ejemplos que el modelo carga solo cuando las necesita). La diferencia práctica es enorme: un agente es un programa que tú orquestas paso a paso y que se rompe cuando cambia el contexto; una skill es documentación ejecutable que el modelo elige usar y que <strong>puedes mejorar editando un archivo de texto</strong>, sin tocar código. El sistema mejora solo porque cada vez que corriges algo, lo corriges en la skill. Está disponible ya en España en Claude (web, Claude Code y API) sin lista de espera: es literalmente crear una carpeta con un `SKILL.md` y describir cuándo usarla.</p>
+<p>En herramientas concretas y usables hoy, Simon Willison ha publicado <strong>commit-rewriter 0.1</strong>, una miniapp web para reescribir mensajes de commit en masa. Su caso de uso es muy de 2026: los commits generados por agentes de código venían llenos de basura y referencias a un repo privado, y había que limpiarlos antes de publicar. Se ejecuta con `uvx commit-rewriter ruta/al/repo`, crea una rama con marca de tiempo antes de tocar nada (por si hay que volver atrás) y reescribe desde el commit que elijas hasta el último. El mismo día ha sacado <strong>shot-scraper 1.12</strong> con soporte WebP (`-o captura.webp --quality 80`), que produce capturas bastante más ligeras que PNG o JPEG. Ambas son open source y funcionan igual desde España.</p>
+<p>Ampliando lo de Astra que contamos ayer: ahora hay un caso de uso real fuera de demos. <strong>Perplexity</strong> lo está usando internamente para redactar comunicaciones, modificar software y monitorizar sistemas en producción, y dicen que revisan su trabajo <em>mucho menos</em> que con modelos anteriores. Es el primer dato de una empresa grande confiándole procesos de punta a punta, no tareas sueltas. El contrapunto sigue siendo el de estos días: el plan Pro de 200 $ continúa con las altas cerradas por saturación, aunque API, Go y Plus siguen abiertos. Y un aviso de disponibilidad: <strong>Muse</strong>, el nuevo asistente agéntico de Meta, es el número 2 de la App Store estadounidense con unas 83.000 descargas en iOS, pero está <strong>limitado a EE. UU.</strong>; no hay fecha para la UE.</p>
+<h2>Tendencias y patrones</h2>
+<p>El sector está teniendo su discusión más ruidosa hasta la fecha sobre riesgo existencial, y esta vez desde dentro. Jacob Coxon dimitió de Anthropic tras tres años de investigación en preentrenamiento (<em>la fase donde el modelo aprende de datos masivos, antes de afinarlo</em>) diciendo que las empresas punteras "están apostando con nuestras vidas"; en lugar de desmentirlo, el responsable de alineamiento de Anthropic lo respaldó y cifró en <strong>más del 10 % la probabilidad de que la IA mate a todos los humanos en la próxima década</strong>. Dario Amodei respondió con un plan para "marcar el ritmo de la frontera" y un compromiso unilateral al que Sam Altman dijo que OpenAI se sumará. Para ti como usuario no cambia nada hoy, pero explica por qué veremos más fricción y más capas de seguridad en los productos.</p>
+<p>En paralelo, el choque entre laboratorios y academia sigue escalando tras lo de Navier–Stokes: 25 medallistas Fields han firmado una carta abierta contra la carrera por "resolver" problemas famosos, hay una acusación de presión para no acreditar a un colaborador rival, y OpenAI ha retirado su patrocinio de un evento matemático en CalTech. El patrón de fondo es el mismo en los tres frentes —seguridad, ciencia, producto—: la capacidad avanza más rápido que los acuerdos sobre cómo usarla.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Agent Skills</strong> — Carpetas de instrucciones que Claude carga bajo demanda; la alternativa a programar agentes rígidos. Disponible en España.</li><li><strong>commit-rewriter</strong> — `uvx commit-rewriter` para limpiar historiales de commits escritos por agentes antes de publicarlos.</li><li><strong>Conectoma de la mosca de la fruta</strong> — Google publicó el mapa completo de 166.000 neuronas y 125 millones de conexiones; se descarga gratis y se puede entrenar como una red neuronal cualquiera. Curiosidad con potencial didáctico.</li><li><strong>Marca de agua de Claude</strong> — Los próximos modelos incrustarán una marca invisible en el texto para cumplir la AI Act europea. Sin impacto en la calidad, pero te afecta directamente por vivir en la UE.</li><li><strong>Kimi K3 (Moonshot)</strong> — Modelo de pesos abiertos que ya genera 300.000 millones de tokens diarios en OpenRouter; usable desde España sin restricciones.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.youtube.com/watch?v=HIRDzMtuWFk">Anthropic Engineer Explains: What to Build Instead of AI Agents</a></li><li><a href="https://simonwillison.net/2026/Sep/14/commit-rewriter/">commit-rewriter 0.1 — Simon Willison</a></li><li><a href="https://simonwillison.net/2026/Sep/13/shot-scraper/">shot-scraper 1.12 — Simon Willison</a></li><li><a href="https://openai.com/index/perplexity-improving-accuracy-with-astra">Perplexity trusts GPT-6 Astra with end-to-end systems — OpenAI</a></li><li><a href="https://techcrunch.com/2026/09/10/metas-ai-agent-muse-is-now-the-no-2-app-in-the-us/">Meta's AI agent Muse is now the No. 2 app in the US — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/12/anthropic-ceo-outlines-plan-to-pace-the-frontier/">Anthropic CEO outlines plan to slow AI development — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/13/whats-behind-the-ai-industrys-latest-warnings-of-doom/">What's behind the AI industry's latest warnings of doom? — TechCrunch</a></li><li><a href="https://techcrunch.com/2026/09/11/openais-feud-with-mathematicians-is-only-escalating/">OpenAI's feud with mathematicians is only escalating — TechCrunch</a></li><li><a href="https://www.youtube.com/watch?v=GmCbzlb091A">I Uploaded A Fruit Fly Brain To Reply To My Emails</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">How Claude's text watermark works — Anthropic</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-13.html">13 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
