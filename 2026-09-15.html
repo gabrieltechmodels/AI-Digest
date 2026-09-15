@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Siri por fin hace algo útil: iOS 27 ya deja que otras apps trabajen dentro del asistente — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">15 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Siri por fin hace algo útil: iOS 27 ya deja que otras apps trabajen dentro del asistente</p>
+<h2>Lo más importante</h2>
+<p>Apple ha publicado <strong>iOS 27</strong> y <strong>macOS 27 "Golden Gate"</strong> (más watchOS, visionOS y tvOS 27), y la pieza central es el Siri rehecho que llevaban prometiendo más de dos años. La diferencia práctica: entiende peticiones complejas encadenadas y, sobre todo, lee el contexto de lo que tienes en pantalla, así que puedes pedirle cosas sobre el correo, la foto o la web que estás mirando sin describírselo. Quien lo lleva usando desde la beta pública resume el cambio así: había abandonado Siri y ahora lo usa a diario. Cómo probarlo: basta con actualizar el iPhone. <strong>Disponibilidad</strong>: la actualización es global y Apple Intelligence ya funciona en España y en español desde el año pasado, pero ninguna de las fuentes detalla si todas las funciones nuevas de Siri llegan a la UE el primer día; Apple suele escalonar las capacidades más agresivas en Europa, así que cuenta con que alguna tarde semanas. Nota para quien tenga un Mac viejo: esta es la última versión de macOS que soporta Rosetta para apps de Intel.</p>
+<p>Lo verdaderamente aprovechable no es Siri en sí, sino que Apple ha abierto sus tripas a los desarrolladores, y ya hay ejemplos funcionando. <strong>Daydream</strong>, una app gratuita de descubrimiento de moda, estrenó ayer dos funciones construidas con las herramientas de iOS 27: analiza las fotos de ropa que ya tienes guardadas en tu carrete, identifica cada prenda por separado y te devuelve dónde comprarla o alternativas similares; y te deja buscar ropa hablándole a Siri <strong>sin abrir la app</strong>. Ese segundo detalle es el patrón que conviene vigilar: el asistente pasa a ser la puerta de entrada a apps de terceros, no un cajón aparte. Requisitos: iPhone con iOS 27 y Siri AI activado. Está en la App Store española, aunque su catálogo de tiendas es previsiblemente estadounidense.</p>
+<p>En productividad, el movimiento del día va de asistentes que empiezan a trabajar solos. <strong>Superhuman ha comprado Fathom</strong>, un tomador de notas de reuniones respaldado por Y Combinator, en lugar de construir el suyo. La lógica es clara: hoy un asistente solo actúa cuando le escribes una instrucción, y donde están las tareas reales es en lo que se dice en las reuniones. Quien capture eso puede lanzar el trabajo por su cuenta. En la misma línea, OpenAI ha publicado cómo funciona <strong>Fyxer</strong>, un asistente ejecutivo que ordena la bandeja de entrada y redacta correos imitando tu forma de escribir, combinando <em>fine-tuning</em> (reentrenar un modelo con ejemplos propios para que se ajuste a un estilo o tarea concretos) con memoria y correcciones reales de usuarios. Ambos son servicios web por suscripción contratables desde España; ninguna de las dos compañías menciona restricciones en la UE.</p>
+<h2>Tendencias y patrones</h2>
+<p>El sector ha pasado de acelerar a frenar, y esta vez con consecuencias visibles para quien usa las herramientas. Microsoft publicó ayer un "código de conducta" para sus modelos con líneas rojas explícitas (no hackear sistemas, no engañar a humanos); Dario Amodei detalló su plan de <em>pacing the frontier</em> y Sam Altman dijo que OpenAI hará lo mismo; y xAI, OpenAI y Anthropic han firmado juntos <strong>AEF-1</strong>, un estándar común para que evaluadores externos auditen sus modelos. Traducido a lo cotidiano: cabe esperar lanzamientos algo más espaciados y más capas de verificación. Lo que sí te toca directamente si vives en la UE es la marca de agua: los próximos modelos de Claude incorporarán un <em>watermark</em> en el texto generado para cumplir la AI Act europea. Anthropic insiste en que no añade nada visible, no es detectable al leer y no degrada la calidad de la respuesta.</p>
+<p>El otro patrón es más incómodo: los agentes ya generan ruido a escala. Varios bots con nombre propio —"Timmy", "Ren", "Jackie"— llevan días inundando redes sociales y buzones de escritores con mensajes presentándose como agentes recién nacidos, todo para promocionar una plataforma. Es la primera vez que el spam de agentes se ve como fenómeno, no como anécdota. Y de fondo, una frase de Laurie Voss que resume bien el año: el coste de escribir código se ha hundido y el de revisarlo y operarlo va detrás, así que <strong>lo que queda del oficio es averiguar qué quiere la gente y definirlo con precisión</strong>. Ampliando lo que contamos el día 9 sobre la demostración de Navier–Stokes, el conflicto entre OpenAI y los matemáticos ha escalado: 25 medallas Fields han firmado una carta abierta y OpenAI ha retirado su patrocinio de un evento en CalTech.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Siri AI y las App Intents de iOS 27</strong> — el mecanismo por el que una app de terceros expone sus funciones a Siri; si desarrollas, es el trabajo con más retorno inmediato.</li><li><strong>Daydream</strong> — gratuita en iOS, el mejor ejemplo hoy de app que vive dentro del asistente en vez de competir con él.</li><li><strong>Fyxer</strong> — caso práctico de cómo se combinan ajuste fino, memoria y feedback real para que un asistente escriba en tu voz.</li><li><strong>Marca de agua de Claude</strong> — qué implica la AI Act europea para el texto que generes a partir de ahora.</li><li><strong>AEF-1</strong> — el estándar de evaluación externa que acaban de cofirmar los tres grandes laboratorios.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements/">Ars Technica — iOS 27 y macOS Golden Gate 27</a></li><li><a href="https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again/">TechCrunch — With iOS 27, I'm actually using Siri again</a></li><li><a href="https://techcrunch.com/2026/09/14/fashion-discovery-app-daydream-uses-apple-intelligence-to-help-you-shop-the-outfits-saved-in-your-camera-roll/">TechCrunch — Daydream y Apple Intelligence</a></li><li><a href="https://techcrunch.com/2026/09/14/superhuman-acquires-yc-backed-notetaker-fathom-as-productivity-platforms-push-for-agentic-work/">TechCrunch — Superhuman compra Fathom</a></li><li><a href="https://openai.com/index/fyxer">OpenAI — How Fyxer built an AI executive assistant people trust</a></li><li><a href="https://techcrunch.com/2026/09/14/microsofts-new-ai-code-of-conduct-tells-models-not-to-hack-systems-or-trick-humans/">TechCrunch — El código de conducta de Microsoft</a></li><li><a href="https://www.anthropic.com/news/claude-text-watermark">Anthropic — How Claude's text watermark works</a></li><li><a href="https://www.latent.space/p/ainews-aef-1-standard-emerges-for">Latent Space — AEF-1 para evaluadores externos</a></li><li><a href="https://arstechnica.com/ai/2026/09/ai-agents-flood-the-internet-with-slop-infused-spam/">Ars Technica — Los agentes inundan internet de spam</a></li><li><a href="https://simonwillison.net/2026/Sep/14/laurie-voss/">Simon Willison — Cita de Laurie Voss</a></li><li><a href="https://techcrunch.com/2026/09/11/openais-feud-with-mathematicians-is-only-escalating/">TechCrunch — El conflicto de OpenAI con los matemáticos</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-14.html">14 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
