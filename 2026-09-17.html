@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Claude deja de tener pestañas: chat, Cowork y Artifacts se funden en una sola ventana que decide sola qué hacer con lo que le pides — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">17 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Claude deja de tener pestañas: chat, Cowork y Artifacts se funden en una sola ventana que decide sola qué hacer con lo que le pides</p>
+<h2>Lo más importante</h2>
+<p>La novedad más práctica del día es que <strong>Anthropic ha fusionado Claude chat y Cowork en una única interfaz</strong>. Hasta ahora había que elegir pestaña —chat para preguntas rápidas, Cowork para encargos largos, Artifacts para el lienzo interactivo— y la propia empresa reconoce que los usuarios se equivocaban constantemente. A partir de ahora escribes lo que quieras y Claude <strong>enruta la petición solo</strong>: una duda de diez segundos y un informe que vence a mediodía entran por la misma puerta, y el trabajo largo sigue corriendo aunque cierres el portátil. Claude Design (el modo de diseño de webs y prototipos) también funciona desde cualquier punto de la app. Cómo probarlo: se despliega primero en los planes <strong>Pro y Max</strong>, en web, escritorio y móvil, durante las próximas semanas. No se ha anunciado ninguna limitación para Europa, así que en España debería llegar con el despliegue normal; es cuestión de esperar a que te aparezca. Lectura de fondo: Claude pasa a ser un <em>agente</em> generalista (programa que no solo responde, sino que ejecuta tareas de varios pasos por su cuenta) en lugar de un chat con extras. Es exactamente el mismo movimiento que hizo OpenAI al rebautizar su app de Codex como ChatGPT hace unas semanas.</p>
+<p>La segunda novedad sí es accionable hoy si tienes domótica: <strong>Google ha abierto en acceso anticipado un servidor MCP para Google Home</strong>. MCP (<em>Model Context Protocol</em>, un estándar que permite a un asistente conectarse a servicios externos y usarlos) es justo lo que hacía falta para que cualquier agente compatible —Claude, ChatGPT, Hermes, OpenClaw o el propio Antigravity de Google— controle tus dispositivos hablando en lenguaje normal: revisar los resúmenes de las cámaras, consultar el historial de eventos, encender y apagar cosas o montarte un panel de control a medida. El pero: <strong>no es enchufar y listo</strong>. Hay que crear un proyecto en Google Cloud, activar Home MCP y pasarle la configuración a tu agente. Está en acceso anticipado y Google no ha detallado disponibilidad por países; las funciones de IA de Home suelen empezar en EE. UU. y en inglés, así que tómalo con cautela hasta confirmarlo en tu cuenta.</p>
+<p>En el terreno de "esto te va a cambiar lo que ves", <strong>OpenAI ha presentado su apuesta publicitaria</strong>: formatos nativos en ChatGPT, herramientas para marketers y, lo más llamativo, <strong>Sponsored Agents</strong> —agentes patrocinados por marcas— con integraciones directas con HubSpot y Shopify. Si vendes online o gestionas marketing, es un canal nuevo que abrir; si eres solo usuario, asume que el chat empieza a monetizarse. OpenAI no ha concretado disponibilidad geográfica, y la publicidad personalizada es precisamente donde el RGPD y la DSA más fricción meten, así que en la UE lo normal sería verlo más tarde y recortado.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es la <strong>desaparición de la interfaz</strong>. Dos laboratorios distintos han llegado a la misma conclusión en un mes: el usuario no debería elegir herramienta, modo ni pestaña; escribe y el sistema decide. Eso desplaza la complejidad del usuario al enrutador interno del modelo, y encaja con otra pieza que ha aparecido hoy: <strong>Jev</strong>, un "modelo de sistema uno" que no genera texto sino que solo decide, clasifica, enruta y puntúa, y presume de ser <strong>más de 100 veces más rápido y 200 veces más barato</strong> que un modelo frontera pequeño. Los productos con una sola caja de texto necesitan exactamente eso por debajo.</p>
+<p>El segundo patrón es que los agentes salen de la pantalla. El MCP de Google Home es el ejemplo doméstico; Alexa+ aterrizando en India con hindi (y cambio de idioma a mitad de frase) muestra el mismo empuje por voz, aunque siga sin haber fecha para España. Y en el plano institucional, Anthropic y OpenAI han acordado abrir sus sistemas a <strong>evaluadores de seguridad externos</strong> como METR o Redwood: no cambia nada en tu día a día, pero sí en qué se sabrá públicamente cuando un modelo agente se comporte mal.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>MCP (Model Context Protocol)</strong> — el conector estándar entre agentes y servicios; cada integración nueva multiplica lo que tu asistente puede tocar sin programar nada.</li><li><strong>Sponsored Agents</strong> — agentes de marca dentro de ChatGPT; merece la pena entender el formato antes de que se normalice.</li><li><strong>Jev</strong> — modelo diseñado solo para decidir y enrutar; útil si montas sistemas donde un modelo grande es un lujo innecesario.</li><li><strong>Claude Design</strong> — el modo de diseño de webs y prototipos, ahora accesible desde cualquier conversación.</li><li><strong>Datasette 1.0a40</strong> — nueva versión con tareas en segundo plano y un parche de seguridad; recomendable actualizar si lo usas para explorar datos.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/09/16/anthropic-merges-claude-chat-and-cowork-in-one-interface/">TechCrunch — Anthropic merges Claude chat and Cowork</a></li><li><a href="https://simonwillison.net/2026/Sep/16/one-claude/">Simon Willison — Claude Cowork and chat are now one Claude</a></li><li><a href="https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/">TechCrunch — AI agents can now control Google Home</a></li><li><a href="https://openai.com/index/reimagining-advertising-with-ai">OpenAI — Reimagining advertising with AI</a></li><li><a href="https://www.latent.space/p/ainews-jev-a-system-one-model-that">Latent Space — Jev, un "System One Model"</a></li><li><a href="https://techcrunch.com/2026/09/16/amazon-launches-alexa-in-india-with-hindi-support/">TechCrunch — Alexa+ llega a India con hindi</a></li><li><a href="https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/">TechCrunch — Evaluadores de seguridad independientes</a></li><li><a href="https://simonwillison.net/2026/Sep/16/datasette/">Simon Willison — datasette 1.0a40</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-16.html">16 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
