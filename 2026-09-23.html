@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Los dos modelos más potentes del mundo bajaron de precio el mismo día, y ahora la IA buena cuesta la mitad que ayer — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">23 de septiembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Los dos modelos más potentes del mundo bajaron de precio el mismo día, y ahora la IA buena cuesta la mitad que ayer</p>
+<h2>Lo más importante</h2>
+<p>Ayer, con una hora de diferencia, Anthropic y OpenAI lanzaron sus modelos nuevos y los dos venían con el mismo mensaje: más capacidad por bastante menos dinero. <strong>Claude Opus 5.5</strong> es ahora el mejor modelo de Anthropic para programar y para trabajo de conocimiento, y lo llamativo es que supera en muchos benchmarks a <strong>Fable</strong>, que es un modelo más grande y más caro. El precio de salida baja de 25 a <strong>20 dólares por millón de tokens</strong> (un token es más o menos un trozo de palabra; es la unidad con la que se factura la IA), y además responde más rápido porque requiere menos cómputo para servirlo. Está ya disponible en la app de Claude y en la API <strong>sin restricciones geográficas en España</strong>: si pagas Pro o Max, lo tienes hoy en el selector de modelos.</p>
+<p>Una hora después, OpenAI amplió la familia GPT-6 con <strong>Sol</strong> y <strong>Luna</strong>, las versiones media y ligera de GPT-6 Astra (el grande que salió a principios de mes). Sol está pensado para tareas complejas y código; Luna para volumen alto con objetivo claro: resumir documentos, clasificar, extraer datos. Aquí el titular es el precio: ambos cuestan <strong>la mitad que sus equivalentes de GPT-5.6</strong>. Luna se queda en 0,10 $/M de entrada y 0,50 $/M de salida —y solo 0,01 $/M si el texto va cacheado—, lo que lo convierte en el modelo más barato con el que merece la pena construir algo. Para comparar: Grok 4.7, de ayer, está en 2 $/M de entrada y 6 $/M de salida. Ambos modelos están disponibles vía API en Europa desde el primer día.</p>
+<p>Si ya montas cosas sobre la API, hay una novedad menos vistosa pero con impacto directo en tu factura: OpenAI ha mejorado el <strong>prompt caching</strong> de GPT-6 (guardar en memoria la parte del prompt que se repite —instrucciones, documentos de contexto— para no pagarla ni reprocesarla cada vez). Ahora hay más aciertos de caché, puntos de corte explícitos que decides tú, y diagnósticos para ver qué se está cacheando y qué no. Y si trabajas desde terminal, la herramienta `llm` de Simon Willison ya soporta los tres: `llm install llm-anthropic` para `claude-opus-5.5` y `llm 0.36` para `gpt-6-sol` y `gpt-6-luna`. Un comando y los estás probando.</p>
+<h2>Tendencias y patrones</h2>
+<p>El patrón del día es que la frontera ya no se compite en "quién es más listo" sino en <strong>cuánto cuesta cada punto de inteligencia</strong>. Dos laboratorios recortaron entre un 40 % y un 50 % en cuestión de horas, lo cual solo pasa cuando ambos saben que el otro va a hacerlo. Para ti esto significa dos cosas prácticas: primero, revisa el modelo que tienes puesto por defecto en cualquier script, agente o integración tuya, porque con toda probabilidad hoy existe uno mejor y más barato con el mismo nombre de familia. Segundo, tareas que descartaste por caras —procesar cientos de documentos, clasificar todo tu correo, analizar transcripciones largas— ahora salen a un tercio de lo que costaban hace un mes.</p>
+<p>La otra corriente de fondo es que los benchmarks están dejando de decidir nada. Varios analistas señalan que las diferencias entre Opus 5.5 y GPT-6 Sol en las tablas son pequeñas, mientras que las diferencias en la práctica (cuál aguanta mejor una sesión larga de código, cuál se equivoca menos con tus herramientas) son grandes y no aparecen en ninguna gráfica. La recomendación sensata es probar los dos con tu propio trabajo real durante una semana antes de casarte con ninguno.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Prompt caching con breakpoints</strong> — decidir tú dónde corta la caché puede reducir el coste de un agente con contexto largo en más de un 80 %.</li><li><strong>llm (CLI)</strong> — la forma más rápida de probar modelos nuevos desde terminal sin escribir código; soporta Anthropic, OpenAI y plugins de terceros.</li><li><strong>llm-typesafe / Jev</strong> — plugin para hacer preguntas de sí/no y de clasificación con salida estructurada y fiable; la lista de espera avanza rápido.</li><li><strong>Muse (Meta)</strong> — su app se está descargando más rápido que ChatGPT en su día, pero <strong>sigue siendo solo EE. UU. y Canadá</strong>; no hay fecha para la UE.</li><li><strong>Caso Parallel con GPT-6 Astra</strong> — ejemplo documentado de cómo recortar a la mitad tiempo y coste de investigación con agentes.</li></ul>
+<p>Dos apuntes breves con poco recorrido práctico: OpenAI ha creado un grupo asesor de matemáticos tras afirmar que un modelo interno ha resuelto más de 100 problemas abiertos (hay matemáticos escépticos), y Microsoft ha desmantelado <strong>EvilTokens</strong>, una plataforma de estafa con chatbot que comprometió 12.000 cuentas —buen recordatorio para revisar tu segundo factor.</p>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/">TechCrunch — Anthropic releases Opus 5.5</a></li><li><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna">OpenAI — Introducing GPT-6 Sol and Luna</a></li><li><a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison — Opus 5.5, Sol, Luna y la guerra de precios</a></li><li><a href="https://arstechnica.com/ai/2026/09/new-anthropic-openai-models-make-same-promise-a-little-more-for-a-lot-less-money/">Ars Technica — A little more for a lot less money</a></li><li><a href="https://openai.com/index/better-prompt-caching-for-gpt-6">OpenAI — Better prompt caching for GPT-6</a></li><li><a href="https://simonwillison.net/2026/Sep/22/llm/">Simon Willison — llm 0.36</a></li><li><a href="https://techcrunch.com/2026/09/22/meta-admits-muses-likeness-to-openclaw-isnt-a-coincidence/">TechCrunch — Meta admits Muse's likeness to OpenClaw</a></li><li><a href="https://arstechnica.com/security/2026/09/microsoft-disrupts-ai-assisted-platform-that-compromised-12000/">Ars Technica — Microsoft disrupts EvilTokens</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-09-22.html">22 de septiembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
