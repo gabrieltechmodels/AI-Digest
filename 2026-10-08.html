@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>ChatGPT estrena un nuevo modelo GPT-6 y empieza a responder con gráficos y botones interactivos, y Anthropic lanza un Haiku diez veces más barato — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">8 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>ChatGPT estrena un nuevo modelo GPT-6 y empieza a responder con gráficos y botones interactivos, y Anthropic lanza un Haiku diez veces más barato</p>
+<h2>Lo más importante</h2>
+<p>OpenAI está activando desde ayer <strong>Intelligent UI</strong>, una interfaz nueva para ChatGPT que llega con un nuevo modelo GPT-6. Las respuestas ya no son solo texto. ChatGPT puede incluir calculadoras hechas para tu pregunta, gráficos que puedes tocar, diagramas que puedes editar y botones para seguir explorando un tema. OpenAI dice que el objetivo es que entender temas complejos cueste menos: pides que te explique una hipoteca y te devuelve una calculadora con tus cifras, en lugar de tres párrafos de fórmulas. Se está desplegando por fases. La fuente no dice nada sobre Europa, y estos despliegues suelen empezar en EE. UU. y llegar a la UE semanas después, así que si aún no lo ves, es normal. OpenAI también anuncia un <strong>College Planner</strong> (un planificador de solicitudes a la universidad), tarjetas de repaso y tests dentro de ChatGPT para adolescentes, de nuevo sin datos sobre la UE y muy centrado en el sistema universitario estadounidense.</p>
+<p>Si usas IA por <strong>API</strong> (la vía para conectar un modelo a tus propias apps o automatizaciones), la noticia del día es <strong>Claude Haiku 5.5</strong>, el nuevo modelo rápido y barato de Anthropic. Cuesta <strong>0,10 $ por millón de tokens de entrada y 0,50 $ de salida</strong> (un token es un trozo de texto, más o menos tres cuartos de una palabra). Es diez veces menos que el Haiku anterior y lo mismo que GPT-6 Luna, el modelo barato de OpenAI. En las primeras comparativas, Haiku 5.5 sale mejor que Luna al mismo precio. Hay dos letras pequeñas:</p>
+<ul><li>Por encima de 100.000 tokens por petición, el precio se multiplica por cinco. Luna solo sube a partir de 272.000 tokens, y bastante menos.</li><li>Usa un <strong>tokenizador</strong> nuevo (la forma de trocear el texto en tokens) que cuenta un 25 % más de tokens para el mismo texto. En la práctica, es una subida de precio escondida.</li></ul>
+<p>Encaja bien para clasificar, resumir o automatizar tareas con prompts cortos. Está en la API de Anthropic, que funciona en España.</p>
+<p>Para jugar, Google Labs lanza <strong>Playground</strong>. Describes un juego con palabras (trivial, carreras, en 2D o 3D, para uno o varios jugadores) y lo genera para que se juegue en el navegador, sin programar. Es un experimento de Labs, que a menudo empiezan solo en EE. UU., y no hay datos de disponibilidad en España. Por otro lado, <strong>Meta Muse</strong>, el asistente que gestiona tu correo y tus reuniones, ya tiene app para iPad un mes después de llegar al móvil. Meta suele retrasar sus funciones de IA en la UE y la noticia no dice nada de Europa.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los <strong>agentes</strong> (asistentes de IA que hacen tareas por ti, no solo responden) se multiplican, pero empiezan a chocar con obstáculos:</p>
+<ul><li><strong>Hark Pro</strong> ya está abierto a todo el mundo. Usa tu ordenador por ti, con un plan gratuito y otro de pago, y presume de privacidad. No hay datos sobre la UE.</li><li>Nous Research lleva su agente de código abierto <strong>Hermes</strong> a empresas con "Hermes for Businesses", una versión que cada compañía puede personalizar.</li><li>Microsoft anunció cambios en Windows 11 pensados para ejecutar agentes en tu propio ordenador. Vinieron con portátiles caros que puedes ignorar si no vas a comprar equipo.</li><li>El obstáculo: muchas webs bloquean a estos agentes. Amazon, por ejemplo, ya no deja que Muse compre en su tienda. Si delegas compras o reservas en un agente, cuenta con que algunas webs le cerrarán la puerta.</li></ul>
+<p>En la misma línea crece el interés por el <strong>harness</strong> (el "arnés" de herramientas, memoria y reglas que rodea a un modelo para que trabaje como agente de forma fiable), que es lo que separa un chatbot de un asistente que termina tareas.</p>
+<p>El segundo patrón son los <strong>modelos de decisión</strong> (modelos pequeños que solo responden "sí/no" o eligen entre opciones, muy rápidos y baratos). Liquid AI publica la familia d1 para usar en el propio dispositivo, y Musubi lanza PolicyLM-1.7B, que aplica una norma de moderación escrita en lenguaje normal en menos de 50 milisegundos. Los dos son de <strong>pesos abiertos</strong> (cualquiera puede descargarlos y ejecutarlos). En modelos grandes de pesos abiertos, Mistral presume de que <strong>Mistral Large 4</strong> ("Le Chonk"), de un billón de parámetros y en fase de prueba, compite con los mejores modelos cerrados.</p>
+<p>Un par de cosas más que sí puedes usar. Primero, sigue el tema del lunes: entonces contamos que ChatGPT empezaba a marcar lo que escribe en Europa, y ahora Google abre a todo el mundo, <strong>España incluida</strong>, una web de <strong>SynthID</strong> que detecta las marcas invisibles en contenido hecho con IA de Google, OpenAI y otras empresas. Segundo, Anthropic amplía su programa para que profesionales de ciberseguridad verificados usen sus modelos con menos bloqueos, ahora en tres niveles; se solicita desde su web.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Harness de agentes</strong>: el concepto del día; hay un vídeo explicativo de 24 minutos para no técnicos.</li><li><strong>Claude Token Counter</strong>: la herramienta de Simon Willison para ver cuántos tokens gasta tu prompt con cada modelo de Claude.</li><li><strong>Artcraft</strong>: alternativas gratuitas y de código abierto a programas de Adobe, creadas con ayuda de Claude Opus. Son ambiciosas pero están muy lejos de estar terminadas.</li><li><strong>PolicyLM-1.7B</strong>: modelo abierto de moderación que aplica normas escritas en lenguaje normal, útil si gestionas una comunidad.</li><li><strong>Nemotron en IOI e IMO</strong>: cómo NVIDIA ajustó una misma familia de modelos para lograr oro en las olimpiadas internacionales de informática y de matemáticas.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/10/07/chatgpt-is-getting-a-lot-more-visual-with-the-launch-of-a-new-interface/">TechCrunch – ChatGPT Intelligent UI</a></li><li><a href="https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/">Simon Willison – Claude Haiku 5.5</a></li><li><a href="https://www.latent.space/p/ainews-claude-haiku-55-better-than">Latent Space – Claude Haiku 5.5 vs GPT-6 Luna</a></li><li><a href="https://arstechnica.com/ai/2026/10/google-rolls-out-improved-synthid-ai-content-detector-now-available-globally/">Ars Technica – SynthID</a></li><li><a href="https://arstechnica.com/ai/2026/10/mistral-says-le-chonk-can-challenge-the-best-ai-models/">Ars Technica – Mistral Le Chonk</a></li><li><a href="https://techcrunch.com/2026/10/07/metas-muse-launches-on-ipad-just-a-month-after-its-mobile-debut/">TechCrunch – Meta Muse en iPad</a></li><li><a href="https://arstechnica.com/gadgets/2026/10/microsoft-event-debuts-new-ai-friendly-hardware-and-windows-changes/">Ars Technica – Evento de Microsoft</a></li><li><a href="https://techcrunch.com/2026/10/07/microsoft-releases-new-nvidia-chip-ai-pcs-with-revamped-windows-11/">TechCrunch – Microsoft Surface y Windows 11</a></li><li><a href="https://techcrunch.com/2026/10/07/google-experiments-with-an-ai-powered-gaming-platform/">TechCrunch – Google Playground</a></li><li><a href="https://arstechnica.com/ai/2026/10/software-is-over-bold-ai-developer-takes-aim-at-adobe-with-open-source-clones/">Ars Technica – Clones de Adobe</a></li><li><a href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/">TechCrunch – Nous Research Hermes</a></li><li><a href="https://techcrunch.com/2026/10/06/hark-releases-an-ai-personal-assistant-with-a-focus-on-privacy/">TechCrunch – Hark Pro</a></li><li><a href="https://www.youtube.com/watch?v=lNum1UFDYn0">YouTube – AI Harnesses In 24 Minutes</a></li><li><a href="https://openai.com/index/teens-learn-and-plan">OpenAI – ChatGPT para adolescentes</a></li><li><a href="https://huggingface.co/blog/LiquidAI/open-d1">Hugging Face – Liquid AI open d1</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic – Cyber Verification Program</a></li><li><a href="https://techcrunch.com/2026/10/06/how-ai-decision-models-could-change-content-moderation/">TechCrunch – Modelos de decisión y moderación</a></li><li><a href="https://techcrunch.com/2026/10/06/the-next-hurdle-for-ai-agents-getting-websites-to-let-them-in/">TechCrunch – Webs que bloquean agentes</a></li><li><a href="https://www.latent.space/p/stacklok">Latent Space – Stacklok</a></li><li><a href="https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026">Hugging Face – Nemotron IOI e IMO</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-07.html">7 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
