@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Google saca una app de notas para reuniones que funciona sin internet y convierte Gemini en un agente que hace tareas, de momento solo para empresas — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">9 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Google saca una app de notas para reuniones que funciona sin internet y convierte Gemini en un agente que hace tareas, de momento solo para empresas</p>
+<h2>Lo más importante</h2>
+<p>Si te pasas el día en reuniones, lo más práctico de hoy es <strong>Google AI Edge Foresight</strong>, una app para Mac que compite con Granola (la app de notas con IA más popular). Funciona sin conexión porque usa modelos locales, que se ejecutan en tu propio ordenador sin mandar nada a la nube. En concreto usa <strong>EmbeddingGemma 2</strong>, de 740 millones de parámetros (los valores internos que definen un modelo; cuantos menos tiene, más ligero es). Graba reuniones de cualquier app de videollamada y también las presenciales. La pantalla está partida en dos: en un lado escribes tus notas rápidas y en el otro la IA escribe las suyas. También puedes leer la transcripción completa o hacerle preguntas sobre la reunión a un asistente basado en Gemma 4. Como todo se queda en tu máquina, sirve para conversaciones con información delicada. <strong>Disponibilidad:</strong> solo para Mac. La fuente no habla de regiones, así que no hay confirmación para España. Al ser local debería tener menos problemas con el RGPD, pero compruébalo antes de contar con ella.</p>
+<p>En el terreno de los <strong>agentes</strong> (asistentes que no se limitan a responder, sino que hacen tareas por ti), Google anunció en un evento de Google Cloud que Gemini pasa a ser un agente único desde el que pedir código, agendar reuniones o reservar citas y viajes. Empieza por clientes empresariales. Para particulares no hay fecha, y la fuente no dice nada de la UE. Si tu empresa trabaja con Google Cloud, pregúntale a quien lleve la cuenta. Además, Muse, el asistente de Meta que conecta tu correo y tus reuniones para tenerte al día, ya tiene <strong>app para iPad</strong>, solo un mes después de salir en iPhone y Android (lleva unos 6,6 millones de descargas). La fuente no aclara si está en Europa, y Meta suele retrasar aquí sus funciones de IA, así que búscala en la App Store española antes de ilusionarte. Por último, Nous Research, creadora de <strong>Hermes Agent</strong>, un agente de código abierto (cualquiera puede descargarlo, usarlo y modificarlo), lanza "Hermes for Businesses" para que las empresas desplieguen agentes a medida. La versión abierta se puede usar desde España; de la versión para empresas no hay datos de disponibilidad.</p>
+<p>Para quien programa o paga APIs hay dos cosas útiles. La primera es <strong>ttok 1.0</strong>, una herramienta de línea de comandos de Simon Willison que cuenta tokens (los trozos de texto en que un modelo divide lo que lee y por los que se cobra). Ahora usa por defecto el tokenizador de GPT-5/GPT-6 en lugar del de GPT-4, así que sirve para calcular cuánto te costará un prompt o si cabe en el contexto del modelo. Un experimento independiente indica que GPT-6 cuenta los tokens exactamente igual que la familia GPT-5, aunque OpenAI no lo ha confirmado. Se instala con `uv tool install ttok` y funciona en cualquier país. La segunda es el caso de LegalOn: <strong>redujo un 65 % el coste diario estimado de Codex</strong> sin perder velocidad. Lo consiguió asignando a cada tarea la variante adecuada (Astra, Sol o Luna) y controlando el presupuesto, en lugar de usar siempre el modelo más caro. Puedes aplicar esa misma idea desde mañana, y Codex se puede usar desde España con los planes de pago de ChatGPT.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes están en todas partes: en Gemini, en Muse, en Hermes y hasta en un anillo de 99 dólares (Interface, de Natura) que lanza tareas con solo pulsarlo. Cuanto más trabajan solos, más importa vigilarlos. Goodfire, una empresa de interpretabilidad (la disciplina que intenta entender qué pasa dentro de un modelo), lanza monitores que observan la actividad interna del modelo mientras trabaja, en vez de poner a una segunda IA a leer todo lo que escribe. Según la empresa, así sale <strong>mucho más barato</strong> vigilar agentes que trabajan durante horas. De momento solo lo ofrece a través de Baseten, una plataforma para desarrolladores.</p>
+<p>Anthropic va en la misma línea con dos movimientos. Ha actualizado sus normas de uso: prohíbe explícitamente interferir en elecciones, el software de armas y la vigilancia, y también el <strong>abuso verbal prolongado contra el modelo</strong>. Aclara que esto no se aplica a la frustración normal, a los temas creativos oscuros ni a las pruebas del modelo, así que en el día a día no te afecta. Además, amplía su Cyber Verification Program con tres niveles de acceso para profesionales de la ciberseguridad verificados. Les da acceso a Opus 5.5, Sonnet 5.5 y Mythos 5.1 con menos clasificadores de bloqueo (filtros automáticos que rechazan peticiones de riesgo). Se solicita con un formulario, y la fuente no menciona restricciones para la UE.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Google AI Edge Foresight</strong> — app de notas para reuniones que funciona sin conexión en Mac, para quien no quiere subir sus reuniones a la nube.</li><li><strong>ttok</strong> — contador de tokens en la terminal para calcular costes y límites de contexto de los modelos de OpenAI.</li><li><strong>Enrutado de modelos</strong> — asignar a cada tarea el modelo más barato que la resuelva bien; el caso de LegalOn sirve de ejemplo práctico.</li><li><strong>Hermes Agent</strong> — agente de código abierto de Nous Research, muy usado por desarrolladores para montar sus propios asistentes.</li><li><strong>Cyber Verification Program</strong> — acceso ampliado a los modelos de Anthropic para equipos de seguridad verificados.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/10/08/google-releases-a-new-local-first-granola-competitor/">TechCrunch – Google AI Edge Foresight</a></li><li><a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/">TechCrunch – Gemini agéntico para empresas</a></li><li><a href="https://techcrunch.com/2026/10/07/metas-muse-launches-on-ipad-just-a-month-after-its-mobile-debut/">TechCrunch – Muse llega a iPad</a></li><li><a href="https://techcrunch.com/2026/10/07/nous-research-confirms-it-hit-1-5b-valuation-launches-ai-agents-for-business-users/">TechCrunch – Nous Research y Hermes for Businesses</a></li><li><a href="https://simonwillison.net/2026/Oct/9/ttok/">Simon Willison – ttok 1.0</a></li><li><a href="https://openai.com/index/legalon-halves-codex-costs">OpenAI – LegalOn reduce costes de Codex</a></li><li><a href="https://techcrunch.com/2026/10/08/goodfire-says-its-new-inside-out-monitors-catch-rogue-ai-agents-at-a-fraction-of-the-cost/">TechCrunch – Monitores de Goodfire</a></li><li><a href="https://techcrunch.com/2026/10/08/naturas-smart-ring-puts-ai-agents-on-your-finger/">TechCrunch – Anillo Interface de Natura</a></li><li><a href="https://www.anthropic.com/news/2026-usage-policy-update">Anthropic – Actualización de la política de uso 2026</a></li><li><a href="https://techcrunch.com/2026/10/08/anthropic-changes-usage-policy-to-ban-model-abuse-and-election-interference/">TechCrunch – Cambios en la política de uso de Anthropic</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic – Cyber Verification Program</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-08.html">8 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
