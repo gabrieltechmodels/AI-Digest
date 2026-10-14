@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Gemini 4 Argon ya se puede usar si pagas, y Google Play te deja instalar en tu móvil las apps que te hayas hecho con IA sin publicarlas — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">14 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Gemini 4 Argon ya se puede usar si pagas, y Google Play te deja instalar en tu móvil las apps que te hayas hecho con IA sin publicarlas</p>
+<h2>Lo más importante</h2>
+<p><strong>Gemini 4 Argon</strong>, el modelo grande que Google presentó hace unas semanas con mucha cautela, empieza a llegar a todo el mundo, pero solo a quien paga. Está en la app de Gemini y en <strong>Antigravity</strong>, el entorno de programación con IA de Google, y se puede usar ya a través de la API (la vía para conectarlo a tus propios programas). Los planes más baratos no tienen acceso completo, y el acceso total va con la suscripción de 100 dólares al mes. Para desarrolladores, la tarifa de lanzamiento es interesante: <strong>2 dólares por millón de tokens de entrada y 10 de salida</strong> (un token es un trozo de palabra, la unidad con la que se cobra). Es lo mismo que GPT-6 Sol y la mitad que Claude Opus 5.5. Eso sí, es un precio con un 50 % de descuento que dura hasta el 1 de diciembre, y a partir de ahí se duplica. Si quieres probarlo desde la terminal, el plugin <strong>llm-gemini 0.35</strong> ya lo soporta, y las pruebas independientes confirman lo que Google prometía. Sobre España, las fuentes no dicen nada concreto de la UE. Los planes de pago de Gemini y su API suelen funcionar aquí, pero confírmalo en tu cuenta antes de pagar.</p>
+<p>La otra novedad práctica también es de Google. Si te has hecho una app a base de <strong>vibe coding</strong> (programar describiendo lo que quieres a una IA, sin escribir el código tú), ahora podrás instalarla en tu Android a través de Google Play con tu cuenta normal y sin publicarla. La app no sale en búsquedas ni la ve nadie más. Hasta ahora, para usarla en el móvil tenías que subirla a la tienda, a la vista de 3.000 millones de usuarios. Google también quiere ayudar a convertir esas apps personales en lanzamientos públicos si te animas. Algunas partes llegarán "pronto" y no se ha dicho nada de las fechas para Europa, así que cuenta con un despliegue escalonado.</p>
+<p>Para quien quiera IA que funcione sin conexión, Liquid AI ha publicado en Hugging Face <strong>LFM2.5-24B-A2B</strong>, un modelo pensado para ejecutar agentes (IA que encadena tareas por su cuenta) dentro de tu propio equipo, rápido y privado. Por la nomenclatura, tiene 24.000 millones de parámetros, pero solo activa unos 2.000 millones en cada respuesta, y por eso es ligero. Se descarga desde cualquier país, España incluida.</p>
+<h2>Tendencias y patrones</h2>
+<p>Las suscripciones se están empaquetando. SpaceX Super Intelligence junta X Premium, <strong>Grok</strong> y <strong>Cursor</strong> (el editor de código con IA) en un único plan, "The X Subscription", con cinco niveles. Si ya pagabas por separado Cursor y Grok, échale cuentas. No hay datos sobre precios ni disponibilidad en la UE. En la misma línea, Higgsfield pasa de vídeos de un minuto a <strong>más de 10 minutos</strong> usando GPT-6 Astra, GPT-Image-2.5 y GPT-Live, y Facebook estrena "Your Algorithm", que te deja pedir en lenguaje normal qué quieres ver más o menos en tu feed (ya existía en Instagram; sin datos sobre la UE). La IA de pago se está convirtiendo en un paquete de servicios más que en un único chatbot.</p>
+<p>El otro patrón es que los agentes de programación van tan rápido que hay que cambiar las herramientas de alrededor. Anthropic ha pasado de unos 2.500 cambios de código al día en mayo a <strong>más de 30.000 en septiembre</strong> y se ha construido su propia alternativa a Git. Geoffrey Huntley comparte un truco que cualquiera puede copiar: no basta con escribir las reglas en AGENTS.md (el archivo de instrucciones que leen los agentes de código), porque el agente acaba saltándoselas. Él usa un <strong>pre-commit hook</strong> (un script que revisa los cambios antes de guardarlos en el repositorio): si detecta que el agente se ha saltado una norma, bloquea el cambio y le devuelve una instrucción para corregirlo. Según él, así el agente cumple "diez de diez" veces. American Express lleva la misma idea a las compras y propone un estándar para que un agente no pueda pagar nada que no hayas autorizado. Y como nota menor, Character.AI se ha declarado en bancarrota y Disney ofrece 20 millones por licenciar parte de su tecnología. Si usas la app, quizá quieras exportar tus conversaciones.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>llm-gemini</strong> — plugin de la herramienta `llm` de Simon Willison para usar Gemini 4 Argon desde la terminal.</li><li><strong>Pre-commit hooks para agentes</strong> — imponer reglas a la IA con scripts en lugar de con instrucciones de texto.</li><li><strong>LFM2.5-24B-A2B</strong> — modelo de Liquid AI para agentes locales y privados, descargable en Hugging Face.</li><li><strong>Antigravity</strong> — el entorno de programación con IA de Google, ya con Argon para quien paga.</li><li><strong>Intent Intelligence Framework</strong> — la propuesta de Amex para que los agentes no compren sin permiso.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://arstechnica.com/ai/2026/10/gemini-4-argon-begins-rolling-out-in-gemini-app-and-antigravity-but-only-if-you-pay/">Ars Technica — Gemini 4 Argon begins rolling out</a></li><li><a href="https://simonwillison.net/2026/Oct/13/llm-gemini/">Simon Willison — llm-gemini 0.35</a></li><li><a href="https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon">Latent Space — AI Engineer NYC: Gemini 4 Argon</a></li><li><a href="https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/">TechCrunch — Google Play private vibe-coded apps</a></li><li><a href="https://arstechnica.com/google/2026/10/google-wants-to-host-your-personal-vibe-coded-apps-in-the-play-store/">Ars Technica — Google wants to host your personal vibe-coded apps</a></li><li><a href="https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b">Hugging Face — LFM2.5-24B-A2B</a></li><li><a href="https://techcrunch.com/2026/10/13/spacexsi-bundles-x-premium-grok-and-cursor-into-one-subscription/">TechCrunch — SpaceXSI bundles X Premium, Grok and Cursor</a></li><li><a href="https://openai.com/index/higgsfield-longer-videos-voice">OpenAI — Higgsfield longer videos</a></li><li><a href="https://techcrunch.com/2026/10/13/facebook-is-giving-users-more-control-over-their-algorithm/">TechCrunch — Facebook "Your Algorithm"</a></li><li><a href="https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/">Simon Willison — Redesigning source control at Anthropic</a></li><li><a href="https://simonwillison.net/2026/Oct/13/geoffrey-huntley/">Simon Willison — Quoting Geoffrey Huntley</a></li><li><a href="https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/">TechCrunch — Amex Intent Intelligence Framework</a></li><li><a href="https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/">TechCrunch — Character.AI files for bankruptcy</a></li><li><a href="https://arstechnica.com/tech-policy/2026/10/disney-offers-20m-for-character-ais-scandal-plagued-chatbot-tech/">Ars Technica — Disney offers $20M for Character.AI tech</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-13.html">13 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
