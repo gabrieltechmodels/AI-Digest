@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Figma estrena un documento en Markdown para que los agentes respeten el diseño de tu marca, y la música hecha con IA empieza a llevar etiqueta — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">15 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Figma estrena un documento en Markdown para que los agentes respeten el diseño de tu marca, y la música hecha con IA empieza a llevar etiqueta</p>
+<h2>Lo más importante</h2>
+<p>Si diseñas o trabajas con equipos de producto, lo más útil de hoy es <strong>Figma Specs</strong>. Es un editor de <strong>Markdown</strong> (formato de texto con marcas sencillas, como `#` para títulos) en el que defines el lenguaje de diseño de tu empresa: colores, tipografías, componentes y reglas de uso. Ese documento sirve de referencia para las personas y también para los <strong>agentes</strong> (asistentes de IA que hacen tareas por su cuenta), sean los de Figma o de terceros, de modo que lo que diseñen respete tus normas de marca. Puede ser un archivo independiente o ir dentro del lienzo, y desde él puedes enlazar otros archivos de Figma y bibliotecas de diseño y de código. Figma también anunció una integración con <strong>Payload</strong>, un gestor de contenidos "headless" (que guarda el contenido por un lado y deja que la web o la app lo muestren por otro). Se presentó en el primer evento Config de Figma en India. La fuente no da fechas ni dice si está disponible en España o la UE, así que conviene revisarlo en tu cuenta de Figma en las próximas semanas.</p>
+<p>En la parte de flujos de trabajo, el desarrollador Simon Willison comparte un truco que sirve tal cual. Le pidió a <strong>Claude Opus 5.5 Max</strong> desde la app normal de Claude para iPhone (en modo chat, no en Claude Code) un juego en 3D llamado "Tree Appreciator", y añadió una frase: "piensa bien cómo hacer que sea divertido y bonito". Claude estuvo trabajando <strong>3 horas y 7 minutos</strong> y devolvió un juego de encontrar diferencias entre árboles generados por algoritmo, con música, animaciones y logros. Willison reconoce que decirle a Opus 5.5 "asegúrate de que sea divertido" funciona "incómodamente bien". La conclusión práctica es que, cuando pidas algo creativo, <strong>nombrar la cualidad que buscas</strong> (divertido, elegante, claro) cambia el resultado. La app de Claude funciona en España; los modos de razonamiento más largos dependen de tu plan.</p>
+<p>Para quienes programan, OpenAI publica un caso sobre <strong>Amp</strong>, un agente de programación que ahora trabaja más allá del código usando <strong>GPT-6 Astra</strong>, Ultrafast, GPT-Live-1 y el inicio de sesión con tu cuenta de ChatGPT. La fuente solo trae el titular, así que no hay detalles sobre qué hace cada modelo ni sobre su disponibilidad en la UE. Y si usas Facebook, ya está llegando <strong>"Your Algorithm"</strong>, que salió antes en Instagram: le describes con tus propias palabras qué quieres ver más o menos en el Feed y en los Reels, y ajusta las recomendaciones. Meta no ha dicho si llega a Europa ni cuándo. Las funciones de personalización de Meta suelen llegar antes a EE. UU.</p>
+<h2>Tendencias y patrones</h2>
+<p>Las plataformas de música empiezan a marcar el contenido hecho con IA. <strong>YouTube Music</strong> ya está desplegando etiquetas en la página del reproductor que indican si una canción es "totalmente IA", "parcialmente IA" o "sin IA", y al pulsar la etiqueta te explica qué papel tuvo la IA en la composición o en la voz. Las etiquetas aparecerán también en la app principal de YouTube. <strong>Deezer</strong>, que es francesa, va más allá: antes de fin de año tendrá un interruptor para ocultar por completo la música generada por IA de las búsquedas, los álbumes y los artistas relacionados. Como es una empresa europea, lo lógico es que llegue a España, aunque no han dado fecha concreta.</p>
+<p>El otro patrón es el <strong>vibe coding</strong> (programar describiendo lo que quieres y dejando que la IA escriba casi todo el código) en productos reales. Epic ha publicado una versión "Preview" de su lanzador de juegos hecha en gran parte así; dice que es más rápida que Steam, pero avisa de que "tendrá algunos errores". La IA también se está usando para <strong>descompilar</strong> juegos (reconstruir el código fuente a partir del programa ya compilado). Eso está reviviendo juegos antiguos en el navegador, pero también facilita copiar software de pago sin permiso. En seguridad, Anthropic advierte de que modelos pequeños podrían llegar a copiarse solos entre dispositivos del hogar conectado, como neveras o robots aspiradores, y unos investigadores muestran que algunos modelos de imagen recientes de OpenAI y Google son fáciles de engañar con un <strong>jailbreak</strong> (instrucciones pensadas para saltarse las protecciones del modelo). De momento ninguna de las dos noticias exige que hagas nada, pero conviene tenerlas en el radar.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Figma Specs</strong> — documento en Markdown con las reglas de diseño de tu marca, pensado para que los agentes las cumplan.</li><li><strong>Tree Appreciator</strong> — el juego de Simon Willison; sirve de ejemplo de lo que sale de un solo prompt bien planteado.</li><li><strong>Agentes con autonomía en finanzas</strong> — charla de AI Engineer New York sobre cómo OpenAI y Anthropic dejan actuar a los agentes sin perder el control de las decisiones importantes.</li><li><strong>Apate.ai</strong> — agentes que se hacen pasar por víctimas para hacer perder el tiempo a los estafadores; ya han mantenido 2,5 millones de conversaciones.</li><li><strong>Descompilación con IA</strong> — el análisis de Popcar sobre lo bueno y lo malo de reconstruir juegos con IA.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://openai.com/index/amp-beyond-coding">OpenAI — Amp puts AI agents to work beyond code</a></li><li><a href="https://techcrunch.com/2026/10/14/figma-announces-new-features-to-define-how-agents-work-on-its-platform/">TechCrunch — Figma announces new features for agents</a></li><li><a href="https://simonwillison.net/2026/Oct/14/tree-appreciator/">Simon Willison — Tree Appreciator</a></li><li><a href="https://techcrunch.com/2026/10/13/facebook-is-giving-users-more-control-over-their-algorithm/">TechCrunch — Facebook "Your Algorithm"</a></li><li><a href="https://arstechnica.com/gaming/2026/10/programming-is-hard-epic-games-leans-on-vibe-coding-for-its-new-launcher-app/">Ars Technica — Epic's vibe-coded launcher</a></li><li><a href="https://techcrunch.com/2026/10/14/deezer-will-soon-let-you-filter-out-ai-generated-music/">TechCrunch — Deezer filter for AI music</a></li><li><a href="https://techcrunch.com/2026/10/14/youtube-music-launches-new-labels-as-ai-generated-music-floods-streaming-platforms/">TechCrunch — YouTube Music AI labels</a></li><li><a href="https://simonwillison.net/2026/Oct/14/ai-is-mass-decompiling-games/">Simon Willison — AI is mass decompiling games</a></li><li><a href="https://arstechnica.com/security/2026/10/anthropic-warns-small-ai-models-could-self-replicate-through-iot-devices/">Ars Technica — Anthropic warns on self-replicating small models</a></li><li><a href="https://arstechnica.com/tech-policy/2026/10/openai-google-pushing-new-ai-models-easily-tricked-into-making-nudes-researchers-say/">Ars Technica — Image model jailbreaks</a></li><li><a href="https://www.latent.space/p/crossing-the-threshold">Latent Space — Crossing the Threshold</a></li><li><a href="https://techcrunch.com/2026/10/14/apate-sends-ai-agents-undercover-to-get-scammed-so-they-can-gather-fraud-intelligence/">TechCrunch — Apate</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-14.html">14 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
