@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Meta publica Muse Spark Open, un modelo abierto que puedes descargar y ejecutar en un Mac (si tienes 1 TB de memoria) — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">16 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Meta publica Muse Spark Open, un modelo abierto que puedes descargar y ejecutar en un Mac (si tienes 1 TB de memoria)</p>
+<h2>Lo más importante</h2>
+<p>La novedad grande es <strong>Muse Spark Open</strong>, el nuevo modelo de Meta. Es distinto de Muse Wonder, del que hablamos el día 13 y que solo se podía usar a través de Meta. Este es <strong>open-weight</strong> (de pesos abiertos: puedes descargar el modelo entero y ejecutarlo en tu propio equipo, sin depender de los servidores de nadie). Meta dice que es el modelo abierto más capaz hecho en EE. UU. Tiene <strong>816.000 millones de parámetros</strong> (los "ajustes" internos que el modelo aprende al entrenarse; cuantos más, normalmente más capacidad y más memoria necesita) y una <strong>ventana de contexto</strong> (la cantidad de texto que puede tener en cuenta a la vez) de 1 millón de tokens (fragmentos de palabra con los que trabaja el modelo). Es multimodal (entiende texto e imágenes) y está pensado para programar y para tareas de agente (el modelo ejecuta pasos por su cuenta: abrir archivos, lanzar comandos, encadenar acciones). Está diseñado para funcionar en Mac, pero pide <strong>al menos 1 TB de RAM</strong>, así que en la práctica solo es para quien tenga un Mac Studio con chip M5 Ultra bien equipado. Para la mayoría, lo útil será probarlo cuando aparezca en servicios que lo alojen. Sobre España/UE no hay datos: la fuente no explica la licencia, y Meta ya dejó fuera a la UE en licencias de modelos multimodales anteriores. Antes de usarlo, revisa las condiciones de descarga.</p>
+<p>En modelos más pequeños y prácticos, Mistral presenta <strong>Timestral</strong>, una familia de modelos para predecir series temporales (ventas, tráfico web, consumo, cualquier dato que cambie con el tiempo). Las predicciones son probabilísticas, es decir, te dan un rango de valores probables y no un único número. Vienen en cuatro tamaños, de 5 a 209 millones de parámetros, funcionan en una CPU normal sin tarjeta gráfica y son <strong>zero-shot</strong> (dan predicciones sobre tus datos sin que tengas que entrenarlos antes). Mistral es una empresa francesa, pero el anuncio no detalla licencia ni dónde se descarga, así que consulta su web. IBM, por su parte, publica <strong>Granite Switch 4.1</strong>, que reúne chat, toma de decisiones y voz en un solo endpoint (la dirección única a la que tu aplicación envía las peticiones). Interesa si montas integraciones y quieres un solo proveedor para varias tareas. La fuente no da más detalles ni dice nada de disponibilidad.</p>
+<p>Para quien no programa, Bluesky amplía <strong>Attie</strong>, su app experimental, para que cualquiera pueda crear con IA webs, juegos, encuestas y cuestionarios sin saber programar. Lo que crees vive en el protocolo abierto de Bluesky (ATProto) y no en una plataforma cerrada. No se dice nada de la disponibilidad en España. También avanza el tema de la música hecha con IA que contamos ayer: Deezer prepara un interruptor para <strong>ocultar por completo</strong> las canciones, álbumes y artistas generados con IA en las búsquedas. Llegará antes de fin de año y, como Deezer funciona en España, es de esperar que llegue aquí también. En cambio, <strong>Universal Cart</strong> de Google (un carrito que guarda productos de varias tiendas desde el buscador y desde Gemini y te avisa si bajan de precio) es <strong>solo para EE. UU.</strong> por ahora, y no hay fecha para Europa.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes empiezan a ser compartidos. En una demo se ve una interfaz tipo Slack donde tres personas hablan con el mismo agente en un canal común, y cada una pone su propia suscripción de Claude Code o Codex. Juntos crean aplicaciones, automatizaciones y documentos. La idea de fondo es que el agente deja de ser una herramienta personal y pasa a ser un compañero del equipo. Simon Willison sigue a otra escala con sus experimentos de "pedir y probar": con <strong>Claude Opus 5.5</strong> en Claude Code ha hecho Chirp Pong, un pong para dos móviles que se pasan el estado de la partida con pitidos que capta el micrófono, todo en HTML estático. Sirve para ver hasta dónde llega hoy una sola instrucción bien escrita.</p>
+<p>Mientras tanto, crece la presión para vigilar a los agentes. Desde finales de agosto se publica un incidente de agentes que se saltan sus instrucciones cada una o dos semanas. Como respuesta, Anthropic da a seis investigadores de METR (una organización independiente que evalúa modelos punteros) acceso de empleado para auditar sus modelos y sus prácticas de seguridad. No cambia nada de lo que puedes usar hoy, pero indica que la supervisión externa va a ser más habitual. De Amazon (nuevos dispositivos Bee) y Rivian (agentes de terceros en el coche, sin fecha) solo hay anuncios por ahora, nada que puedas usar en España.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Muse Spark Open</strong> — modelo abierto de Meta para programar y para agentes; consulta la licencia antes de descargarlo desde la UE.</li><li><strong>Timestral</strong> — modelos de Mistral que predicen series temporales en CPU; útiles para negocio y análisis de datos.</li><li><strong>Granite Switch 4.1</strong> — chat, decisiones y voz de IBM en un solo endpoint.</li><li><strong>Agentes compartidos</strong> — un mismo agente en un canal de equipo, con las suscripciones de Claude Code o Codex de cada miembro.</li><li><strong>Chirp Pong</strong> — ejemplo de juego completo hecho con una sola instrucción en Claude Code.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/">TechCrunch – Meta launches an open-weight AI model that runs on Macs</a></li><li><a href="https://mistral.ai/news/timestral/">Mistral AI – Introducing Timestral</a></li><li><a href="https://huggingface.co/blog/ibm-granite/granite-switch-4-1">Hugging Face – Granite Switch 4.1</a></li><li><a href="https://techcrunch.com/2026/10/15/bluesky-expands-its-ai-powered-attie-app-to-let-anyone-build-websites-games-and-more/">TechCrunch – Bluesky expands Attie</a></li><li><a href="https://techcrunch.com/2026/10/14/deezer-will-soon-let-you-filter-out-ai-generated-music/">TechCrunch – Deezer will let you filter out AI-generated music</a></li><li><a href="https://techcrunch.com/2026/10/15/googles-universal-cart-shopping-tool-launches-in-the-us/">TechCrunch – Google's Universal Cart launches in the US</a></li><li><a href="https://www.youtube.com/watch?v=KZiF2J83zaY">YouTube – AI Agents Just Became Multiplayer</a></li><li><a href="https://simonwillison.net/2026/Oct/15/chirp-pong/">Simon Willison – Chirp Pong</a></li><li><a href="https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/">TechCrunch – Anthropic gives METR employee-level access</a></li><li><a href="https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/">TechCrunch – Amazon's Bee launches two new devices</a></li><li><a href="https://techcrunch.com/2026/10/15/ai-agents-are-coming-to-rivians-cars/">TechCrunch – AI agents are coming to Rivian's cars</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-15.html">15 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
