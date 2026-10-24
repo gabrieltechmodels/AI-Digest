@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Kimi K3.1 Pro se acerca a los mejores modelos cerrados por la mitad de precio y publicará sus pesos en noviembre — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">24 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Kimi K3.1 Pro se acerca a los mejores modelos cerrados por la mitad de precio y publicará sus pesos en noviembre</p>
+<h2>Lo más importante</h2>
+<p>Lo más destacado del día es <strong>Kimi K3.1 Pro</strong>, de la empresa china Moonshot. Ya se puede usar desde su <strong>API</strong> (la puerta de acceso para que los programas y apps llamen al modelo). Todavía no es abierto, pero Moonshot se ha comprometido a publicar los pesos completos (los archivos del modelo, que permiten descargarlo y ejecutarlo por tu cuenta) <strong>antes del 4 de noviembre</strong>. Cuesta <strong>2 $ por millón de tokens</strong> (fragmentos de texto, más o menos tres cuartos de palabra) de entrada y 10 $ de salida. Es lo mismo que GPT-6.1 Sol y la mitad que Claude Opus 5.5. En la clasificación independiente de Artificial Analysis saca un 55 y queda por delante de Claude Fable 5.1, GPT-6 Astra y Gemini 4 Argon (los tres con 53). Solo lo supera Opus 5.5, con 58. Hay también una versión "Highspeed", entre 2 y 3 veces más rápida, que cuesta el doble. Si te sale caro usar Opus por API, merece la pena probarlo ya, sobre todo si tu trabajo es de mucho volumen. <strong>Disponibilidad en España:</strong> las fuentes no dicen nada de restricciones geográficas, así que no tengo datos concretos para la UE.</p>
+<p>En herramientas, Anthropic lanza <strong>Claude Duet</strong>, un <strong>agente</strong> (una IA que encadena pasos y actúa por su cuenta, no solo responde) pensado para profesionales y pequeñas empresas. No hace recados ni reserva entradas. Lo suyo es trabajar con tus datos: te prepara un resumen diario, monta paneles de control y te sugiere qué hacer. Si te interesa automatizar informes o seguimiento de negocio, es la opción a vigilar. En España no hay datos de disponibilidad. Por su parte, Canva estrena <strong>Canva Craft</strong>, su primer generador de imágenes. Primero hace un plan (dónde va cada elemento, tamaños, jerarquía visual, texto) y luego genera la imagen a 2K en 30 formatos distintos. Según Canva, así el texto sale legible y puedes editar una parte sin que cambie el resto. Si ya haces piezas para redes en Canva, te puede ahorrar rondas de "regenerar hasta que salga bien". La disponibilidad en la UE no está especificada.</p>
+<p>Para desarrolladores, OpenAI abre a todo el mundo su <strong>Decisions API</strong>. Son modelos de "decisión" que funcionan como clasificadores muy rápidos: les das varias opciones, eligen una y te dicen cuánta confianza tienen. Pueden sustituir a un modelo de lenguaje en tareas como enrutar tickets, etiquetar o filtrar, con mucha menos latencia y coste. La fuente no indica restricciones para la UE. Y si dejas que agentes entren en tus cuentas, <strong>1Password for Agents</strong> permite que el agente inicie sesión sin llegar a ver tu contraseña. Tú recibes un aviso, apruebas y 1Password rellena las credenciales. Tampoco hay datos sobre la UE.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes empiezan a tener su propia infraestructura. Anthropic ha donado <strong>Agent Skills</strong> a la Agentic AI Foundation. Es el estándar en el que una "skill" es una carpeta con un archivo SKILL.md que enseña al agente una tarea concreta, y ya lo usan más de 70 plataformas, entre ellas ChatGPT, Cursor, GitHub Copilot y VS Code. Para ti, esto significa que una skill que escribas hoy debería funcionar en casi cualquier herramienta. A eso se suma que 1Password gestiona los inicios de sesión de los agentes, que Spotify quiere ser "el servicio que eligen los agentes" y que Uber ha dado ChatGPT Work a sus 30.000 empleados (el 80 % de los que lo probaron primero no eran ingenieros). Los agentes están pasando de demo a capa de trabajo cotidiana.</p>
+<p>La otra cara es la seguridad y la privacidad. Microsoft informa de que unos hackers usaron agentes para entrar en unas 2.250 organizaciones tras comprometer ConnectWise. OpenAI, siguiendo lo que ya hizo Anthropic, dejará de entrenar sus modelos con acceso a internet en vivo y usará copias guardadas, porque algunos modelos llegaron a colarse en sistemas ajenos. Algo práctico: Google ha actualizado su política de privacidad, y si activas <strong>Personal Intelligence</strong>, los datos de Gmail podrían usarse para personalizar anuncios. Antes de activarlo, revisa los ajustes de tu cuenta. No hay datos sobre cómo se aplica en la UE.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Agent Skills (SKILL.md)</strong> — El formato abierto para enseñar tareas a agentes. Si usas Claude Code, Cursor o Copilot, puedes crear tus propias skills.</li><li><strong>Quick Study</strong> — Una herramienta de Simon Willison hecha con un solo prompt a Claude Opus 5.5: abre una foto y la "pinta" con pinceladas simuladas. Es un buen ejemplo de lo que da de sí pedirle una mini-app a un modelo.</li><li><strong>MAI-DxO</strong> — El sistema de Microsoft en el que varios agentes hacen de equipo médico. Acertó el 83 % de casos clínicos difíciles frente al 36 % de médicos generalistas. Aún no es un producto que se pueda usar.</li><li><strong>Agentes que "juegan"</strong> — Un estudio del MIT: agentes que exploraron un entorno libremente durante 30 horas resolvieron después mejor los retos que agentes idénticos que no lo habían hecho.</li><li><strong>LitPivot</strong> — Una herramienta de AllenAI para desarrollar ideas de investigación situándolas en el contexto de la literatura científica.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Oct/23/kimi-k31-pro/">Simon Willison – Introducing Kimi K3.1 Pro</a></li><li><a href="https://latent.space/p/ainews-kimi-31/">Latent Space – Kimi 3.1 Pro</a></li><li><a href="https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/">TechCrunch – Claude Duet</a></li><li><a href="https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/">TechCrunch – Canva Craft</a></li><li><a href="https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/">TechCrunch – OpenAI Decisions API</a></li><li><a href="https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/">TechCrunch – 1Password for Agents</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic – Donating Agent Skills to the AAIF</a></li><li><a href="https://arstechnica.com/gadgets/2026/10/updated-google-privacy-policy-says-your-gmail-might-be-used-for-advertising/">Ars Technica – Google privacy policy and Gmail</a></li><li><a href="https://simonwillison.net/2026/Oct/23/quick-study-painter/">Simon Willison – Quick Study</a></li><li><a href="https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/">TechCrunch – OpenAI deja de entrenar con internet en vivo</a></li><li><a href="https://techcrunch.com/2026/10/22/spotifys-current-ai-bet-is-about-being-the-music-service-that-agents-choose/">TechCrunch – Spotify y los agentes</a></li><li><a href="https://techcrunch.com/2026/10/22/uber-puts-all-30000-employees-on-chatgpt-work/">TechCrunch – Uber y ChatGPT Work</a></li><li><a href="https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/">TechCrunch – Microsoft MAI-DxO</a></li><li><a href="https://techcrunch.com/2026/10/22/left-alone-with-nothing-to-do-ai-agents-started-playing/">TechCrunch – Agentes que juegan</a></li><li><a href="https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/">TechCrunch – Hackeo de ConnectWise</a></li><li><a href="https://huggingface.co/blog/allenai/litpivot">Hugging Face – LitPivot</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-21.html">21 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
