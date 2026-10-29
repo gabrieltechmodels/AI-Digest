@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Nvidia publica gratis un modelo de transcripción en 40 idiomas mientras Google presenta un Gemini nuevo que aún no puedes probar — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">29 de octubre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Nvidia publica gratis un modelo de transcripción en 40 idiomas mientras Google presenta un Gemini nuevo que aún no puedes probar</p>
+<h2>Lo más importante</h2>
+<p>Lo más útil de hoy es <strong>Nemotron 3.5 Transcribe</strong>, de Nvidia. Es un modelo gratuito de pesos abiertos (puedes descargar el modelo entero y ejecutarlo en tu ordenador o en tu servidor sin pagar por uso) que pasa audio a texto en hasta <strong>40 idiomas</strong>. También traduce 31 idiomas desde y hacia el inglés, admite grabaciones de hasta una hora y distingue a ocho personas hablando, algo clave para transcribir reuniones. Nvidia dice que supera a sus rivales en los benchmarks (pruebas estandarizadas para comparar modelos), entre ellos la clasificación Open ASR de Hugging Face. Junto al modelo ha publicado Granary v2, su colección abierta de grabaciones de voz, y herramientas como NeMo para hacer fine-tuning (reentrenar un poco el modelo con tus datos) y que reconozca la jerga de tu sector. Si usas Whisper, merece la pena compararlos. <strong>Disponibilidad:</strong> al ser abierto no tiene bloqueo geográfico, así que se puede usar desde España. La fuente no da la lista de idiomas, así que comprueba que el español está antes de basar nada en él.</p>
+<p>Google ha tenido un día movido. El autocompletado con IA de Chrome ahora busca en tu Gmail para rellenar formularios: el localizador de un vuelo, un número de socio, el seguimiento de un pedido, tu dirección o incluso la tarjeta. Es una ampliación de Personal Intelligence, la función que conecta tus apps de Google con Gemini. Además estrena Connected Apps Platform, que facilita a las empresas conectar sus servicios a Gemini y al buscador para que hagas cosas desde el asistente, como diseñar un cartel en Canva o crear una lista en YouTube Music. Ninguna de las dos fuentes dice en qué países llega. Las funciones que leen tu correo suelen llegar tarde a la UE por el RGPD, así que no cuentes con tenerlas ya en España. El modelo nuevo, <strong>Gemini 4 Carbon</strong>, sale solo dos semanas después de Gemini 4 Argon. Es una versión algo mejor de Argon, no el Flash (más ligero y barato) que muchos esperaban. Según Ars Technica, el público general aún no puede usarlo, y no hay fecha para Europa.</p>
+<p>Y un plan para el fin de semana. Simon Willison cree que octubre de 2026 marca el punto de inflexión del vibe coding (programar describiendo lo que quieres y dejar que la IA escriba el código) aplicado a videojuegos. Según él, <strong>Claude Opus 5.5</strong> ha mejorado mucho en modelado 3D, en generación de música y, sobre todo, en diseño de juegos: ya no solo hace algo que parece un juego, sino algo que da gusto jugar. Ha publicado varios ejemplos, como Tree Appreciator, Battle Drones o Pumpkin Farmer. Puedes probarlo en claude.ai o en Claude Code, ambos disponibles en España. Opus suele ir en los planes de pago.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes (programas de IA que hacen tareas por su cuenta, no solo responden) ya se ven en las cifras. Según el informe Octoverse de GitHub, los pull requests aceptados (propuestas de cambio que se incorporan a un proyecto) se han triplicado en menos de un año, hasta <strong>220 millones al mes</strong>. Las empresas empiezan a querer saber qué obtienen por ese gasto: Anthropic ha lanzado informes que muestran qué produjo cada equipo con Claude, cuánto costó en tokens (las unidades de texto por las que se paga al usar el modelo) y dónde se atascó el trabajo. También hay avances en estándares: Anthropic ha cedido <strong>Agent Skills</strong> a la Agentic AI Foundation. Una skill es una carpeta con un archivo SKILL.md que enseña a un agente una tarea concreta, y ya la usan más de 70 plataformas, entre ellas ChatGPT, Cursor, GitHub Copilot y VS Code. En la práctica, una skill que escribas para tu forma de trabajar te sirve en varias herramientas.</p>
+<p>El otro tema es la confianza. Bank of America ha pedido a sus clientes que no den su usuario y contraseña a ningún asistente o agente que se ofrezca a actuar por ellos. El riesgo es doble: que el agente mueva dinero sin que lo sepas, o que el banco lo tome por un acceso fraudulento. El consejo sirve igual para cualquier banco español: usa integraciones oficiales y nunca pegues tus credenciales en un chat. Y con funciones como el autocompletado de Chrome, conviene revisar bien qué permisos das antes de conectar tu correo.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Agent Skills</strong>: el estándar abierto para empaquetar tus flujos de trabajo y usarlos con distintos agentes.</li><li><strong>Granary v2</strong>: el conjunto de datos de voz abierto de Nvidia, útil para adaptar un modelo de transcripción a tu sector.</li><li><strong>Scrimshaw Jukebox</strong>: el experimento de Simon Willison para generar música con Claude Opus 5.5.</li><li><strong>Tamaño del modelo</strong>: Ted Sanders explica que el tamaño explica buena parte del rendimiento. Los modelos grandes son más fiables, cuestan más por token y recuerdan mejor los datos poco conocidos, algo útil para elegir entre la versión pequeña y la grande de un mismo modelo.</li><li><strong>Supabase para agentes</strong>: entrevista a sus fundadores sobre por qué tantos agentes eligen Supabase como backend (la parte de servidor: base de datos, usuarios y almacenamiento).</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/">Ars Technica: Gemini 4 Carbon</a></li><li><a href="https://techcrunch.com/2026/10/28/voice-ai-in-vogue-nvidia-releases-new-open-transcription-model/">TechCrunch: Nemotron 3.5 Transcribe</a></li><li><a href="https://techcrunch.com/2026/10/28/chromes-ai-powered-autofill-can-now-dig-through-your-gmail-to-fill-out-forms/">TechCrunch: Autocompletado de Chrome con Gmail</a></li><li><a href="https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/">TechCrunch: Connected Apps Platform</a></li><li><a href="https://simonwillison.net/2026/Oct/28/vibe-game-development/">Simon Willison: Vibe game development</a></li><li><a href="https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/">TechCrunch: Informes de gasto de Anthropic</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic: Agent Skills a la AAIF</a></li><li><a href="https://simonwillison.net/2026/Oct/28/github-octoverse-2026/">Simon Willison: GitHub Octoverse 2026</a></li><li><a href="https://techcrunch.com/2026/10/27/bank-of-america-kindly-asks-that-you-dont-share-your-banking-password-with-your-ai-assistant/">TechCrunch: Bank of America y los agentes de IA</a></li><li><a href="https://simonwillison.net/2026/Oct/28/ted-sanders/">Simon Willison: Quoting Ted Sanders</a></li><li><a href="https://latent.space/p/supabase/">Latent Space: Why Agents Love Supabase</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-28.html">28 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
