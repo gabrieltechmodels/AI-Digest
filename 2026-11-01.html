@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Las Agent Skills pasan a ser un estándar abierto: una misma "habilidad" para tu asistente de IA ya funciona en Claude, ChatGPT, Cursor y Copilot — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">1 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Las Agent Skills pasan a ser un estándar abierto: una misma "habilidad" para tu asistente de IA ya funciona en Claude, ChatGPT, Cursor y Copilot</p>
+<h2>Lo más importante</h2>
+<p>Lo más útil de hoy, aunque se anunció el 22 de octubre y aún no lo habíamos contado, es que Anthropic ha cedido <strong>Agent Skills</strong> a la <strong>Agentic AI Foundation</strong> (AAIF), una fundación independiente. Una <em>skill</em> es una carpeta con un archivo `SKILL.md`. Ese archivo explica a un agente (un asistente de IA que ejecuta tareas por su cuenta, no solo responde preguntas) cómo hacer algo concreto. La carpeta también guarda los scripts o documentos de referencia que necesite. <strong>Más de 70 plataformas</strong> ya la admiten, entre ellas ChatGPT, Cursor, GitHub Copilot y VS Code. En la práctica, si escribes una skill para preparar informes con el formato de tu empresa o para revisar código según tus normas, puedes usarla en varias herramientas sin reescribirla. Como ahora la gestiona una fundación, ya no depende de una sola empresa. Para empezar, crea una carpeta con un `SKILL.md` que contenga las instrucciones en texto normal y colócala en el directorio de skills de tu herramienta. <strong>Disponibilidad:</strong> es un estándar abierto y funciona en España en todas las herramientas citadas.</p>
+<p>Si usas las <strong>vistas previas HTML de ChatGPT</strong> (la función que antes se llamaba Canvas y que muestra mini-apps interactivas dentro del chat), conviene que leas esto. Parameter Labs ha explicado cómo consiguió tomar el control de cuentas ajenas. Estas mini-apps se ejecutan en un <em>sandbox</em> (un espacio aislado que impide que su código acceda al resto de la página y a tus datos). El ataque aprovechaba MathLive, una librería que OpenAI usa para las gráficas. MathLive trae un teclado virtual que se puede activar desde dentro del espacio aislado. El código que recibía esas órdenes insertaba HTML sin filtrarlo, así que se podía meter código en la página principal de ChatGPT. <strong>La lección práctica:</strong> desconfía de las vistas previas generadas a partir de contenido de terceros, como webs o documentos que no conoces. Por lo que se publica, no queda claro si ya está corregido. Este tipo de informes suele salir después del parche, pero no podemos confirmarlo. Afecta igual a los usuarios en España.</p>
+<p>Para quien trabaja con datos, <strong>datasette-llm 0.1a9</strong> facilita empezar con Datasette Agent, una herramienta que te deja preguntar en lenguaje natural a bases de datos SQLite con ayuda de un LLM (modelo de lenguaje como GPT o Claude). Ahora usa automáticamente el modelo que tengas por defecto en la herramienta LLM de Simon Willison, así que basta con `uvx --with datasette-agent datasette content.db --internal internal.db`. Es código abierto y funciona desde cualquier país. Solo necesitas la clave de API (la credencial para usar el modelo desde un programa) del proveedor que elijas.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los asistentes de IA que funcionan por mensajes de texto están de moda, pero los números todavía no acompañan. Zest, una app de recomendación de restaurantes, ha lanzado un "conserje" al que escribes por SMS y que te sugiere sitio y reserva mesa, en la línea de Instinct o Poke. Su fundador lo resume así: "el agente es ahora el producto". No hay datos de que funcione en España. Pero DoorDash ha contado que solo ha recibido <strong>"varios cientos" de pedidos</strong> hechos por agentes, frente a unos 3 millones de entregas diarias. Y <strong>Ollie</strong>, un asistente por texto centrado en la privacidad, cierra el 6 de noviembre. Si lo usabas, guarda lo que necesites antes de esa fecha.</p>
+<p>La otra tendencia son los agentes que trabajan durante días. Arca, que aplica IA al trabajo financiero, explica que sus agentes llevan tareas largas gracias a una memoria persistente (recuerdan lo hecho entre sesiones) y a un <em>harness</em> propio (el código que rodea al modelo y gestiona sus herramientas, su memoria y sus pasos). Hasta le dan la vuelta a la relación habitual: es el agente el que pregunta a la persona cuando necesita algo. Por su parte, Anthropic ha ampliado su <strong>Cyber Verification Program</strong> a tres niveles. Los profesionales de seguridad verificados pueden usar Claude Opus 5.5 y Sonnet con menos bloqueos de los clasificadores (filtros automáticos que rechazan peticiones que parecen peligrosas), algo útil para auditorías y pruebas de intrusión. Hay un programa equivalente para investigación en biología. Ambos se solicitan en la web de Anthropic y el anuncio no especifica restricciones por país.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>SKILL.md</strong> — el formato de las Agent Skills; con unas pocas instrucciones bien escritas se mejora mucho a cualquier agente compatible.</li><li><strong>Agentic AI Foundation (AAIF)</strong> — la fundación que mantendrá el estándar; interesa seguirla para ver qué otras piezas de agentes se estandarizan.</li><li><strong>Datasette Agent</strong> — una forma sencilla de "hablar" con tus propias bases de datos usando cualquier LLM.</li><li><strong>Cyber Verification Program</strong> — acceso a Claude con menos restricciones para equipos de ciberseguridad verificados.</li><li><strong>Harness de agentes</strong> — la capa de código alrededor del modelo; entenderla ayuda a montar agentes que aguanten tareas largas.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic — Donating Agent Skills to the Agentic AI Foundation</a></li><li><a href="https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/">Simon Willison — How We Took Over ChatGPT Accounts</a></li><li><a href="https://simonwillison.net/2026/Oct/31/datasette-llm/">Simon Willison — datasette-llm 0.1a9</a></li><li><a href="https://latent.space/p/arca/">Latent Space — Agents Prompt People: Arca</a></li><li><a href="https://techcrunch.com/2026/10/30/zests-new-ai-agent-finds-restaurants-and-books-reservations-over-text/">TechCrunch — Zest's new AI agent books reservations over text</a></li><li><a href="https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/">TechCrunch — DoorDash only received several hundred orders from AI agents</a></li><li><a href="https://techcrunch.com/2026/10/30/ollie-a-privacy-focused-ai-assistant-is-shutting-down/">TechCrunch — Ollie is shutting down</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic — Expanding the Cyber Verification Program</a></li><li><a href="https://www.anthropic.com/news/life-sciences-verification-program">Anthropic — Life Sciences Verification Program</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-10-31.html">31 de octubre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
