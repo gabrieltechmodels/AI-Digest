@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Qwen 3.8 cabe en un portátil normal y ya hace trucos que ayer parecían cosa de GPT-6 Astra — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">4 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Qwen 3.8 cabe en un portátil normal y ya hace trucos que ayer parecían cosa de GPT-6 Astra</p>
+<h2>Lo más importante</h2>
+<p>Lo más útil de hoy es <strong>Qwen 3.8</strong>, el nuevo modelo de Alibaba, que se puede ejecutar en tu propio ordenador. Hay pruebas de la versión de <strong>27B</strong> (27.000 millones de parámetros, los "ajustes internos" que el modelo aprende al entrenarse) funcionando con una tarjeta gráfica de <strong>12 GB</strong>, que es el rango de un PC gamer de gama media. Simon Willison lo ha usado en su portátil para algo llamativo: leer e interpretar los <strong>pesos</strong> (los números que forman un modelo ya entrenado) de otra red neuronal. Lo hizo a partir de un artículo publicado ayer que bautiza esta capacidad como <strong>Weight-Space Programming</strong>: un modelo de lenguaje lee un modelo descrito como texto lleno de números decimales, entiende qué hace y lo modifica directamente, sin volver a entrenarlo. En el artículo lo hacía GPT-6 Astra, un modelo de frontera, y que un modelo local lo repita es la sorpresa. Ya hay quien ha editado los pesos de Qwen para que entre menos en bucles de razonamiento. Cómo empezar: descarga el modelo con herramientas como Ollama o LM Studio. Al ser local, <strong>funciona igual en España</strong> y no depende de que ningún servicio esté disponible en la UE.</p>
+<p>Para quien programa con agentes (programas de IA que encadenan pasos y usan herramientas por su cuenta), hay un recurso práctico. Garry Tan, presidente de Y Combinator, dice que gasta hasta <strong>200.000 dólares al año en tokens</strong> (los fragmentos de texto que se cobran al usar un modelo) y ha publicado gratis en GitHub <strong>gstack</strong>, su colección de 23 <em>skills</em> para Claude Code (instrucciones empaquetadas que le enseñan al asistente a hacer tareas concretas). No hace falta su presupuesto para copiar sus flujos de trabajo. Está disponible ya y se usa desde España sin restricciones, siempre que tengas Claude Code.</p>
+<p>También desde hoy, Netflix está desplegando la pestaña <strong>AI Discover</strong>, que recomienda qué ver según tu estado de ánimo y el tiempo que tengas ("algo ligero", "asústame", "noche de peli en familia"). Es experimental y la fuente no dice en qué países está; de momento cuenta con que España no está confirmada. En el Apple Watch Series 12 empieza la beta de <strong>Audio Intelligence</strong>, con detección de sonidos importantes, identificación de canciones, resumen de conversaciones y toma de notas. Por ahora solo la tienen los desarrolladores con iOS 27.3. Salió en EE. UU. y "otros mercados", pero no hay datos sobre la UE, y las funciones de IA de Apple suelen llegar tarde a Europa.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los modelos pequeños ganan terreno para tareas concretas. Además de Qwen, IBM Research presenta <strong>Palette</strong>, un modelo pequeño entrenado para crear presentaciones con el estilo visual de tu empresa (colores, tipografías, plantillas). La idea es que un modelo especializado y barato haga mejor una tarea muy acotada que uno gigante y genérico. OpenAI muestra la otra cara: ChatGPT y Codex aplicados a ingeniería física, como diseño CAD, placas de circuito (PCB) y simulación. Son casos de uso, no un producto nuevo, pero sirven si trabajas en esos campos.</p>
+<p>El segundo patrón es la confianza: saber qué modelo te responde en realidad. Anthropic trabaja en <strong>FlashProve</strong>, un sistema de código abierto de "inferencia demostrable" (inferencia es el momento en que el modelo genera la respuesta). Funciona como una firma criptográfica que demuestra qué modelo produjo cada respuesta, aunque quien intente colar otro modelo sea el propio laboratorio. Todavía es investigación y no hay nada que instalar. En la misma línea, Allen AI publica <strong>StateBench</strong>, una prueba que mide si los modelos siguen bien los cambios a lo largo de documentos largos, un fallo típico cuando les pasas contratos o informes extensos. Del resto (Anthropic advierte en su folleto de salida a bolsa que está cerca de una IA capaz de mejorarse a sí misma, demandas contra Brave por el uso de contenidos, Google desactivará la IA por defecto en los colegios de EE. UU.) no sale nada práctico para hoy. Dreambeans, la app de historias personalizadas de Google, llega a India, pero <strong>sigue sin estar en la UE</strong>.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Weight-Space Programming</strong>: la capacidad de un modelo de leer y editar directamente los pesos de otro. Si funciona a gran escala, cambiaría cómo se ajustan los modelos.</li><li><strong>gstack</strong>: las 23 skills de Claude Code de Garry Tan en GitHub, un buen punto de partida para montar tus propios flujos con agentes.</li><li><strong>Palette (IBM Research)</strong>: un ejemplo de cómo enseñar a un modelo pequeño el lenguaje de diseño de tu marca para generar presentaciones.</li><li><strong>StateBench</strong>: un benchmark útil para elegir modelo si trabajas con documentos largos que cambian a lo largo del texto.</li><li><strong>FlashProve</strong>: la propuesta de Anthropic para verificar con criptografía qué modelo generó cada respuesta.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://www.youtube.com/watch?v=6NU7S_DUldE">I Got Qwen 3.8 Running on 12GB (YouTube)</a></li><li><a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison: Qwen 3.8 27B can interpret model weights</a></li><li><a href="https://latent.space/p/ainews-llms-can-read-write-neural-network-weights-weight-space-programming-cuts-autoresearch-out-of/">Latent Space: Weight Space Programming</a></li><li><a href="https://techcrunch.com/2026/11/03/netflixs-new-ai-discover-tab-helps-you-find-something-to-watch-based-on-your-mood/">TechCrunch: Netflix AI Discover</a></li><li><a href="https://techcrunch.com/2026/11/02/apple-watchs-ai-features-for-rewinding-and-recapping-conversations-begin-beta-testing/">TechCrunch: Apple Watch Audio Intelligence</a></li><li><a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/">TechCrunch: Anthropic FlashProve</a></li><li><a href="https://huggingface.co/blog/ibm-research/palette-deck-building">Hugging Face: Palette (IBM Research)</a></li><li><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world">OpenAI: Accelerating engineering for the physical world</a></li><li><a href="https://huggingface.co/blog/allenai/statebench">Hugging Face: StateBench (Allen AI)</a></li><li><a href="https://techcrunch.com/2026/11/02/y-combinators-garry-tan-uses-ai-agents-so-much-he-spends-up-to-200k-a-year-on-tokens/">TechCrunch: Garry Tan y los tokens</a></li><li><a href="https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/">TechCrunch: Anthropic y la automejora (RSI)</a></li><li><a href="https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/">TechCrunch: Demanda contra Brave</a></li><li><a href="https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/">TechCrunch: Google y la IA en colegios</a></li><li><a href="https://techcrunch.com/2026/11/02/google-takes-dreambeans-to-india-in-bid-to-bring-ai-generated-personal-stories-to-the-masses/">TechCrunch: Dreambeans en India</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-03.html">3 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
