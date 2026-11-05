@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Tu Apple Watch aprende a resumirte conversaciones mientras Meta compra una herramienta para programar con varios agentes a la vez — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">5 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Tu Apple Watch aprende a resumirte conversaciones mientras Meta compra una herramienta para programar con varios agentes a la vez</p>
+<h2>Lo más importante</h2>
+<p>Hoy hay pocos lanzamientos, así que vamos a lo que se puede probar. Apple ha metido un paquete llamado <strong>Audio Intelligence</strong> en la primera beta para desarrolladores (versión de pruebas previa al lanzamiento público) de <strong>iOS 27.3 y watchOS 27.3</strong>. Trae cuatro funciones de IA para el Apple Watch Series 12:
+- detectar sonidos importantes,
+- identificar canciones,
+- ponerte al día de una conversación,
+- tomar notas.</p>
+<p>La más llamativa es <strong>Siri Recaps</strong>: el reloj graba el audio de lo que pasa a tu alrededor y la IA te lo resume. Quien la ha usado un día dice que es útil, aunque un poco inquietante, y que a veces apunta cosas que no merecía la pena recordar. Las funciones de sonidos y canciones no plantean problemas de privacidad. Las de resúmenes y notas sí, porque implican grabar. Por ahora solo se puede probar con la beta para desarrolladores. En España/UE no hay datos. Grabar y resumir conversaciones es justo el tipo de función que Apple suele retrasar en Europa por el RGPD, así que no cuentes con ella hasta que lo confirmen.</p>
+<p>En programación, Meta ha comprado <strong>Conductor</strong>. Esta startup permite lanzar varios agentes de IA (asistentes que hacen tareas por su cuenta, no solo responden) en paralelo para montar un proyecto de software. Cada agente trabaja en su propio espacio, así no se pisan entre ellos. Su fundador, Charlie Holtz, se une al laboratorio de superinteligencia de Meta y promete "algo nuevo" para los clientes a principios del año que viene. La fuente no dice qué pasará con la app actual mientras tanto. Si la usas, está atento a sus avisos y ten un plan B.</p>
+<p>También interesa saber que Anthropic trabaja en <strong>FlashProve</strong>, un sistema de código abierto para la "inferencia demostrable" (la inferencia es el momento en que el modelo genera una respuesta). Añade una prueba criptográfica, algo parecido a la firma digital de un email, que garantiza qué modelo produjo una respuesta concreta. Así podrías comprobar que te contesta el modelo por el que pagas, aunque quien haga trampa sea el propio laboratorio que lo sirve. De momento es un proyecto en desarrollo y la fuente no dice que ya se pueda descargar. Al ser abierto, no debería tener límites por país.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes funcionan para programar, pero casi nadie los usa en el día a día. Uber contó que en la semana de Halloween, la de más actividad de octubre, gestionó unos <strong>320 millones</strong> de viajes y pedidos. Solo <strong>4 viajes</strong> se pidieron con un agente de IA, y en Uber Eats fueron 500 pedidos. Su CEO lo describe como una tracción "muy, muy temprana". Mientras tanto, Meta paga por una herramienta de agentes para programar. <strong>Hoy los agentes se usan de verdad sobre todo para escribir código</strong>, no para hacer recados. Nothing se suma a la búsqueda del "aparato de IA": su primer producto "nativo de IA" sale en diciembre. No tiene pantalla nueva, no podía ser una app y lo presentan como herramienta de productividad. Nothing vende sus productos en España, pero de este aún no hay precio ni países confirmados.</p>
+<p>El otro patrón es el coste. Según Bloomberg, Apple ha bajado de <strong>300 a 200 dólares</strong> lo que cada ingeniero puede gastar al día en IA, y prepara recortes hasta 100 (fuera de ingeniería quizá solo 25). La fiebre de gastar tokens (los trozos de texto por los que cobran los modelos) sin mirar la factura se está acabando. En la práctica, conviene revisar tu consumo y usar modelos más baratos para las tareas sencillas. Además crece la polémica por no poder decir "no" a la IA. Google ha avisado a los colegios que usan su software educativo de que pueden apagar Gemini, pero si desactivan el resto de funciones de IA perderán también el buscador. DuckDuckGo ya se ofrece como alternativa. La polémica es en EE. UU. y no hay datos sobre si afecta a colegios europeos.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>FlashProve</strong>: el sistema abierto de Anthropic para demostrar qué modelo generó cada respuesta. Merece seguirlo si usas modelos a través de terceros.</li><li><strong>Agentes en paralelo</strong>: el flujo de trabajo de Conductor, con varios asistentes que programan a la vez en copias separadas del proyecto. Es hacia donde va la programación con IA.</li><li><strong>Siri Recaps</strong>: resúmenes de conversaciones grabadas desde el Apple Watch. Ahora en beta para desarrolladores.</li><li><strong>Construir sobre modelos abiertos</strong>: episodio del podcast Equity con Irene Solaiman (Hugging Face) sobre costes, riesgos y cómo elegir modelos de pesos abiertos (modelos que puedes descargar y ejecutar tú).</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/04/i-tried-apples-siri-recaps-theyre-surprisingly-useful-and-a-little-unsettling/">TechCrunch: I tried Apple's Siri Recaps</a></li><li><a href="https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/">TechCrunch: Meta acquires AI coding startup Conductor</a></li><li><a href="https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/">TechCrunch: Anthropic is working on a system to prove AI models' identity</a></li><li><a href="https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/">TechCrunch: Almost no one uses AI agents to book their Uber</a></li><li><a href="https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/">TechCrunch: Apple is reportedly cutting budgets for its internal AI usage</a></li><li><a href="https://techcrunch.com/2026/11/04/nothing-ceo-says-companys-mysterious-ai-first-device-is-dropping-next-month/">TechCrunch: Nothing's AI-first device is dropping next month</a></li><li><a href="https://techcrunch.com/2026/11/04/google-faces-backlash-for-plan-that-would-turn-off-search-for-schools-that-restrict-ai/">TechCrunch: Google faces backlash over Search for schools that restrict AI</a></li><li><a href="https://techcrunch.com/2026/11/04/duckduckgo-pitches-itself-to-schools-amid-backlash-over-googles-ai-policy/">TechCrunch: DuckDuckGo pitches itself to schools</a></li><li><a href="https://techcrunch.com/podcast/building-on-open-source-ai-hugging-faces-policy-chief-on-the-costs-risks-and-trade-offs/">TechCrunch Equity: Building on open source AI</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-04.html">4 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
