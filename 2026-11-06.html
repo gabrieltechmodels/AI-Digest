@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Claude ya puede leer tus cuentas del banco y explicarte en qué se te va el dinero — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">6 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Claude ya puede leer tus cuentas del banco y explicarte en qué se te va el dinero</p>
+<h2>Lo más importante</h2>
+<p>Anthropic ha añadido a Claude <strong>Personal Finance</strong>, una herramienta para preguntarle por tu dinero usando tus datos reales. Conectas tus cuentas y tarjetas a través de Plaid (un servicio que hace de puente entre aplicaciones y bancos). Después puedes preguntarle cuánto llevas gastado en comida a domicilio este mes o qué suscripciones siguen cobrándote. El acceso es <strong>solo de lectura</strong>: Claude no puede mover, gestionar ni invertir tu dinero. Llega tarde, porque ChatGPT tiene algo parecido desde mayo, pero si ya usas Claude a diario es la novedad más fácil de aprovechar hoy. Lo malo es que la noticia no dice en qué países ni en qué planes está. Plaid cubre sobre todo bancos de EE. UU., así que de momento no cuentes con conectar tu banco español. Mira si te aparece en la app; si no, toca esperar.</p>
+<p>OpenAI ha presentado <strong>GPT-6 Cyber</strong>, un modelo de ciberseguridad que busca vulnerabilidades explotables (fallos de software que un atacante podría aprovechar) y propone cómo arreglarlas. Según OpenAI, está entrenado para no salirse del ámbito autorizado, es decir, para no meterse en sistemas que no le toca revisar. Que estos modelos ya encuentran fallos serios está demostrado. Max Justicz, CTO de Charge Robotics, usó un modelo anterior, GPT 5.6 Sol, y encontró un fallo grave en Ubuntu que permitiría tomar el control de servidores. Le pidió fallos "igual de graves o peores" que uno que él mismo había descubierto años atrás en ese código, y a las dos horas tenía uno. Lo hizo dentro de Daybreak Blue, el programa de OpenAI que da a los equipos de defensa acceso a sus modelos más potentes. OpenAI no explica cómo se accede a GPT-6 Cyber ni si está disponible en la UE.</p>
+<p>También se mueven los modelos abiertos. <strong>Kimi K3.1 Pro</strong> ha publicado sus pesos abiertos (el modelo ya entrenado, que puedes descargar y ejecutar en tu equipo o servidor). Además salen Ripple-65B, de Ricursive, y Cosmos 3, de Nvidia, una familia pensada para simular mundos interactivos (entornos virtuales donde entrenar robots y otros sistemas). Los pesos abiertos se descargan desde cualquier país, aunque conviene revisar la licencia de cada uno. Sobre Le Chonk, que contamos el 30 de octubre, la novedad es que Mistral propone usarlo en Mistral Studio. Es su plataforma para crear y desplegar agentes (programas de IA que encadenan pasos y usan herramientas por su cuenta), flujos de trabajo y aplicaciones de empresa sin perder el control de tus datos. La nota no da precios. Al ser una empresa francesa que se centra en que controles tus datos, es de las opciones más fáciles de encajar con el RGPD.</p>
+<h2>Tendencias y patrones</h2>
+<p>Las empresas siguen lanzando agentes para el gran público, pero casi nadie los usa. Uber lo ha dicho claro: en la semana de Halloween, la de más actividad de octubre, solo <strong>4 viajes</strong> se pidieron con un agente de IA. En Uber Eats fueron 500 pedidos, sobre unos 320 millones de viajes y pedidos en total. Mientras tanto, Meta abre a todo EE. UU. Muse Voice, que permite hablar por videollamada con su asistente Muse en forma de avatar animado y personalizable (no está disponible en España). Airbnb promete su agente de viajes para el primer semestre de 2027. En hardware llegan un anillo de Aina de 399 dólares con pantalla y micrófono para hablar con agentes, y un dispositivo de Nothing en diciembre. Por ahora tiene más éxito la IA que te ayuda a entender algo, como tus gastos o tu código, que la que actúa en tu nombre.</p>
+<p>El otro patrón es que los tokens (los fragmentos de texto por los que se cobra el uso de un modelo) cuestan dinero y las empresas empiezan a notarlo. Según Bloomberg, Apple ha bajado de 300 a 200 dólares el gasto diario en IA que permite a sus ingenieros. Algunos equipos bajarán a 100, y fuera de ingeniería estudia un tope de <strong>25 dólares al día</strong>. Box va en la misma línea con Box Content Retrieval, que usa los embeddings (representaciones numéricas del significado de un texto que permiten buscar por conceptos y no solo por palabras) de Nvidia Nemotron. Según Nvidia, las respuestas serán cuatro veces más rápidas, con un 20 % menos de errores y un <strong>90 % menos de tokens</strong>. Llegará a los clientes Enterprise Advance a principios de 2027. La lección te sirve también a ti: si pagas por uso, darle al modelo solo lo relevante sale mucho más barato que pasárselo todo.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Daybreak Blue</strong> — programa de OpenAI que da a los equipos de ciberseguridad defensiva acceso a sus modelos más avanzados.</li><li><strong>Kimi K3.1 Pro</strong> — modelo de pesos abiertos recién publicado; buena opción si quieres probar alternativas en local o en tu propio servidor.</li><li><strong>NVIDIA Cosmos 3</strong> — modelos abiertos para simular mundos interactivos, publicados en Hugging Face.</li><li><strong>Verificación formal</strong> — comprobar con software que cada paso de una demostración es correcto. Axiom Math acaba de hacerlo con el Stacks Project, una de las mayores obras matemáticas escritas por personas.</li><li><strong>Mistral Studio</strong> — plataforma de Mistral para crear agentes sobre sus modelos sin que tus datos salgan de tu control.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/05/claude-can-now-analyze-your-spending-with-its-new-personal-finance-tool/">TechCrunch — Personal Finance en Claude</a></li><li><a href="https://openai.com/index/introducing-gpt-6-cyber">OpenAI — GPT-6 Cyber</a></li><li><a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/">TechCrunch — OpenAI y su nuevo modelo de ciberseguridad</a></li><li><a href="https://latent.space/p/ainews-it-s-swapping-season/">Latent Space — AINews: It's Swapping Season</a></li><li><a href="https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation">Hugging Face — NVIDIA Cosmos 3</a></li><li><a href="https://mistral.ai/news/build-with-studio/">Mistral AI — Mistral Studio y Le Chonk</a></li><li><a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/">TechCrunch — Meta Muse Voice</a></li><li><a href="https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/">TechCrunch — Uber y los agentes de IA</a></li><li><a href="https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/">TechCrunch — Apple recorta su gasto interno en IA</a></li><li><a href="https://techcrunch.com/2026/11/05/box-taps-nvidias-nemotron-for-new-agent-first-content-retrieval-system/">TechCrunch — Box Content Retrieval con Nemotron</a></li><li><a href="https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/">TechCrunch — Agente de viajes de Airbnb</a></li><li><a href="https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents/">TechCrunch — Anillo inteligente de Aina</a></li><li><a href="https://techcrunch.com/2026/11/04/nothing-ceo-says-companys-mysterious-ai-first-device-is-dropping-next-month/">TechCrunch — Dispositivo de IA de Nothing</a></li><li><a href="https://techcrunch.com/2026/11/05/axiom-math-wants-to-keep-ai-slop-out-of-mathematics/">TechCrunch — Axiom Math y el Stacks Project</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-05.html">5 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
