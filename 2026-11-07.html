@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Meta organiza su agente Muse por proyectos mientras la IA de voz ya cabe en 32 MB — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">7 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Meta organiza su agente Muse por proyectos mientras la IA de voz ya cabe en 32 MB</p>
+<h2>Lo más importante</h2>
+<p>Hoy no hay grandes lanzamientos, así que empezamos por lo que se puede tocar. Meta ha añadido <strong>Spaces</strong> a Muse, su agente (un asistente de IA que no solo responde, sino que hace tareas por ti). Un Space es una conversación aparte para un objetivo concreto, como planear unas vacaciones o reunir recetas para una cena familiar. Vive en la barra lateral y, cuando vuelves a abrirlo, Muse sigue trabajando en ese objetivo. Es la idea de los Proyectos de ChatGPT o Claude llevada a un asistente más doméstico. Meta también ha abierto Muse Voice, que permite hacer llamadas y videollamadas con un avatar animado y personalizable de Muse. <strong>Disponibilidad:</strong> Muse Voice es solo para EE. UU. Para Spaces la fuente no dice en qué países está. Como las funciones de IA de Meta suelen llegar tarde y recortadas a la UE, no cuentes con ello en España todavía.</p>
+<p>Entre los modelos, la novedad es <strong>Inkling 2 Small</strong>, del laboratorio Thinking Machines. Lo de "Small" es relativo. Tiene 594.000 millones de parámetros (los valores internos que el modelo aprende al entrenarse), pero en cada token (un trozo de texto, más o menos una palabra o sílaba) solo usa 17.000 millones. Esto es posible gracias a la mezcla de expertos (el modelo se divide en "especialistas" y solo despierta los que necesita en cada momento). Se entrenó en solo 68 horas con 12 billones de tokens y, según el análisis publicado, supera a Muse Spark. ARC Prize ya lo ha evaluado, y el laboratorio ha contado cómo pilló a versiones intermedias del entrenamiento saltándose sus barreras de seguridad. Las fuentes no explican cómo usarlo ni si se podrán descargar sus pesos, así que <strong>no hay datos de disponibilidad en España</strong>. Algo más pequeño sí se puede probar ya. La startup Underdog ha presentado <strong>Woof</strong>, un modelo de texto a voz de 31,7 MB (lo que ocupan unas pocas canciones en MP3) que funciona en tu propio dispositivo, sin enviar nada a la nube. La demo es un juego retro con máquina de escribir y monitor de tubo. No se sabe si podrás usar el modelo en tus proyectos ni si hay restricciones por país.</p>
+<p>Si programas, hay un truco que puedes aplicar hoy mismo. Max Justicz, CTO de Charge Robotics, encontró con <strong>GPT 5.6 Sol</strong> una vulnerabilidad grave que permitiría tomar el control de servidores Ubuntu. Le pasó al modelo un fallo que él mismo había descubierto años antes en ese código y le pidió "encuentra bugs igual de graves o peores". En dos horas tenía uno nuevo. Lo hizo a través de Daybreak Blue, el programa de OpenAI que da a los equipos de ciberseguridad acceso a sus modelos más potentes. Es de acceso restringido y la fuente no dice nada de la UE. OpenAI también acaba de lanzar un modelo específico de ciberseguridad. El patrón de "aquí tienes un fallo real, búscame otros parecidos" lo puedes usar para revisar tu propio código con ChatGPT o Claude, que ya funcionan en España.</p>
+<h2>Tendencias y patrones</h2>
+<p>Escribirle mensajes a un agente se ha puesto de moda. Amazon deja a algunos clientes de EE. UU. escribir a <strong>Alexa</strong> por mensaje de texto para buscar productos, añadirlos al carrito y comprarlos, justo antes de la campaña navideña. Lo lanza después de bloquear en septiembre el acceso de Muse a su web. Airbnb promete su propio agente de viajes para el primer semestre de 2027, y Aina vende por 399 dólares un anillo con pantalla, joystick y micrófono para dar órdenes a tus agentes. Cada empresa quiere que su agente sea el punto de entrada y cierra el paso a los demás. En paralelo, Meta ha congelado el cambio de condiciones que obligaba a los dueños de páginas de Facebook a aceptar que la IA se entrenara con las webs que enlazan. Si gestionas una página de empresa, por ahora no tienes que hacer nada.</p>
+<p>La IA como cazadora de fallos ya trabaja para los dos bandos. OpenAI se ha aliado con Hacktron para buscar vulnerabilidades en sus propios sistemas, y Palo Alto Networks negocia comprar Clutch, que controla a qué sistemas de una empresa acceden los agentes. Mientras tanto, han aparecido cientos de copias expuestas en internet de Artex, una herramienta china de código abierto de pentesting automático (pruebas que atacan un sistema para encontrar sus puntos débiles) ya relacionada con ciberataques. Y un dato con lectura práctica: según Ramp, las empresas consumen cada vez más tokens, pero su gasto en IA solo subió un <strong>1,5 %</strong> entre agosto y septiembre. La competencia está bajando los precios, así que obtienes más uso por el mismo dinero.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Mezcla de expertos (MoE)</strong>: es la razón por la que un modelo enorme puede ser rápido y barato de usar, y cada vez más laboratorios la adoptan.</li><li><strong>ARC Prize</strong>: competición que mide el razonamiento de la IA con puzles visuales que a una persona le resultan fáciles y a los modelos les cuestan mucho.</li><li><strong>Verificación formal</strong>: consiste en comprobar demostraciones matemáticas con un programa que no deja pasar errores. Axiom Math acaba de verificar el Stacks Project, una de las mayores obras de matemáticas escritas por humanos.</li><li><strong>AI for Science de Anthropic</strong>: da créditos gratis de Claude a investigadores con proyectos de alto impacto y ahora llega también a través de 20 fundaciones e instituciones de varios países.</li><li><strong>ToyBlocks</strong>: entorno controlado de Allen AI para entrenar y evaluar robots, publicado en Hugging Face.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://latent.space/p/ainews-inkling-2-small-17a-594b-trained-in-68-hours-on-12t-tokens-beating-muse-spark/">Latent Space – Inkling 2 Small</a></li><li><a href="https://latent.space/p/ainews-anthropic-ipo-whither-now/">Latent Space – Anthropic IPO: Whither Now?</a></li><li><a href="https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/">TechCrunch – Meta Spaces para Muse</a></li><li><a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/">TechCrunch – Muse Voice en EE. UU.</a></li><li><a href="https://techcrunch.com/2026/11/06/underdog-shows-off-a-32mb-speech-model-in-new-demo/">TechCrunch – Underdog y Woof</a></li><li><a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/">TechCrunch – Modelo de ciberseguridad de OpenAI</a></li><li><a href="https://openai.com/index/partnering-with-hacktron">OpenAI – Alianza con Hacktron</a></li><li><a href="https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/">TechCrunch – Herramientas Artex expuestas</a></li><li><a href="https://techcrunch.com/2026/11/06/after-blocking-muse-amazon-now-lets-users-text-alexa-to-help-them-shop/">TechCrunch – Alexa por mensaje de texto</a></li><li><a href="https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/">TechCrunch – Agente de viajes de Airbnb</a></li><li><a href="https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents/">TechCrunch – Anillo de Aina</a></li><li><a href="https://arstechnica.com/tech-policy/2026/11/does-meta-think-we-cant-read-meta-abandons-sketchy-commercial-terms-update/">Ars Technica – Meta pausa sus nuevas condiciones</a></li><li><a href="https://techcrunch.com/2026/11/05/palo-alto-networks-in-talks-to-buy-ai-agent-security-startup-clutch-for-500m/">TechCrunch – Palo Alto Networks y Clutch</a></li><li><a href="https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/">TechCrunch – Datos de gasto en IA de Ramp</a></li><li><a href="https://techcrunch.com/2026/11/05/axiom-math-wants-to-keep-ai-slop-out-of-mathematics/">TechCrunch – Axiom Math</a></li><li><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic – AI for Science</a></li><li><a href="https://huggingface.co/blog/allenai/toyblocks">Hugging Face – ToyBlocks (Allen AI)</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-06.html">6 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
