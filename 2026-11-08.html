@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>La IA ya encuentra fallos graves en el software que usamos todos, y OpenAI y Anthropic compiten por dar esas herramientas a quienes defienden los sistemas — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">8 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>La IA ya encuentra fallos graves en el software que usamos todos, y OpenAI y Anthropic compiten por dar esas herramientas a quienes defienden los sistemas</p>
+<h2>Lo más importante</h2>
+<p>Hoy no hay ningún modelo nuevo para el gran público. La historia que más da que pensar es de ciberseguridad. Max Justicz, CTO de la startup Charge Robotics y aficionado a la seguridad, encontró una vulnerabilidad grave en Ubuntu, uno de los sistemas Linux más usados en servidores. Ese fallo permitiría a un atacante tomar el control de la máquina. Lo hizo con <strong>GPT 5.6 Sol</strong>, el modelo de OpenAI de julio, a través de <strong>Daybreak Blue</strong>, un programa que da a los defensores acceso a modelos frontera (los más potentes y recientes de cada laboratorio). Su método fue casi ridículo de simple. Le dijo: "encontré este fallo hace años y ya está arreglado, búscame otros igual de graves o peores". En <strong>dos horas</strong> tenía uno nuevo. Para ti la idea útil es que la técnica de enseñar un bug antiguo y pedir otros parecidos sirve también para auditar tu propio código con cualquier modelo potente. TechCrunch titula que OpenAI ha sacado un modelo nuevo de ciberseguridad, pero el fragmento que tenemos no da su nombre ni dice cómo acceder a él. Tampoco hay datos sobre la disponibilidad de Daybreak Blue en España.</p>
+<p>Anthropic va por el mismo camino con su <strong>Cyber Verification Program</strong> (programa de verificación para profesionales de seguridad), que ahora tiene <strong>tres niveles de acceso</strong>. Cada equipo pide el nivel que le encaja, y todos dan acceso a sus modelos más capaces con menos bloqueos automáticos. Los "clasificadores" son filtros que frenan peticiones que parecen maliciosas, como pedir un exploit (el código que aprovecha un fallo). En el programa se relajan para trabajo legítimo. Si te dedicas a la seguridad, puedes pedir acceso desde la web de Anthropic. El anuncio no menciona restricciones geográficas, pero tampoco confirma expresamente que esté abierto en la UE. La otra cara de la moneda es <strong>Artex</strong>, una herramienta china de pentesting autónomo (software que ataca sistemas solo para encontrarles agujeros) y de código abierto. Se han encontrado cientos de copias abiertas en internet, al alcance de cualquiera, y se ha vinculado a varios ciberataques. No es algo que vayas a usar, pero recuerda que estas capacidades ya no son exclusivas de los grandes laboratorios.</p>
+<p>En herramientas de consumo, Meta ha abierto <strong>Muse Voice</strong> a todos los usuarios de EE. UU. Te permite llamar y hacer videollamadas con Muse, su agente (un asistente que no solo responde, sino que hace tareas por ti), que aparece como un avatar animado personalizable. De momento <strong>solo está en EE. UU.</strong> y no hay fecha para Europa. Amazon, por su parte, deja que algunos clientes de EE. UU. compren por <strong>SMS con Alexa</strong>: buscan productos, los añaden al carrito y pagan escribiendo con normalidad. Está solo en EE. UU. y solo por invitación, así que en España no está disponible.</p>
+<h2>Tendencias y patrones</h2>
+<p>El acceso a la IA más potente se está dividiendo por niveles. OpenAI y Anthropic ya no ofrecen un único modelo igual para todos. Hay versiones con menos restricciones para profesionales verificados: seguridad con Daybreak Blue y el Cyber Verification Program, y biología con el programa de ciencias de la vida de Anthropic. Si tu trabajo choca a menudo con los filtros del modelo, quizá haya un programa pensado para ti. A la vez gana peso la <strong>verificación formal</strong> (demostrar matemáticamente que algo es correcto, en lugar de fiarse de que "parece funcionar"). Axiom Math ha verificado formalmente el Stacks Project, una de las obras matemáticas más grandes que se han escrito, para que los agentes tengan una base fiable sobre la que construir. La idea es frenar el aluvión de resultados generados por IA que nadie ha comprobado bien.</p>
+<p>La segunda tendencia es que los agentes se mudan a donde ya hablas: SMS, llamadas y videollamadas. Airbnb confirma su propio agente de viajes para <strong>la primera mitad de 2027</strong>. Dice que no será un chatbot más, sino una interfaz más visual que respete el gusto de planear el viaje. Por último, un dato de Ramp que te favorece como usuario. Las empresas consumen cada vez más tokens (los trozos de texto que procesa el modelo y por los que se paga), pero en agosto y septiembre el gasto solo subió un <strong>1,5 %</strong>. Señal de que la competencia está bajando los precios. El resto de la semana financiera (la salida a bolsa de Anthropic, la nueva ronda de OpenAI) no cambia nada de lo que puedes hacer hoy.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Daybreak Blue</strong> — programa de OpenAI que da acceso a modelos frontera para tareas de ciberseguridad defensiva</li><li><strong>Cyber Verification Program</strong> — programa de Anthropic con tres niveles de acceso para equipos de seguridad, con menos bloqueos</li><li><strong>Verificación formal</strong> — técnica para demostrar matemáticamente que un programa o un teorema es correcto; los LLM la están haciendo viable a gran escala</li><li><strong>Stacks Project</strong> — enorme obra colaborativa de geometría algebraica, ahora verificada formalmente por Axiom Math</li><li><strong>Política de uso 2026 de Anthropic</strong> — actualización con ejemplos nuevos de cómo se aplican las normas cuando Claude trabaja de forma más autónoma</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/05/openai-released-a-new-cybersecurity-model-is-that-enough/">TechCrunch — OpenAI released a new cybersecurity model. Is that enough?</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic — Expanding the Cyber Verification Program</a></li><li><a href="https://techcrunch.com/2026/11/06/hundreds-of-artex-ai-hacking-tools-found-publicly-exposed-to-the-web/">TechCrunch — Hundreds of Artex AI hacking tools found publicly exposed</a></li><li><a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/">TechCrunch — Meta says US users can now video chat with their Muse AI avatar</a></li><li><a href="https://techcrunch.com/2026/11/06/after-blocking-muse-amazon-now-lets-users-text-alexa-to-help-them-shop/">TechCrunch — Amazon now lets users text Alexa to help them shop</a></li><li><a href="https://techcrunch.com/2026/11/05/axiom-math-wants-to-keep-ai-slop-out-of-mathematics/">TechCrunch — Axiom Math wants to keep AI slop out of mathematics</a></li><li><a href="https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/">TechCrunch — Airbnb's AI travel agent in the first half of 2027</a></li><li><a href="https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/">TechCrunch — Ramp data shows AI spending stalling</a></li><li><a href="https://www.anthropic.com/news/life-sciences-verification-program">Anthropic — Introducing the Life Sciences Verification Program</a></li><li><a href="https://www.anthropic.com/news/2026-usage-policy-update">Anthropic — 2026 Usage Policy update</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-07.html">7 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
