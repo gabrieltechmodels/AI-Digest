@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Sin modelos nuevos, el día va de cómo trabajar mejor con los agentes de código que ya usas — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">9 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Sin modelos nuevos, el día va de cómo trabajar mejor con los agentes de código que ya usas</p>
+<h2>Lo más importante</h2>
+<p>Hoy no hay modelos nuevos, así que vamos con trucos que puedes aplicar esta misma tarde. El primero es de Simon Willison. Casi todo su trabajo le llega ya en forma de PR (pull requests: propuestas de cambio en el código que se revisan antes de integrarse) que le abren Claude Code o Codex. Su queja es que los agentes (asistentes que no solo responden, sino que ejecutan tareas por su cuenta) escriben descripciones correctas y completas, pero tan largas que parecen relleno de IA y nadie se las lee. Su solución es dejar a la vista un resumen corto y meter el texto completo del agente en un bloque `<details><summary>`, que GitHub muestra como un desplegable. Quien quiera el detalle lo abre y los demás leen dos líneas. <strong>Funciona ya en cualquier repositorio de GitHub, también desde España.</strong></p>
+<p>El segundo truco es usar el chat normal de Claude como laboratorio antes de programar. Mientras paseaba al perro, Willison le pidió a <strong>Claude Opus 5.5</strong> que comparase dos formas de crear una función `parse_number()` para SQLite (una base de datos ligera que cabe en un solo archivo). La función convierte textos como "-$1,234.56" o "12.5%" en números que se pueden sumar y ordenar. Las dos formas eran una extensión en C o una en Rust, y quería comparar rendimiento, complejidad y tamaño del archivo final. Le salió un buen punto de partida, con una versión en Rust de 321 KB. En otra prueba, Opus 5.5 con esfuerzo "Medium" (el nivel de razonamiento que eliges antes de que conteste) le hizo un huevo Fabergé en 3D con Three.js, una librería muy usada para gráficos 3D en la web. Después lo reescribió solo con JavaScript y WebGL (la tecnología del navegador para dibujar en 3D), sin librerías: 98 KB frente a 77 KB, con alguna diferencia visual. La conclusión es que puedes pedirle versiones sin dependencias cuando quieras algo ligero. Claude.ai funciona en España, aunque las fuentes no dicen qué plan hace falta para Opus 5.5.</p>
+<p>En asistentes de consumo hay dos novedades, pero solo en EE. UU. Tras los Spaces que contamos el sábado, Meta ha abierto <strong>Muse Voice</strong> a todos los usuarios estadounidenses. Con ella puedes llamar o hacer videollamada a Muse, que aparece como un avatar animado (por defecto, uno llamado Jolly) y que puedes cambiar por una persona, un animal u otro personaje. Amazon, por su parte, deja a algunos clientes de EE. UU. escribir por SMS a <strong>Alexa</strong> para buscar productos, añadirlos al carrito y comprarlos. Quien tenga acceso recibirá un mensaje para activarlo. Ninguna de las dos tiene fecha para Europa, y Meta suele tardar en traer aquí sus funciones de IA.</p>
+<h2>Tendencias y patrones</h2>
+<p>Se repiten dos ideas. La primera es que los agentes de código ya producen más de lo que una persona puede revisar con calma, y lo que escasea ahora es <strong>la atención humana</strong>. Lo de Willison con los PR va por ahí, y también el curso CS146S de Stanford. Como un agente resuelve los deberes del año pasado con un solo prompt (la instrucción que le das), Mihail Eric pone ahora a los alumnos a estudiar un proyecto de código abierto que no conocen y a proponer cambios reales, con los propios mantenedores implicados. Lo que cuenta es entender el código y decidir, no teclearlo.</p>
+<p>La segunda es la pelea por cómo hablamos con los agentes. Meta apuesta por avatares con voz y vídeo. Amazon apuesta por el SMS de toda la vida, después de bloquear en septiembre que Muse consultara su web. Airbnb lanzará su agente de viajes en el primer semestre de 2027 y sostiene que un chat no sirve para planificar un viaje, porque parte de la gracia está en ilusionarse eligiendo. De fondo hay un dato de Ramp: entre agosto y septiembre las empresas gastaron solo un <strong>1,5 %</strong> más en IA aunque usaron más tokens (las unidades de texto por las que se paga). La competencia en precios y unos clientes más exigentes están conteniendo la factura.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Etiqueta `<details><summary>`</strong> — GitHub la convierte en un bloque plegable. Sirve para PR, issues y README largos.</li><li><strong>CS146S de Stanford</strong> — curso de Mihail Eric sobre ingeniería pensada desde el principio para trabajar con agentes, con contribuciones reales a proyectos de código abierto.</li><li><strong>The Web Is More Than Enough, de Paul Ford</strong> — el ensayo que llevó a Willison a probar si Claude podía hacer 3D sin librerías.</li><li><strong>AI for Science de Anthropic</strong> — da créditos gratis de Claude a investigadores con proyectos científicos de alto impacto. El 28 de octubre se amplió a 20 fundaciones, instituciones y grupos de investigación de todo el mundo.</li><li><strong>Política de uso 2026 de Anthropic</strong> — actualizada el 8 de octubre con ejemplos de cómo se aplican las normas cuando Claude hace trabajos largos y autónomos. Conviene leerla si montas agentes sobre Claude.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Nov/9/details-summary/">Simon Willison — Hide your slop PR descriptions behind `details/summary`</a></li><li><a href="https://simonwillison.net/2026/Nov/8/sqlite-parse-number-c-vs-rust/">Simon Willison — parse_number() as a SQLite extension: C vs Rust</a></li><li><a href="https://simonwillison.net/2026/Nov/9/hn-50421091/">Simon Willison — The Web Is More Than Enough, by Paul Ford</a></li><li><a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/">TechCrunch — Meta says US users can now video chat with their Muse AI avatar</a></li><li><a href="https://techcrunch.com/2026/11/06/after-blocking-muse-amazon-now-lets-users-text-alexa-to-help-them-shop/">TechCrunch — After blocking Muse, Amazon now lets users text Alexa to help them shop</a></li><li><a href="https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/">TechCrunch — Airbnb says it's launching an AI travel agent in the first half of 2027</a></li><li><a href="https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/">TechCrunch — Ramp data shows AI spending stalling</a></li><li><a href="https://latent.space/p/one_million_ai_engineer_special_how_stanford_teaches_ai-native_engineering_mihail_eric_monaco/">Latent Space — How Stanford Teaches AI-Native Engineering</a></li><li><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic — AI for Science expands to foundations and research institutions</a></li><li><a href="https://www.anthropic.com/news/2026-usage-policy-update">Anthropic — 2026 Usage Policy update</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-08.html">8 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
