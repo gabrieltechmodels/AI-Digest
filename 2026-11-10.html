@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Anthropic estrena Fable 5.2: más rápido, más barato que GPT-6 Astra y ya disponible por API — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">10 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Anthropic estrena Fable 5.2: más rápido, más barato que GPT-6 Astra y ya disponible por API</p>
+<h2>Lo más importante</h2>
+<p>Anthropic ha lanzado <strong>Claude Fable 5.2</strong> y Claude Mythos 5.2, sus modelos más potentes. Mejoran en programación, razonamiento y visión (entender imágenes), y según la compañía se explican con más claridad. Los cambios que más notarás están en Fable:</p>
+<ul><li><strong>Precio:</strong> baja de 10 a <strong>8 dólares por millón de tokens de entrada</strong>. Un token es un trozo de palabra y es la unidad con la que se cobra. Con este precio, Fable queda por debajo de GPT-6 Astra, su gran rival.</li><li><strong>Velocidad:</strong> responde un 30 % más rápido en todos los niveles de esfuerzo. Hay un modo aún más rápido que cuesta el doble.</li><li><strong>Para empresas:</strong> admite ZDR (<em>zero data retention</em>: Anthropic no guarda nada de lo que le envías), algo que muchas llevaban tiempo pidiendo.</li></ul>
+<p>Ya se puede probar por API (la vía para conectar el modelo a tus propios programas). Simon Willison lo añadió el mismo día a su herramienta de terminal `llm`: instala el plugin con `llm install llm-anthropic` y lanza `llm -m claude-fable-5.2 "tu instrucción"`. Un aviso de sus pruebas: en el esfuerzo máximo (<em>max</em>) el modelo gastó 128.000 tokens pensando y no devolvió nada, el mismo fallo que vio en Opus 5.5. Su mejor resultado salió con <em>xhigh</em>.</p>
+<p>Sobre Europa: la API de Anthropic funciona en España y las fuentes no mencionan restricciones para la UE. Tampoco dicen cuándo llega Fable 5.2 a las apps de Claude, ni el precio o el acceso de Mythos.</p>
+<p>Si usas <strong>Claude Code</strong>, revisa esto hoy. Investigadores de Apiiro han encontrado miles de secretos (contraseñas de bases de datos, claves de API y similares) publicados en GitHub dentro de los archivos de configuración de la herramienta. Todo empieza con el botón «no volver a preguntar». Al aprobar así un comando, se guarda en un archivo de ajustes del proyecto. Si el comando llevaba una clave y el archivo acaba en un repositorio público, cualquiera puede verla. Qué hacer:</p>
+<p>1. Antes de subir cambios (<em>push</em>), revisa la carpeta `.claude` de tus proyectos.
+2. Comprueba que esos archivos están en el `.gitignore`.
+3. Si alguna clave ya está expuesta, cámbiala cuanto antes.</p>
+<p>Esto te afecta igual en España que en cualquier otro sitio.</p>
+<p>Meta ha presentado <strong>Muse Ember</strong>, su modelo más ligero y barato. Está pensado para el trabajo repetitivo de los agentes (asistentes de IA que hacen tareas por su cuenta, no solo responden):</p>
+<ul><li>llamadas a herramientas (cuando el modelo usa un buscador, una API u otro programa)</li><li>pequeñas tareas de código</li><li>repartir peticiones</li><li>extraer datos</li><li>leer documentos largos</li></ul>
+<p>Cuesta 10 céntimos de dólar por millón de tokens de entrada, muy por debajo de Haiku (Anthropic) o Luna (OpenAI). Meta dice que además los supera en el índice de Artificial Analysis. También compite en precio con modelos abiertos como DeepSeek V4.1 Flash o GLM 5.3 Flash. La fuente no habla de Europa. Meta ya ha retrasado otros lanzamientos de IA en la UE, así que confirma que puedes usarlo antes de contar con él.</p>
+<h2>Tendencias y patrones</h2>
+<p>La guerra de precios se centra en los agentes. Fable baja de precio y gana velocidad. Ember se vende por lo que cuesta completar cada tarea, no por lo listo que es en abstracto. Encaja con un reparto cada vez más habitual: un modelo grande planifica y uno pequeño y barato hace las mil tareas mecánicas que un agente repite al día.</p>
+<p>Los casos de clientes que publica OpenAI van en la misma línea, aunque son escaparates comerciales:</p>
+<ul><li><strong>Kuken Industries</strong> encuentra un plano de reparación entre 70 años de archivo en 4,5 minutos, cuando antes tardaba casi una hora.</li><li><strong>CodeRabbit</strong> dice publicar 20 veces más software con el mismo equipo gracias a Codex.</li></ul>
+<p>La otra tendencia: la IA llega a las herramientas que ya usas, en lugar de obligarte a ir a ella.</p>
+<ul><li><strong>TK</strong>, de Medium, es un editor de textos. Escribes «@TK» y lo que necesitas, y el asistente te ayuda sin salir del texto.</li><li><strong>Spacefast</strong>, de Automattic (la dueña de WordPress.com), pone la fontanería de una app: base de datos, inicio de sesión, subida de archivos, emails y analítica. Sirve para que una app hecha con <em>vibe coding</em> (programar describiéndole a una IA lo que quieres) funcione de verdad. Se conecta con Claude, ChatGPT, Cursor y otros, y compite con Lovable.</li></ul>
+<p>Ninguna de las dos fuentes aclara si estas herramientas están disponibles en la UE.</p>
+<p>Simon Willison lleva la idea al extremo con el <strong>Beep Locator</strong>, que le pidió a Claude Code. Usa varios iPads, un móvil y portátiles como micrófonos para localizar un pitido misterioso en un trastero lleno de cajas. Es software a medida para un problema doméstico.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>llm-anthropic</strong> — plugin de la herramienta `llm` de Simon Willison para usar Claude desde la terminal; ya incluye Fable 5.2.</li><li><strong>Niveles de esfuerzo</strong> — Fable tiene cinco (low, medium, high, xhigh y max), que marcan cuánto razona antes de responder; más no siempre es mejor.</li><li><strong>Agent Skills</strong> — estándar abierto en el que una carpeta con un archivo SKILL.md enseña una tarea a un agente; ya lo usan más de 70 plataformas, como ChatGPT, Cursor o GitHub Copilot.</li><li><strong>Artificial Analysis</strong> — web de comparativas de modelos por calidad y precio; útil para elegir un modelo barato para tus agentes.</li><li><strong>Beep Locator</strong> — el proyecto de Simon Willison, buen ejemplo de herramienta casera hecha con Claude Code.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/">TechCrunch — Anthropic releases new Mythos and Fable models</a></li><li><a href="https://www.anthropic.com/news/announcements">Anthropic — Announcements</a></li><li><a href="https://simonwillison.net/2026/Nov/9/llm-anthropic/">Simon Willison — llm-anthropic 0.31</a></li><li><a href="https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/">Ars Technica — Claude Code is accidentally exposing secrets all over GitHub</a></li><li><a href="https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/">TechCrunch — Meta releases Muse Ember</a></li><li><a href="https://techcrunch.com/2026/11/09/mediums-new-tk-app-brings-ai-assistance-directly-into-the-writing-process/">TechCrunch — Medium's new TK app</a></li><li><a href="https://techcrunch.com/2026/11/09/automattic-debuts-a-platform-to-deploy-vibe-coding-apps-amid-a-changing-internet/">TechCrunch — Automattic debuts Spacefast</a></li><li><a href="https://simonwillison.net/2026/Nov/9/mysterious-beeps/">Simon Willison — Locating the source of a mysterious beep with Claude</a></li><li><a href="https://openai.com/index/kuken">OpenAI — Kuken Industries</a></li><li><a href="https://openai.com/index/coderabbit-codex-daybreak">OpenAI — CodeRabbit</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic — Donating Agent Skills to the Agentic AI Foundation</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-09.html">9 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
