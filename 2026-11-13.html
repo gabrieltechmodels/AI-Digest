@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Google lanza Gemini 4 Hydrogen, su modelo rápido y barato, que ya mejora las respuestas del Buscador — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">13 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Google lanza Gemini 4 Hydrogen, su modelo rápido y barato, que ya mejora las respuestas del Buscador</p>
+<h2>Lo más importante</h2>
+<p>Google ha lanzado <strong>Gemini 4 Hydrogen</strong>, que sustituye a Gemini 3.8 Flash como modelo rápido y económico de la familia, el que más gente usa dentro de Google. Está pensado para trabajar con agentes (asistentes que no solo responden, sino que hacen varios pasos seguidos por su cuenta). Para muchas tareas no hace falta el modelo más potente: basta con uno rápido y bastante listo. Carbon y Argon se abrieron poco a poco y con cautelas de seguridad, pero Hydrogen sale directamente. Ya funciona también dentro del Buscador de Google. Según la compañía, ahora entiende mejor las preguntas con varias partes, las peticiones muy concretas y las erratas, y Google lo llama su "mayor mejora de modelo en Search hasta ahora". Si quieres probarlo por API (la vía para conectarlo a tus propias apps o scripts), Simon Willison ya ha publicado <strong>llm-gemini 0.37</strong>, un plugin (complemento) que añade Hydrogen a su herramienta de terminal LLM. Las fuentes no dicen nada de España. La API de Gemini suele funcionar en la UE, pero las mejoras del Buscador a menudo llegan antes a EE. UU., así que puede que aún no las veas.</p>
+<p>Ampliando lo del día 11, cuando Gemini 4 Carbon se abrió a todo el mundo, conviene apuntar los precios. Se cuentan por millón de tokens (los trozos de texto en que el modelo divide lo que lee y escribe). Hoy Carbon y Argon cuestan lo mismo: 2 $ por la entrada y 10 $ por la salida. Pero <strong>los dos duplican su precio el 1 de diciembre</strong> y pasarán a 4 $ y 20 $. Hydrogen cuesta 1,50 $ y 7,50 $, y la entrada en caché (texto repetido que el sistema reaprovecha) se queda en 0,075 $. Si ya usas Carbon por API, tienes dos semanas para comprobar si te basta con Argon o con Hydrogen. Según Google, Argon ofrece la misma inteligencia de Gemini 4, pero responde más rápido y gasta menos tokens en cada turno. Willison admite que el esquema de precios confunde: hoy Hydrogen solo es un 25 % más barato que Carbon, pero desde diciembre costará casi tres veces menos.</p>
+<p>En apps para el público general, <strong>Phota Labs</strong> es una nueva app para iOS que retoca solas tus fotos del día a día para que parezcan de fotógrafo profesional sin que pierdan naturalidad. La han creado dos antiguos empleados de Adobe que trabajaron en Lightroom y Photoshop. No hay datos sobre si está en la App Store española. Por su parte, Muse, el agente de Meta, ya puede llamar por teléfono a negocios en tu nombre, pero solo a negocios de EE. UU. y solo si pagas la suscripción. Desde España, de momento, sirve de poco.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes empiezan a chocar con el mundo real. United Airlines bloqueará a los agentes de IA que intenten reservar o gestionar vuelos en nombre de sus clientes. Aerolíneas y bancos de EE. UU. reconocen que les cuesta distinguir a un cliente de un asistente que actúa por él, sobre todo si el usuario le ha dado sus contraseñas. Además, Fireworks AI, un proveedor de inferencia (empresa que ejecuta modelos de IA en sus servidores para que otros los usen), ha sufrido un ataque que expuso datos de facturación y conjuntos de datos de sus clientes. Notion confirma que afectó a cerca del 1 % de sus usuarios, y los atacantes pudieron acceder a transcripciones de sus chats. Cursor y Harvey también son clientes de Fireworks. La lección práctica: <strong>no compartas tus contraseñas con asistentes de IA</strong>, y ten en cuenta que tus conversaciones pasan por intermediarios que no ves.</p>
+<p>El otro patrón es que los agentes de código ya son rutina en muchas empresas. OpenAI presume de casos como Gondola, donde Codex ha aumentado un 50 % la productividad de su ingeniero principal, o Amplitude, que saca mejoras de producto en uno o dos días con su agente Wave. También circulan ideas para aplicarlo a tu propio trabajo, como lanzar agentes sobre todos tus repositorios a la vez. Y hay proyectos que usan la IA para reescribir programas enteros, como ArtCraft, que ha rehecho Photoshop en código abierto.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>llm-gemini 0.37</strong> — plugin para la herramienta LLM de Simon Willison que permite usar Gemini 4 Hydrogen desde la terminal.</li><li><strong>Gemini 4 Argon</strong> — alternativa a Carbon con el mismo precio, respuestas más rápidas y menos tokens por turno; buena opción que probar antes de la subida del 1 de diciembre.</li><li><strong>Home Repo Pattern</strong> — propuesta para tener un repositorio "base" desde el que lanzar agentes de código sobre todos tus proyectos.</li><li><strong>LLMON en Granite 4.1</strong> — lenguaje de marcado (etiquetas que dan estructura a un texto, como HTML) diseñado para modelos de lenguaje. Ya lo incluyen los modelos abiertos de IBM de 3B y 8B (3.000 y 8.000 millones de parámetros, es decir, modelos pequeños).</li><li><strong>ArtCraft</strong> — versión de Photoshop en código abierto (su código es público y cualquiera puede usarlo), reescrita con ayuda de IA.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://arstechnica.com/google/2026/11/google-rolls-out-gemini-4-hydrogen-finally-replacing-3-8-flash/">Ars Technica – Google rolls out Gemini 4 Hydrogen</a></li><li><a href="https://simonwillison.net/2026/Nov/12/llm-gemini/">Simon Willison – llm-gemini 0.37</a></li><li><a href="https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/">TechCrunch – Google's latest Search upgrade</a></li><li><a href="https://techcrunch.com/2026/11/12/phota-labs-uses-ai-to-turn-everyday-photos-into-professional-looking-shots/">TechCrunch – Phota Labs</a></li><li><a href="https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/">TechCrunch – Muse can now place calls to US businesses</a></li><li><a href="https://techcrunch.com/2026/11/12/united-airlines-blocks-ai-agents-from-booking-flights-citing-cybersecurity-risks/">TechCrunch – United Airlines blocks AI agents</a></li><li><a href="https://techcrunch.com/2026/11/12/cyberattack-on-fireworks-ai-allowed-hackers-to-access-notion-customers-chat-transcripts/">TechCrunch – Cyberattack on Fireworks AI</a></li><li><a href="https://openai.com/business/customer-stories/gondola">OpenAI – Gondola customer story</a></li><li><a href="https://openai.com/business/customer-stories/amplitude">OpenAI – Amplitude customer story</a></li><li><a href="https://www.youtube.com/watch?v=hWe-j78vNpc">YouTube – The Home Repo Pattern</a></li><li><a href="https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite">Hugging Face – LLMON in Granite 4.1</a></li><li><a href="https://latent.space/p/artcraft/">Latent Space – ArtCraft</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-12.html">12 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
