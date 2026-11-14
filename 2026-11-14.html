@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>ChatGPT ya puede comprar por ti, pero solo en EE. UU., y algunas empresas empiezan a cerrar la puerta a los agentes — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">14 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>ChatGPT ya puede comprar por ti, pero solo en EE. UU., y algunas empresas empiezan a cerrar la puerta a los agentes</p>
+<h2>Lo más importante</h2>
+<p>OpenAI ha lanzado <strong>ChatGPT Wallet</strong>, una cartera de pagos para sus agentes, que son asistentes de IA que no solo responden, sino que también hacen tareas por su cuenta. Con ella, el agente te ayuda a decidir qué comprar y luego paga por ti. Funciona con los agentes de ChatGPT Work, de Codex y de dots, que es como OpenAI llama a sus agentes. Antes de pagar ves los productos, el total y la tarjeta que se va a usar, y das el visto bueno con Face ID o con la huella. Esa aprobación deja un registro de cada compra. De momento solo pueden usarlo algunos suscriptores de ChatGPT Pro en EE. UU., mayores de 18 años y con una tarjeta Visa, Mastercard o American Express emitida allí. <strong>En España no está disponible</strong> y no hay fecha para Europa. Como pide una tarjeta estadounidense, tampoco sirve conectarse con una VPN.</p>
+<p>Muse, el agente de Meta, también suma funciones. Hace una semana contamos que se podía organizar por proyectos. Ahora también llama por teléfono a negocios en tu nombre, por ejemplo a la compañía del cable o a un restaurante que no acepta reservas online. Pero solo está para suscriptores de pago y solo llama a negocios de EE. UU., así que desde España no tiene uso por ahora. Por su parte, ElevenLabs, la empresa conocida por sus voces sintéticas, ha presentado <strong>ElevenAI</strong>. Es una app experimental que junta las notas de reuniones, el dictado por voz y la conexión con agentes, y está pensada más para equipos que para uso individual. Compite con Fireflies, Wispr Flow y Granola. Está en fase de prueba: hay que apuntarse a la lista de acceso anticipado, y la fuente no dice nada de su disponibilidad en la UE.</p>
+<p>Hay dos cosas que puedes probar ya. <strong>llama.cpp</strong> llega a la versión 1.0. Es un programa de código abierto (su código es público y gratuito) que sirve para ejecutar modelos de IA en tu propio ordenador, sin depender de la nube. A esto se le llama IA local. Sus responsables presentan esta versión como una base más sólida para todo ese ecosistema. Es gratis y se descarga desde cualquier país, España incluida. Y si haces muchas fotos con el móvil, tienes <strong>Phota Labs</strong>, una nueva app para iOS. Retoca solas tus fotos del día a día para que parezcan de un fotógrafo profesional sin que dejen de parecer reales. La han creado dos ex de Adobe que trabajaron en Lightroom y Photoshop. La fuente no dice si está en la App Store española, así que toca comprobarlo.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes están pasando de contestar preguntas a usar tu dinero y tus cuentas, y no todo el mundo los deja entrar. United Airlines bloqueará a los agentes de IA que intenten reservar vuelos o gestionar reservas en nombre de sus clientes, porque lo ve como un riesgo de ciberseguridad. No es la primera gran empresa estadounidense que lo hace. El problema es que aerolíneas y bancos no saben distinguir entre tú y un asistente que entra con tu usuario y tu contraseña. Lo práctico: <strong>no le des tus contraseñas a un asistente de IA</strong>. Es mejor usar herramientas que te piden aprobar cada acción, como hace Wallet con la huella. En las empresas pasa lo mismo. Shield usa agentes de OpenAI que navegan por portales antiguos para ahorrar ese trabajo a los técnicos de IT. Nectar ha lanzado un agente para marcas que busca creadores de contenido, les escribe y sigue sus campañas.</p>
+<p>El otro tema del día es la IA abierta. La versión 1.0 de llama.cpp sale en un momento incierto. Jensen Huang ha dejado Nvidia tras 33 años al frente. Era uno de los grandes defensores de los modelos abiertos, y en septiembre Nvidia acordó comprar Hugging Face, la gran plataforma de modelos abiertos. El CEO de Hugging Face, Clément Delangue, ha prometido seguir luchando por la IA de código abierto "más que nunca". Si usas sus modelos, de momento no hay cambios anunciados.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>XYBench</strong>: una nueva prueba de AllenAI que mide si un modelo te ayuda con el problema real que hay detrás de tu pregunta. Te recuerda que conviene decirle a la IA tu objetivo final, no solo el paso en el que te has atascado.</li><li><strong>llama.cpp v1.0</strong>: un buen punto de partida para probar modelos abiertos en tu ordenador, sin pagar por uso.</li><li><strong>ChatGPT Wallet</strong>: el sistema de OpenAI para que sus agentes paguen, con aprobación biométrica de cada compra. Atento a cuándo llega a Europa.</li><li><strong>Fireflies, Wispr Flow y Granola</strong>: las alternativas a ElevenAI que han lanzado funciones parecidas de notas de reuniones y dictado en los últimos meses.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/">TechCrunch – ChatGPT's new Wallet lets AI agents shop and check out for you</a></li><li><a href="https://openai.com/index/introducing-chatgpt-wallet">OpenAI – Introducing ChatGPT Wallet</a></li><li><a href="https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/">TechCrunch – Muse can now place calls to US businesses</a></li><li><a href="https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/">TechCrunch – ElevenLabs' new app combines meeting note-taking and dictation</a></li><li><a href="https://huggingface.co/blog/ggml-org/llama-cpp-v1">Hugging Face – llama.cpp v1.0.0</a></li><li><a href="https://techcrunch.com/2026/11/12/phota-labs-uses-ai-to-turn-everyday-photos-into-professional-looking-shots/">TechCrunch – Phota Labs</a></li><li><a href="https://techcrunch.com/2026/11/12/united-airlines-blocks-ai-agents-from-booking-flights-citing-cybersecurity-risks/">TechCrunch – United Airlines blocks AI agents from booking flights</a></li><li><a href="https://openai.com/business/customer-stories/shield">OpenAI – Shield customer story</a></li><li><a href="https://techcrunch.com/2026/11/12/nectar-launches-an-ai-agent-to-automate-creator-discovery-and-outreach-for-brands/">TechCrunch – Nectar launches Creator Agent</a></li><li><a href="https://techcrunch.com/2026/11/12/jensen-huangs-exit-puts-nvidias-support-for-open-source-in-question/">TechCrunch – Jensen Huang's exit and Nvidia's open source support</a></li><li><a href="https://techcrunch.com/2026/11/12/hugging-face-ceo-vows-to-keep-fighting-for-open-source-ai-after-jensen-huangs-exit/">TechCrunch – Hugging Face CEO vows to keep fighting for open source AI</a></li><li><a href="https://huggingface.co/blog/allenai/xybench">Hugging Face / AllenAI – XYBench</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-13.html">13 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
