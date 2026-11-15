@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>ElevenLabs entra en la carrera de las notas de reuniones y los modelos que corren en tu ordenador ya pueden analizar tus datos — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">15 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>ElevenLabs entra en la carrera de las notas de reuniones y los modelos que corren en tu ordenador ya pueden analizar tus datos</p>
+<h2>Lo más importante</h2>
+<p>Hoy no hay modelos nuevos, así que el día va de herramientas. La más llamativa es <strong>ElevenAI</strong>, la nueva app de ElevenLabs, la empresa conocida por sus voces sintéticas. Hace tres cosas: toma notas de tus reuniones, transcribe lo que dictas y se conecta con <strong>agentes</strong> (asistentes de IA que, además de responder, hacen tareas por su cuenta). Compite con Granola, Fireflies o Wispr Flow, pero está pensada para equipos más que para una sola persona: por ejemplo, puede avisar a tus compañeros de lo que se decidió en una reunión. De momento es una versión preliminar, así que no se puede descargar sin más: hay que pedir acceso anticipado en la web de ElevenLabs. La fuente no dice qué países admite la lista de espera. El resto de productos de ElevenLabs funciona en España, así que vale la pena apuntarse, pero no hay garantía de que te acepten.</p>
+<p>Si te gusta trastear, Simon Willison ha publicado <strong>datasette-llm 0.1a11</strong>, una versión alfa de un complemento para Datasette (herramienta gratuita y de código abierto para explorar bases de datos desde el navegador). La novedad es que ahora funciona con cualquier servicio "compatible con OpenAI", que es la forma casi estándar de comunicarse con un modelo de lenguaje por internet. Eso significa que puedes conectarlo a un modelo local (uno que se ejecuta en tu ordenador sin enviar tus datos a nadie) que tengas en LM Studio, Ollama o llama.cpp. Por cierto, llama.cpp acaba de llegar a su <strong>versión 1.0</strong>. Con un solo comando de `uvx` (una forma de ejecutar herramientas de Python sin instalarlas) tienes un agente que responde preguntas sobre tus datos usando, por ejemplo, un modelo Qwen. Es útil si trabajas con información sensible que no quieres subir a la nube. Willison también ha actualizado datasette-vega para hacer gráficos, que ya funciona en Datasette Lite, la versión que corre dentro del navegador sin instalar nada. Todo es software libre que se ejecuta en tu máquina, así que <strong>está disponible ya en España</strong>, sin restricciones.</p>
+<p>Las otras dos novedades sirven poco desde aquí. <strong>Muse</strong>, el asistente de Meta, ya llama por teléfono a empresas en tu nombre, por ejemplo para pelearte con la compañía del cable o reservar en un restaurante que no tiene reservas online. Pero solo funciona con suscripción de pago y solo llama a empresas de EE. UU.; la fuente no menciona planes para Europa. Para quien trabaja en marketing, Nectar ha lanzado Creator Agent, que busca influencers, revisa su contenido y con qué marcas han colaborado, les escribe mensajes personalizados y sigue los resultados de la campaña. No hay datos sobre su disponibilidad en la UE.</p>
+<h2>Tendencias y patrones</h2>
+<p>Ya hay agentes que hacen cosas por ti fuera de la pantalla: ayer contamos que ChatGPT compra por ti, hoy Muse llama por teléfono y Nectar contacta con creadores. Casi todos <strong>empiezan solo en EE. UU.</strong>, así que desde España toca esperar. En cambio, las apps que toman notas en reuniones están cada vez más saturadas: ElevenLabs se suma a Fireflies, Granola y Wispr Flow, y a Claude, que como contamos el día 11 ya participa en reuniones. Con tanta competencia, lo previsible es que bajen los precios y que todas acaben haciendo lo mismo. Para elegir, fíjate sobre todo en si se conecta con las herramientas que ya usas.</p>
+<p>El otro tema del día es lo poco que duran algunas herramientas. TechCrunch recopila productos de IA que han cerrado: Character.ai se declaró en bancarrota y el asistente Ollie ha cerrado. Según S&P Global, las empresas abandonan alrededor del <strong>42 % de sus proyectos de IA</strong>. Además, la dimisión de Jensen Huang como CEO de Nvidia deja en el aire su apoyo al software de IA abierto, justo cuando Nvidia está comprando Hugging Face (el gran repositorio de modelos abiertos). El CEO de Hugging Face, Clément Delangue, promete seguir apostando por lo abierto. La lección práctica es no depender de una sola herramienta. Los estándares abiertos como <strong>Agent Skills</strong> ayudan con eso. Es una carpeta con un archivo SKILL.md donde le explicas a un agente cómo hacer una tarea concreta. Anthropic se lo cedió en octubre a la Agentic AI Foundation y ya lo admiten más de 70 plataformas, como ChatGPT, Cursor, GitHub Copilot o VS Code. Los modelos locales ayudan por la misma razón: si una herramienta cierra, te llevas tu forma de trabajar a otra.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Agent Skills</strong> — escribe una sola vez cómo se hace una tarea y úsalo en Claude Code, Cursor, Copilot o ChatGPT.</li><li><strong>llama.cpp 1.0</strong> — el programa de referencia para usar modelos abiertos en tu ordenador ya tiene versión estable.</li><li><strong>Datasette Lite</strong> — Datasette funcionando entero en el navegador, ahora con complementos como los gráficos de Vega-Lite.</li><li><strong>No AI Slop Manifesto</strong> — propuesta de ponentes de la conferencia AI Engineer contra el "slop" (contenido de IA de baja calidad fabricado en masa); útil si publicas con ayuda de IA.</li><li><strong>16 proyectos hechos con Fable 5.2</strong> — ideas de lo que se está construyendo con el modelo de Anthropic que contamos el día 10.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/">TechCrunch – ElevenLabs lanza ElevenAI</a></li><li><a href="https://simonwillison.net/2026/Nov/14/datasette-llm/">Simon Willison – datasette-llm 0.1a11</a></li><li><a href="https://simonwillison.net/2026/Nov/14/datasette-vega/">Simon Willison – datasette-vega 0.7</a></li><li><a href="https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/">TechCrunch – Muse ya hace llamadas a empresas de EE. UU.</a></li><li><a href="https://techcrunch.com/2026/11/12/nectar-launches-an-ai-agent-to-automate-creator-discovery-and-outreach-for-brands/">TechCrunch – Nectar lanza Creator Agent</a></li><li><a href="https://techcrunch.com/2026/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/">TechCrunch – El cementerio de la IA</a></li><li><a href="https://techcrunch.com/2026/11/12/hugging-face-ceo-vows-to-keep-fighting-for-open-source-ai-after-jensen-huangs-exit/">TechCrunch – Hugging Face tras la salida de Jensen Huang</a></li><li><a href="https://techcrunch.com/2026/11/12/jensen-huangs-exit-puts-nvidias-support-for-open-source-in-question/">TechCrunch – La salida de Huang y el código abierto en Nvidia</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic – Agent Skills pasa a la Agentic AI Foundation</a></li><li><a href="https://latent.space/p/ainews-the-no-ai-slop-manifesto/">Latent Space – The No AI Slop Manifesto</a></li><li><a href="https://www.youtube.com/watch?v=lA5o_j0fnug">16 WILDEST Fable 5.2 Builds</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-14.html">14 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
