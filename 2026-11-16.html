@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Google Maps ya te prepara el itinerario del viaje y la IA empieza a hacer tareas dentro de las apps de siempre — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">16 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Google Maps ya te prepara el itinerario del viaje y la IA empieza a hacer tareas dentro de las apps de siempre</p>
+<h2>Lo más importante</h2>
+<p>Google está desplegando en <strong>Google Maps</strong> funciones para planificar viajes con IA. Desde Ask Maps, el asistente que va dentro de la app, puedes pedirle un itinerario paso a paso. Cuando abras las indicaciones, te dará datos en tiempo real de cada parada. También puede buscarte cita en negocios. Google presenta Maps como un agente (un asistente de IA que no solo responde, sino que completa tareas por ti), metido en una app que millones de personas ya abren cada día. Para probarlo, busca Ask Maps en la app. En cuanto a España, el anuncio no dice en qué países está. Estas novedades de Maps suelen salir primero en EE. UU. y tardan semanas o meses en llegar a Europa, así que si aún no te aparece, lo más probable es que sea por eso. Audible, de Amazon, también usa IA para ayudarte a elegir libro. Antes de la muestra narrada te pone un resumen en audio, generado por IA, de los temas del libro y de lo que gustó a los lectores. Después añade comentarios de un editor o del autor sacados de entrevistas antiguas. Tampoco hay datos de disponibilidad fuera de EE. UU.</p>
+<p>El truco del día viene de Simon Willison. Ha hecho <strong>datasette-maplibre</strong>, un plugin (complemento que añade funciones a un programa) para ver datos geográficos en mapas. Casi todo salió de un solo prompt (la instrucción que le das al modelo) a <strong>Claude Fable 5.2</strong>, el modelo del que hablamos el día 10. Primero le pidió que mirara dos plugins suyos parecidos y un archivo de demo. Luego, que construyera uno nuevo con las funciones de ambos. Y al final añadió "sé creativo y piensa fuera de la caja". Esa última frase le trajo ideas que no había pedido, como enseñar previsualizaciones de las formas geográficas antes de cargar el mapa completo. La lección es sencilla: <strong>dale al agente código parecido como referencia y permiso explícito para proponer cosas</strong>. Willison usa el mismo modelo para sacar adelante Datasette 1.0, que ya va por el 53 %. Claude está disponible en España, tanto en la app como por API.</p>
+<p>En salud hay dos novedades, pero ninguna está pensada para un usuario en España. OpenAI amplía <strong>ChatGPT for Healthcare</strong> con agentes de computer use (agentes que manejan programas como lo haría una persona: hacen clic, escriben y rellenan formularios). También trae respuestas clínicas mejores y plugins que se conectan al software de hospitales y clínicas. Es un producto para equipos sanitarios y OpenAI no dice nada de la UE. Apple, junto con OpenEvidence, lanza una app de estudio para ver cómo usa la gente la IA con sus dudas de salud, con respuestas basadas en evidencia clínica. Es solo para EE. UU. y pide tener más de 21 años, un iPhone 15 o posterior, iOS 26 y Apple Intelligence activado. Quieren reunir hasta 200.000 participantes durante más de un año.</p>
+<h2>Tendencias y patrones</h2>
+<p>Hoy se repite una idea: la IA deja de ser una app aparte y se mete en servicios que ya usas, como Maps, Audible o el software de una clínica, para hacer tareas en vez de solo contestar. Para ti significa menos herramientas nuevas que aprender y más funciones que aparecen en las de siempre. La pega es que casi todas salen primero en EE. UU., así que conviene mirar de vez en cuando qué ha llegado ya a Europa.</p>
+<p>La otra cara es la lista de proyectos de IA que cierran. Character.ai se declaró en quiebra el mes pasado, el asistente Ollie ha echado el cierre y, según S&P Global, las empresas acaban abandonando alrededor del <strong>42 %</strong> de sus proyectos de IA. Si dependes de una herramienta pequeña, exporta tus datos de vez en cuando y, si puedes, usa formatos abiertos. Las <strong>Agent Skills</strong> son un buen ejemplo. Una skill es una carpeta con un archivo SKILL.md que enseña a un agente una tarea concreta, y ya la entienden más de 70 plataformas, entre ellas ChatGPT, Cursor, GitHub Copilot y VS Code. En octubre Anthropic cedió el estándar a la Agentic AI Foundation, así que lo que escribas hoy tiene <strong>muchas más papeletas de seguir sirviéndote aunque cambies de herramienta</strong>.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>datasette-maplibre</strong> — el plugin de mapas de Willison, un buen ejemplo de lo que sale de un prompt bien planteado.</li><li><strong>OpenFreeMap</strong> — servidor gratuito de mapas vectoriales que usa ese plugin; sirve para poner mapas en tus proyectos sin pagar.</li><li><strong>Datasette 1.0a43</strong> — nueva versión de esta herramienta para explorar datos. Exporta tablas enteras a CSV en streaming (manda los datos poco a poco en lugar de cargarlos de golpe) y corrige un fallo de seguridad con las consultas privadas guardadas, así que actualiza si la usas.</li><li><strong>Agent Skills</strong> — el estándar abierto de habilidades para agentes; puedes crear la tuya con una carpeta y un SKILL.md.</li><li><strong>Blog científico de OpenAI</strong> — métodos y casos de investigadores que trabajan con IA, como la demostración de física teórica en la que ayudó GPT-6 Astra.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/16/google-maps-can-now-build-trip-itineraries-with-real-time-details-about-each-stop/">TechCrunch — Google Maps can now build trip itineraries</a></li><li><a href="https://techcrunch.com/2026/11/16/audible-turns-to-ai-to-help-users-discover-audiobooks/">TechCrunch — Audible turns to AI to help users discover audiobooks</a></li><li><a href="https://simonwillison.net/2026/Nov/15/datasette-maplibre/">Simon Willison — datasette-maplibre 0.1a0</a></li><li><a href="https://simonwillison.net/2026/Nov/15/datasette/">Simon Willison — datasette 1.0a43</a></li><li><a href="https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare">OpenAI — More ways to move care forward with ChatGPT for Healthcare</a></li><li><a href="https://openai.com/index/advancing-computer-use-for-healthcare-teams">OpenAI — Advancing computer-use agents for healthcare teams</a></li><li><a href="https://techcrunch.com/2026/11/15/apple-launches-new-app-to-study-how-people-use-ai-for-health/">TechCrunch — Apple launches new app to study how people use AI for health</a></li><li><a href="https://techcrunch.com/2026/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/">TechCrunch — The AI graveyard</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic — Donating Agent Skills to the Agentic AI Foundation</a></li><li><a href="https://openai.com/index/our-new-blog-for-science">OpenAI — Our new blog for science</a></li><li><a href="https://openai.com/index/step-toward-defining-the-standard-model">OpenAI — A step toward defining the Standard Model on a lattice</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-15.html">15 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
