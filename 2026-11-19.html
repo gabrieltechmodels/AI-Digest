@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Google estrena Gemini 4 Neon con unos precios cada vez más liosos, y los asistentes de programación ya sirven hasta para crear filtros de Snapchat — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">19 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Google estrena Gemini 4 Neon con unos precios cada vez más liosos, y los asistentes de programación ya sirven hasta para crear filtros de Snapchat</p>
+<h2>Lo más importante</h2>
+<p>Google ha presentado <strong>Gemini 4 Neon</strong>, un modelo nuevo que en la gama queda entre los dos que ya conocías: por encima de Hydrogen (el rápido y barato del que hablamos el día 13) y por debajo de Carbon, el más potente. Lo complicado es el precio. Neon cuesta <strong>3 $ por millón de tokens de entrada y 15 $ por millón de salida</strong>. Un token es un trozo de texto, más o menos una sílaba larga o una palabra corta, y se paga tanto por lo que envías como por lo que responde el modelo. Carbon cuesta ahora 2 $ y 10 $ porque está a mitad de precio, pero ese descuento acaba el 1 de diciembre y entonces su precio se duplicará. O sea, hoy Neon es el más caro de los tres y dentro de dos semanas lo volverá a ser Carbon. Además, Argon, que costaba lo mismo que Carbon, ya ni aparece en el anuncio. Si usas Gemini por API (la conexión que deja usar el modelo desde tus propios programas), revisa antes de diciembre qué modelo tienes configurado. Si quieres probarlo desde la terminal, el plugin <strong>llm-gemini 0.38</strong> de Simon Willison ya es compatible. La fuente no dice nada sobre la disponibilidad en España.</p>
+<p>Snapchat ha lanzado <strong>Easy Lens CLI</strong>, que permite crear Lenses (los efectos de realidad aumentada que te cambian la cara o meten objetos en lo que ve la cámara) con los asistentes de programación que seguramente ya usas: Claude Code, Cursor o Codex. CLI significa herramienta de línea de comandos. Tú describes la idea y el asistente se encarga de la parte técnica. Es la versión para desarrolladores de Easy Lens, que ya generaba filtros a partir de una sola frase en la web y en el móvil. La noticia no menciona restricciones por país, así que no hay datos concretos para la UE. Y ya que sale Codex: OpenAI ha explicado cómo funciona su sandbox, una especie de caja aislada que limita qué carpetas puede tocar el agente y a qué sitios de internet se puede conectar, en macOS, Linux y Windows. Un agente es un asistente de IA que no solo responde, también ejecuta acciones por su cuenta. Esos límites los decides tú, así que conviene leer la explicación antes de dejar que lance comandos en tu ordenador. Codex se usa con los planes de pago de ChatGPT, que están disponibles en España.</p>
+<p>El <strong>Modo IA del Buscador de Google</strong> (la interfaz de conversación que aparece cuando haces preguntas largas) estrena las "conversaciones temporales", que funcionan como un modo incógnito. Lo que preguntes ahí no saldrá luego en tu historial ni afectará a tus recomendaciones, y no tienes que cambiar ningún ajuste. Google no ha dado un calendario por países, así que de momento no está confirmado para España. Y una actualización de lo que contamos ayer: las primeras opiniones sobre GPT-6.2 Astra están divididas. En las pruebas estándar de rendimiento sale bastante más barato que sus rivales, pero los primeros usuarios no se ponen de acuerdo en qué tal es trabajar con él. Todo apunta a que Sol, el modelo económico, será el que más se use en el día a día.</p>
+<h2>Tendencias y patrones</h2>
+<p>Los agentes con acceso a tus cuentas siguen dando sustos. Según chats internos que ha publicado Reuters, empleados de Meta avisaron de que <strong>Muse</strong>, su agente de IA, parecía acceder a mensajes cifrados y enseñaba saldos bancarios y de bitcoin que no eran del usuario. Meta dice que esos datos se los inventaba el modelo y no eran reales. A la vez, y siguiendo con lo que contamos el día 14 sobre empresas que le cierran la puerta a los agentes, <strong>Citibank</strong> ha cambiado sus condiciones: si le das tus credenciales del banco a una herramienta de IA y algo sale mal, aunque sea por un hackeo, el problema es tuyo. Es un banco de EE. UU., pero la lección vale igual aquí: antes de darle tus claves bancarias a un agente, mira qué dicen las condiciones de tu banco. Satya Nadella (Microsoft) y Palmer Luckey también avisaron de que los ciberataques que se apoyan en IA avanzan más rápido que las defensas.</p>
+<p>La otra tendencia es la "frontera irregular" de los agentes de programación: lo hacen muy bien en unas tareas y fallan en otras. OpenAI ha publicado un análisis sobre cómo aceleran su propia investigación y en qué siguen siendo desiguales. Daniel Stenberg, creador de curl (una herramienta de transferencia de datos que usan millones de programas), le ha puesto cifras a una moda, el "vibe-porting", que consiste en pedir a unos agentes que traduzcan un programa entero a otro lenguaje. Mientras unos agentes convertían <strong>185.000 líneas de C en 340.000 de Rust</strong>, su equipo metió más de 200 correcciones de errores en el curl original, y ninguna está en esas copias. La conclusión práctica es que <strong>generar código ya es fácil y lo que cuesta de verdad es mantenerlo al día</strong>.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Inside the Codex sandbox</strong>: cómo limitar qué archivos y qué conexiones puede usar un agente en tu ordenador.</li><li><strong>llm-gemini 0.38</strong>: plugin para la herramienta `llm` de Simon Willison con el que puedes probar Gemini 4 Neon desde la terminal.</li><li><strong>Research acceleration: The jagged frontier</strong>: el análisis de OpenAI sobre dónde ayudan los agentes de programación y dónde todavía fallan.</li><li><strong>Predecir cuánto tarda un fine-tuning</strong>: por qué reentrenar un modelo con tus propios datos (eso es el fine-tuning) tarda más de lo que dicen los cálculos teóricos.</li><li><strong>Easy Lens CLI</strong>: para crear efectos de Snapchat desde Claude Code, Cursor o Codex.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://simonwillison.net/2026/Nov/18/llm-gemini/">Simon Willison: llm-gemini 0.38</a></li><li><a href="https://techcrunch.com/2026/11/18/snapchat-now-lets-developers-build-ar-lenses-with-ai-coding-assistants-like-claude-code-and-cursor/">TechCrunch: Snapchat Easy Lens CLI</a></li><li><a href="https://openai.com/index/inside-the-codex-sandbox">OpenAI: Inside the Codex sandbox</a></li><li><a href="https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/">TechCrunch: Modo incógnito en AI Mode</a></li><li><a href="https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/">Latent Space: GPT-6.2 Astra y Sol</a></li><li><a href="https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/">Ars Technica: Meta Muse y la privacidad</a></li><li><a href="https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/">TechCrunch: Bancos y agentes de IA</a></li><li><a href="https://techcrunch.com/2026/11/18/palmer-luckey-warns-ai-powered-cyberattacks-are-outpacing-defenses-its-time-to-start-running/">TechCrunch: Palmer Luckey sobre ciberataques con IA</a></li><li><a href="https://techcrunch.com/2026/11/18/amidst-fears-of-ai-cyberattacks-satya-nadella-says-lots-of-critical-infrastructure-is-unpatchable/">TechCrunch: Nadella y la infraestructura sin parches</a></li><li><a href="https://simonwillison.net/2026/Nov/18/daniel-stenberg/">Simon Willison: Daniel Stenberg sobre curl en Rust</a></li><li><a href="https://openai.com/index/research-acceleration-jagged-frontier">OpenAI: Research acceleration, the jagged frontier</a></li><li><a href="https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time">Hugging Face: Why your fine-tuning job takes longer than the FLOPs say</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-18.html">18 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
