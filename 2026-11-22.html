@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>Los agentes de IA se mudan a tus mensajes de texto justo cuando la privacidad se convierte en su gran problema — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">22 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>Los agentes de IA se mudan a tus mensajes de texto justo cuando la privacidad se convierte en su gran problema</p>
+<h2>Lo más importante</h2>
+<p>La novedad más práctica del día es un tipo de producto que crece rápido: <strong>agentes de IA a los que les escribes por mensaje</strong>, como a cualquier contacto. Un agente es una IA que no solo responde, también hace tareas por ti. Estos recuerdan lo que habéis hablado y se conectan a las apps y servicios que ya usas. Con eso pueden pedir una cita, ordenar tu calendario, investigar un viaje, mandar un email, reservar mesa, comprar online o recordarte algo días después. La gracia es que no tienes que instalar otra app. El más comentado ahora mismo es Instinct, y hay más opciones, como Ask Proxy y otras pensadas para familias, viajes o trabajo. Disponibilidad en España: la fuente no dice nada. Estos servicios suelen salir primero en EE. UU., así que antes de entusiasmarte mira en la web de cada uno si aceptan números españoles.</p>
+<p>Meta muestra el riesgo de dar tanto acceso a un agente. Según Reuters, que ha revisado mensajes internos de la empresa, su agente <strong>Muse</strong> ha mezclado conversaciones de cuentas distintas. A varios empleados les aparecieron peticiones de canguro que nunca hicieron, pedidos que no eran suyos e incluso saldos bancarios de otras personas. A uno le escribió en mitad de una charla sobre el tiempo y las mareas: «por cierto, tu saldo en Capital One es de 2.722,58 dólares». Si usas Muse o cualquier agente con cuentas sensibles conectadas, revisa qué tiene enlazado y desconecta lo bancario hasta que haya explicaciones. La fuente no aclara si el fallo afecta a usuarios europeos. Signal, por su parte, ha empezado a <strong>limitar las capturas de pantalla en su app móvil</strong>. Su presidenta, Meredith Whittaker, habla de una «amenaza existencial»: Windows, Android, macOS e iOS integran agentes que leen lo que hay en pantalla. Lo que capturan queda guardado en la base de datos o el servidor de ese agente, fuera del control de Signal. Es un cambio en la propia app, no un lanzamiento por países, así que lo previsible es que también lo notes en España.</p>
+<p>Si programas o automatizas tareas, te interesan dos cosas. La primera no es de esta semana, pero se puede usar ya: <strong>Agent Skills</strong>, el estándar abierto de Anthropic que ahora gestiona la Agentic AI Foundation. Una skill es una carpeta con un archivo SKILL.md (instrucciones en texto) y, si hace falta, scripts o documentos de referencia, que enseña a un agente una tarea concreta. Ya funciona en más de 70 plataformas, entre ellas ChatGPT, Cursor, GitHub Copilot y VS Code, todas disponibles en España. La segunda es Muru, un servidor escrito en Rust (un lenguaje de programación rápido y seguro) con ayuda de IA. Sirve para poner en marcha aplicaciones web hechas en Python mediante ASGI y WSGI, los estándares con los que un servidor se comunica con ellas. Su autor es Graham Dumpleton, que creó mod_wsgi hace 20 años. Lo útil para cualquiera es su método: publica en su blog casi a diario, desde el 4 de noviembre, cómo avanza el proyecto hecho con IA, y se puede leer desde cualquier país.</p>
+<h2>Tendencias y patrones</h2>
+<p>El tema del día es quién controla tu pantalla. El día 20 contamos que Gemini ya maneja tu Mac y que Apple prepara su propio agente. Ese <strong>computer use</strong> (la IA ve la pantalla y usa el ratón y el teclado por ti) recibe ahora la primera respuesta seria de una app, la de Signal. El caso Muse muestra qué pasa cuando un agente con acceso a demasiadas cosas se equivoca. A la vez, la IA llega a canales que ya usas, como los mensajes, y a objetos físicos. El bolígrafo <strong>Flowtica Scribe</strong> (159 dólares) graba audio mientras tomas notas y después transcribe la reunión, la resume y saca una lista de tareas. Meta venderá Muse Charm, un dispositivo tipo Tamagotchi, por unos 300 dólares, según The Information. No hay datos de venta en España de ninguno de los dos.</p>
+<p>Dos apuntes rápidos. Una caída de Microsoft dejó sin <strong>Outlook, Teams y Copilot</strong> casi dos días, dentro de una racha de apagones en grandes servicios de EE. UU. Conviene no depender de un único asistente para lo importante. Y Anthropic salió a bolsa esta semana en el Nasdaq, sin ningún cambio anunciado en Claude por ahora.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Agent Skills</strong> — el formato abierto de skills (carpeta + SKILL.md), útil para enseñar a tu agente las tareas que repites cada semana.</li><li><strong>El diario de Muru</strong> — un ejemplo real de cómo documentar paso a paso un proyecto grande hecho con ayuda de IA.</li><li><strong>Comparativa de agentes por mensaje</strong> — repasa desde asistentes generales hasta agentes para familias, viajes o trabajo.</li><li><strong>AI for Science de Anthropic</strong> — créditos gratis de Claude para investigadores con proyectos científicos de alto impacto; se amplió en octubre a 20 fundaciones e instituciones de todo el mundo.</li><li><strong>Cyber Verification Program</strong> — si trabajas en ciberseguridad, puedes pedir uno de sus tres niveles de acceso a los modelos más capaces de Claude, con menos bloqueos automáticos (anunciado en octubre).</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/">TechCrunch — Agentes de IA que viven en tus mensajes de texto</a></li><li><a href="https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/">TechCrunch — Meta Muse mezcla conversaciones y expone datos privados</a></li><li><a href="https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/">TechCrunch — Signal limita las capturas de pantalla</a></li><li><a href="https://simonwillison.net/2026/Nov/21/muru/">Simon Willison — Muru</a></li><li><a href="https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation">Anthropic — Agent Skills y la Agentic AI Foundation</a></li><li><a href="https://techcrunch.com/2026/11/20/6-ai-powered-gadgets-that-could-make-your-home-office-smarter/">TechCrunch — Gadgets con IA para la oficina en casa</a></li><li><a href="https://techcrunch.com/2026/11/19/metas-new-muse-charm-device-may-cost-300/">TechCrunch — Precio de Muse Charm</a></li><li><a href="https://techcrunch.com/2026/11/19/these-tech-outages-are-giving-y2k-ai-agent-style/">TechCrunch — La racha de caídas tecnológicas</a></li><li><a href="https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/">TechCrunch — Anthropic debuta en el Nasdaq</a></li><li><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic — Ampliación de AI for Science</a></li><li><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic — Cyber Verification Program</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-21.html">21 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
