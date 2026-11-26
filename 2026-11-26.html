@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<title>ChatGPT junta Chat y Work en una sola experiencia, y quien más lo usa puede quedarse antes sin cupo — Daily AI Digest</title>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<style>
+  :root {
+    --bg: #fafaf8; --fg: #1a1a1a; --link: #1a56db;
+    --muted: #888; --faint: #999; --border: #e0e0e0; --border-soft: #ececec;
+    --rule: #d0d0d0; --heading: #555; --panel: #f5f5f0; --toggle-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+      --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+      --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17191e; --fg: #e4e4e6; --link: #7aa2f7;
+    --muted: #9aa0ab; --faint: #868c96; --border: #2c2f37; --border-soft: #24272e;
+    --rule: #3a3f49; --heading: #b6bcc6; --panel: #20232a; --toggle-bg: #24272e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; color: var(--fg); line-height: 1.75; background: var(--bg); transition: background 0.2s ease, color 0.2s ease; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .site-head { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .site-head .brand { font-family: system-ui, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .site-head h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; margin-top: 4px; }
+  .site-head h1 a { color: inherit; }
+  .site-head .tagline { color: var(--muted); font-size: 0.9rem; font-family: system-ui, sans-serif; margin-top: 6px; }
+  .entry-list { list-style: none; }
+  .entry-list li { padding: 20px 0; border-bottom: 1px solid var(--border-soft); }
+  .entry-list .date { font-family: system-ui, sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
+  .entry-list .title { font-size: 1.25rem; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+  .entry-list .title a { color: var(--fg); }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: system-ui, sans-serif; margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  h2 { font-size: 1.15rem; font-weight: 700; font-family: system-ui, sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: var(--heading); margin: 40px 0 12px; }
+  p { margin-bottom: 1.2em; }
+  ul { margin: 0 0 1.2em 0; padding: 0; list-style: none; }
+  ul li { padding: 6px 0 6px 16px; border-left: 3px solid var(--rule); margin-bottom: 8px; }
+  ul li strong { color: var(--fg); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  strong { font-weight: 600; }
+  .mermaid { background: var(--panel); border-radius: 8px; padding: 24px; margin: 24px 0; text-align: center; overflow-x: auto; }
+  .post-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-family: system-ui, sans-serif; font-size: 0.9rem; }
+  .post-nav a { max-width: 45%; }
+  .back { font-family: system-ui, sans-serif; font-size: 0.85rem; }
+  #theme-toggle { position: fixed; top: 16px; right: 16px; z-index: 10; width: 40px; height: 40px; border: 1px solid var(--border); background: var(--toggle-bg); color: var(--fg); border-radius: 999px; font-size: 1.1rem; line-height: 1; cursor: pointer; font-family: system-ui, sans-serif; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+  #theme-toggle:hover { border-color: var(--faint); }
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'neutral' });
+</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro"></button>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    function paint() { btn.textContent = root.getAttribute('data-theme') === 'dark' ? '\u2600\uFE0F' : '\u{1F319}'; }
+    paint();
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+<header class="site-head">
+  <div class="brand"><a href="index.html">Daily AI Digest</a></div>
+  <div class="meta">26 de noviembre de 2026</div>
+</header>
+<article>
+<h2>Titular del día</h2>
+<p>ChatGPT junta Chat y Work en una sola experiencia, y quien más lo usa puede quedarse antes sin cupo</p>
+<h2>Lo más importante</h2>
+<p>Si pagas ChatGPT y lo usas mucho, esto te afecta. OpenAI ha empezado a desplegar una experiencia unificada que junta <strong>Chat y Work</strong>. Con la fusión, los límites de uso de las dos partes pasan a contarse juntos. Por ahora solo lo recibe un grupo pequeño de suscriptores Pro, según anunció el responsable de producto Thibault Sottiaux, después de avisar del cambio por email. OpenAI dice que la mayoría no notará que el contador se reinicia más a menudo, pero admite que <strong>una pequeña parte de los usuarios más intensivos llegará antes al tope</strong>. Es justo lo que temían varios suscriptores en redes y en el foro oficial. Si usas mucho las dos partes, reparte las tareas pesadas a lo largo del día cuando te llegue el cambio. Sobre España: el despliegue es gradual y empieza por Pro, y OpenAI no ha dado fechas ni detalles por países.</p>
+<p>Si trabajas con datos o documentos, hoy hay dos cosas que puedes probar. Simon Willison ha publicado datasette-charts 0.3a0 (Datasette es una herramienta libre para explorar y publicar bases de datos). La versión nueva permite añadir anotaciones a los gráficos: líneas, zonas sombreadas, etiquetas o una mezcla de las tres. Puedes probarlo sin instalar nada en Datasette Lite, que funciona en el navegador y trae un editor visual. Si además instalas <strong>Datasette Agent</strong> (un agente, es decir, una IA que hace tareas de varios pasos por su cuenta), le pides el gráfico con tus palabras y te lo devuelve ya anotado. Hay una demo en agent.datasette.io. Todavía es una versión alfa (experimental), pero al ser software libre se puede usar desde España sin restricciones. Por su parte, NVIDIA ha publicado una guía para trabajar con <strong>Nemotron 3.5 Parse</strong>, su modelo para leer documentos y extraer su texto y su estructura. La guía incluye datos abiertos, pasos para hacer fine-tuning (reentrenar un poco el modelo con tus ejemplos para que se adapte a tus documentos) y trucos para acelerar la inferencia (el momento en que el modelo procesa el archivo y genera la respuesta). Está en Hugging Face, así que se descarga desde España, aunque hay que saber algo de código.</p>
+<p>Si generas música con IA y la subes a plataformas, <strong>Tidal</strong> empezará el 9 de diciembre a retirar las canciones hechas íntegramente con IA. Calcula que borrará más de 29 millones de temas antes de fin de año y que rechazará entre 80.000 y 85.000 subidas al día. Tampoco dejará que las distribuidoras le envíen temas 100 % IA, y descartará los que lo declaren en sus metadatos. El motivo es que en los últimos 90 días más del 43 % de lo que recibía estaba hecho con IA. Tidal funciona en España, así que la norma se aplica aquí igual.</p>
+<h2>Tendencias y patrones</h2>
+<p>Las empresas venden los agentes como la solución al papeleo digital, pero un estudio rebaja las expectativas. ShellBench, un nuevo benchmark (prueba estándar para comparar modelos) de tareas cotidianas, muestra que hasta los mejores modelos de OpenAI, Anthropic y Meta fallan más de un tercio de las veces. Además, el <strong>15,7 %</strong> de los intentos incumplió al menos un requisito de seguridad, a menudo con efectos no deseados. Aun así, las compras con agentes no frenan. Walmart lleva sus ofertas de Black Friday a Muse, el agente de Meta del que hablamos ayer, y Amazon negocia levantar el bloqueo que impedía a Muse comprar en su tienda. Todo esto es solo para EE. UU.: Walmart no opera en España. La conclusión práctica: <strong>si un agente compra o reserva por ti, revisa antes de confirmar</strong>. La otra cara es la privacidad. Character.ai, en bancarrota, quería subastar los chats de más de 21 millones de cuentas estadounidenses, 2,1 millones de ellas de menores, y 42 fiscales generales de EE. UU. intentan impedirlo. En el extremo contrario, Maple ofrece una app de IA con código abierto que funciona en entornos de ejecución confiables (zonas aisladas del servidor donde cualquiera puede comprobar qué código se ejecuta), para que ni la propia empresa vea tus datos. La fuente no dice si Maple está disponible en España.</p>
+<p>El otro patrón es la ciencia. Después de lo de la hipótesis de Riemann del día 21, las demostraciones con ayuda de IA siguen llegando: problemas de Erdős y nuevas cotas para la multiplicación de matrices y las transformadas de Fourier. Salen tan rápido que nadie da abasto para leerlas. Scott Aaronson lo compara con Van Leeuwenhoek mirando por primera vez una gota de agua al microscopio. En física teórica, los modelos más avanzados ya resuelven problemas que antes le costaban un día entero a un físico de primer nivel, y los científicos discuten hasta dónde dejar trabajar a los agentes. Lo útil para cualquiera es que <strong>estos modelos ya sirven para cálculos serios, siempre que una persona revise el resultado</strong>.</p>
+<h2>Para profundizar</h2>
+<ul><li><strong>Datasette Agent</strong>: prueba la demo en agent.datasette.io para ver cómo una petición escrita se convierte en un gráfico anotado.</li><li><strong>Nemotron 3.5 Parse</strong>: la guía de NVIDIA en Hugging Face, con datos abiertos y pasos para adaptar el modelo a tus documentos.</li><li><strong>ShellBench</strong>: benchmark de tareas cotidianas para agentes, útil para saber qué puedes esperar de ellos.</li><li><strong>Claude Code gratis</strong>: una comparativa de nueve formas de usarlo sin pagar, que concluye que solo tres compensan.</li><li><strong>AI for Science de Anthropic</strong>: programa que da créditos gratis de Claude a investigadores con proyectos científicos de alto impacto, ahora ampliado a fundaciones e instituciones.</li></ul>
+<h2>Fuentes</h2>
+<ul><li><a href="https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/">TechCrunch: ChatGPT unifica Chat y Work</a></li><li><a href="https://simonwillison.net/2026/Nov/25/datasette-charts/">Simon Willison: datasette-charts 0.3a0</a></li><li><a href="https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin">Hugging Face (NVIDIA): Nemotron 3.5 Parse</a></li><li><a href="https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/">TechCrunch: Tidal retira la música generada con IA</a></li><li><a href="https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/">TechCrunch: ShellBench y los agentes</a></li><li><a href="https://techcrunch.com/2026/11/24/walmart-teams-up-with-meta-to-bring-black-friday-deals-to-ai-agent-muse/">TechCrunch: Walmart y Muse</a></li><li><a href="https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/">TechCrunch: Amazon y Muse</a></li><li><a href="https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/">TechCrunch: Character.ai y la subasta de chats</a></li><li><a href="https://techcrunch.com/2026/11/24/maple-raises-5-3m-to-build-ai-products-that-protect-your-data-even-from-itself/">TechCrunch: Maple</a></li><li><a href="https://latent.space/p/ainews-math-proofs-are-landing-faster-than-we-can-read-them/">Latent Space: Math Proofs Are Landing Faster Than We Can Read Them</a></li><li><a href="https://simonwillison.net/2026/Nov/25/scott-aaronson/">Simon Willison: Quoting Scott Aaronson</a></li><li><a href="https://arstechnica.com/ai/2026/11/ai-can-do-the-calculations-physicists-are-figuring-out-what-comes-next/">Ars Technica: la IA y la física teórica</a></li><li><a href="https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents">Hugging Face (Ai2): Where scientists draw the line on AI agents</a></li><li><a href="https://www.youtube.com/watch?v=YHRCFtHD5yo">I Tested 9 Ways to Use Claude Code for Free</a></li><li><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic: AI for Science</a></li></ul>
+</article>
+<nav class="post-nav"><span></span><a href="2026-11-25.html">25 de noviembre de 2026 →</a></nav>
+<p class="back" style="margin-top:24px"><a href="index.html">← Todas las entradas</a></p>
+</body>
+</html>
